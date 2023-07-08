@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleados</title>
+    <script  src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css"></script>
+
+
+</head>
+<body>
+    <!--Header-->
+    <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6">
+        <section class="flex items-center flex-shrink-0 text-white mr-6">
+          <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+          <span class="font-semibold text-4xl tracking-tight">SDBS</span>
+        </section>
+       
+
+            <section class="w-full block flex-grow flex-row lg:flex lg:items-center lg:w-auto">
+                <section class="text-lg lg:flex-grow">
+                    <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
+                        Inicio
+                    </a>
+                    <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
+                        Modificar Clientes
+                    </a>
+                    <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
+                        Facturación
+                    </a>
+                  
+                </section>
+
+                <section>
+                    <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" class="flex items-center text-sm font-medium  rounded-full hover:text-black md:mr-0 focus:ring-4  focus:ring-gray-700 text-white" type="button">
+                        <span class="sr-only">Open user menu</span>
+                        <img class="w-8 h-8 mr-2 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo">
+                        Bonnie Green
+                        <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                      </svg>
+                    </button>
+                    
+                        <!-- Dropdown menu -->
+                        <section id="dropdownAvatarName" class="z-10 hidden  divide-y  rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
+                            <div class="px-4 py-3 text-sm  text-white">
+                            <div class="font-medium ">Pro User</div>
+                            <div class="truncate">name@flowbite.com</div>
+                            </div>
+                            <ul class="py-2 text-sm  text-gray-200" aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                            <li>
+                                <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Settings</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Earnings</a>
+                            </li>
+                            </ul>
+                            <div class="py-2">
+                            <a href="#" class="block px-4 py-2 text-sm   hover:bg-gray-600 text-gray-200 hover:text-white">Sign out</a>
+                            </div>
+                        </section>
+            
+                </section>
+            </section>
+
+        
+       
+    </nav>
+
+
+    <main class="h-screen flex items-center justify-center  mt-20 lg:mt-0 ">
+        <section>
+
+           
+            <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">¡Bienvenido al Sistema Bonnie Green!</h1>
+            <h2 class="text-xl text-gray-700 mb-4 text-center">Seleccione una opción para continuar</h2>
+       
+         
+            <section class="flex flex-wrap flex-col lg:flex-row mt-10 ">
+                
+                <a href="#" class="flex flex-col items-center  border mb-3  max-w-xl  rounded-lg shadow-lg md:flex-row lg:mr-6   border-gray-700 bg-gray-800 hover:bg-gray-700">
+                    <img class="object-cover  w-3/4 rounded-t-lg   md:h-72 md:w-48 md:rounded-none md:rounded-l-lg" src="../img/clientes.jpg" alt="">
+                    <div class="flex flex-col justify-between p-4 leading-normal">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight  text-white">Modificar Clientes</h5>
+                        <p class="mb-3 font-normal  text-gray-400">Agrege o Actualice a los Clientes</p>
+                    </div>
+                </a>
+
+                <a href="#" class="flex flex-col items-center  border mb-3  max-w-xl  rounded-lg shadow-lg md:flex-row  lg:mr-6  border-gray-700 bg-gray-800 hover:bg-gray-700">
+                    <img class="object-cover object-right w-3/4 rounded-t-lg  md:h-72 md:w-48 md:rounded-none md:rounded-l-lg" src="../img/facturacion.png" alt="">
+                    <div class="flex flex-col justify-between p-4 leading-normal">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight  text-white">Facturación</h5>
+                        <p class="mb-3 font-normal  text-gray-400">Realice una orden de Compra</p>
+                    </div>
+                </a>
+            </section>
+            
+
+
+        </section>
+    </main>
+
+    <!--Footer container-->
+    <footer class="text-center text-white mt-10" style="background-color: #0a4275">
+            
+        
+        <!--Copyright section-->
+        <section class="p-4 text-center" style="background-color: rgba(0, 0, 0, 0.2)"> 
+            © 2023 Copyright:
+            <a class="text-white" href="https://tailwind-elements.com/">
+                SBDS
+            </a>
+        </section>
+    </footer>
+</body>
+</html>
