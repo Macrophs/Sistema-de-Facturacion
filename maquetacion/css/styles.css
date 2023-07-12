@@ -1,5 +1,20 @@
+/* ScrollBar */
 
-.login-background
-{
+::-webkit-scrollbar {
+    width: 10px; 
+    background: #0b2f70;
+}
+
+::-webkit-scrollbar-track {
+    background: #0b2f70;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #2493c7, #51bbed, #B1DDF1);
+    border-radius: 20px;
+}
+
+.login-background {
     background-image: url(../img/facturacion-background.jpg);
 }
