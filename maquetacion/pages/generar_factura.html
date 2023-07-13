@@ -1,446 +1,479 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empleados</title>
-    <script  src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/styles.css"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/styles.css">
 
 
 </head>
+
 <body class="bg-slate-200">
     <!--Header-->
-    
-    <nav class="flex items-center sticky w-full left-0 top-0 justify-between flex-wrap bg-blue-500 p-6">
-        <section class="flex  items-center flex-shrink-0 text-white mr-6">
-          <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
-          <span class="font-semibold text-4xl tracking-tight">SDBS</span>
-        </section>
-       
-            <!--
-            <section class="w-full block flex-grow flex-row lg:flex lg:items-center lg:w-auto">
-                <section class="text-lg lg:flex-grow">
-                    <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
-                        Inicio
-                    </a>
-                    <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
-                        Modificar Clientes
-                    </a>
-                    <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
-                        Facturación
-                    </a>
-                  
-                </section>
-                -->
-                <section>
-                    <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" class="flex items-center text-sm font-medium  rounded-full hover:text-black md:mr-0 focus:ring-4  focus:ring-gray-700 text-white" type="button">
-                        <span class="sr-only">Open user menu</span>
-                        <img class="w-8 h-8 mr-2 rounded-full" src="../img/user.png" alt="user photo">
-                        Bonnie Green
-                        <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                      </svg>
-                    </button>
-                    
-                        <!-- Dropdown menu -->
-                        <section id="dropdownAvatarName" class="z-10 hidden  divide-y  rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
-                            <div class="px-4 py-3 text-sm  text-white">
-                            <div class="font-medium ">Pro User</div>
-                            <div class="truncate">name@flowbite.com</div>
-                            </div>
-                            <ul class="py-2 text-sm  text-gray-200" aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
-                            <li>
-                                <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Settings</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Earnings</a>
-                            </li>
-                            </ul>
-                            <div class="py-2">
-                            <a href="#" class="block px-4 py-2 text-sm   hover:bg-gray-600 text-gray-200 hover:text-white">Sign out</a>
-                            </div>
-                        </section>
-            
-                </section>
-            </section>
 
-        
-       
+    <nav class="fixed w-full flex items-center justify-between flex-wrap p-4" style="background-color: #1C448E;">
+        <section class="flex  items-center flex-shrink-0 text-white mr-6">
+            <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+            </svg>
+            <span class="font-semibold text-4xl tracking-tight">SDBS</span>
+        </section>
+
+        <section>
+            <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
+                class="flex items-center text-sm font-medium  rounded-full hover:text-black md:mr-0 focus:ring-4  focus:ring-gray-700 text-white"
+                type="button">
+                <span class="sr-only">Open user menu</span>
+                <img class="w-8 h-8 mr-2 rounded-full" src="../img/user.png" alt="user photo">
+                Bonnie Green
+                <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 4 4 4-4" />
+                </svg>
+            </button>
+
+            <!-- Dropdown menu -->
+            <section id="dropdownAvatarName"
+                class="z-10 hidden  divide-y  rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
+                <div class="px-4 py-3 text-sm  text-white">
+                    <div class="font-medium ">Pro User</div>
+                    <div class="truncate">name@flowbite.com</div>
+                </div>
+                <ul class="py-2 text-sm  text-gray-200"
+                    aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                    <li>
+                        <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Settings</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Earnings</a>
+                    </li>
+                </ul>
+                <div class="py-2">
+                    <a href="#" class="block px-4 py-2 text-sm   hover:bg-gray-600 text-gray-200 hover:text-white">Sign
+                        out</a>
+                </div>
+            </section>
+        </section>
     </nav>
 
-
-    
     <section class=" ">
-        
-        <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm  rounded-lg sm:hidden  focus:outline-none focus:ring-2  text-gray-400 hover:bg-gray-700 focus:ring-gray-600">
+        <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
+            aria-controls="sidebar-multi-level-sidebar" type="button"
+            class="inline-flex items-center p-2 mt-2 ml-3 text-sm  rounded-lg sm:hidden  focus:outline-none focus:ring-2  text-gray-400 hover:bg-gray-700 focus:ring-gray-600">
             <span class="sr-only">Open sidebar</span>
-            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" fill-rule="evenodd"
+                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+                </path>
             </svg>
         </button>
-        
-            <aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0  mt-20  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-                <div class="h-full px-3 py-4 overflow-y-auto  bg-blue-500">
+
+        <aside id="sidebar-multi-level-sidebar"
+            class="fixed top-0 left-0  mt-16  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+            aria-label="Sidebar">
+            <div class="h-full px-3 py-4 overflow-y-auto mt-2"
+                style="background-image: linear-gradient(to top, #B1DDF1, #1C448E);">
                 <ul class="space-y-2 font-medium">
-                
+
                     <li>
-                        <a href="#" class="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group">
-                            <svg class="w-5 h-5 text-gray-100 transition duration-75   group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                            <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
-                            <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
+                        <a href="#" class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                            <svg class="w-5 h-5 text-gray-100 transition duration-75   group-hover:text-white"
+                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                viewBox="0 0 22 21">
+                                <path
+                                    d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
+                                <path
+                                    d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                             </svg>
                             <span class="ml-3">Panel de Control</span>
                         </a>
                     </li>
                     <li>
-                        <button type="button" class="flex items-center w-full p-2 text-base  transition duration-75 rounded-lg group  text-white hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                            <svg class="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-100 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                                <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
+                        <button type="button"
+                            class="vinculo-menuLateral flex items-center w-full p-2 text-base  transition duration-75 rounded-lg group  text-white"
+                            aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                            <svg class="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-100 group-hover:text-white"
+                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                viewBox="0 0 20 18">
+                                <path
+                                    d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                             </svg>
-                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Gestión de Clientes</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Gestión de Usuarios</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
                             </svg>
                         </button>
                         <ul id="dropdown-example" class="hidden py-2 space-y-2">
                             <li>
-                                <a href="#" class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">Products</a>
+                                <a href="#"
+                                    class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">
+                                    Products
+                                </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">Billing</a>
+                                <a href="#"
+                                    class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">
+                                    Billing
+                                </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">Invoice</a>
+                                <a href="#"
+                                    class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">
+                                    Invoice
+                                </a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group">
-                            <svg class="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-100 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
-                                <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"/>
+                        <a href="#" class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                            <svg class="flex-shrink-0 w-5 h-5  transition duration-75 text-gray-100 group-hover:text-white"
+                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                viewBox="0 0 18 21">
+                                <path
+                                    d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
                             </svg>
                             <span class="flex-1 ml-3 whitespace-nowrap">Facturación</span>
-                    
+
                         </a>
                     </li>
-                
-                
-                
                 </ul>
-                </div>
-            </aside>
-            
-        
-        
-            </section>
+            </div>
+        </aside>
+    </section>
 
-         
+    <main class="h-auto flex flex-col col  sm:ml-64  sm:p-4  ">
+        <section class=" p-8 mt-10 text-black flex items-center">
+            <div class="rounded-full w-10 h-10 flex items-center justify-center mr-3"
+                style="background-color: #1C448E;">
+                <img class="w-7" src="../img/client.svg">
+            </div>
+            <h1 class="text-xl" style="color: #1C448E;">
+                - Generar Factura
+            </h1>
 
-
-        <main class="h-auto flex flex-col col  sm:ml-64  sm:p-4  ">
-            <section class=" p-8 mb-1 text-black flex items-center">
-                <div class="bg-blue-500 rounded-full w-10 h-10 flex items-center justify-center mr-3">
-                    <img class="w-7" src="../img/client.svg" >
-                </div>
-                <h1 class="text-xl text-blue-500"> 
-                    - Generar Factura
-                </h1>
-                
-            </section>
-            <section class="flex  items-center justify-center  lg:mt-0 ">
-                <section class="w-full lg:w-2/4 overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
-
-                    <section class="pb-4 bg-white">
-                        <label for="table-search" class="sr-only">Buscar Producto</label>
-                        <section class=" relative  mt-1">
-                            <section class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                </svg>
-                            </section>
-                            <input type="text" id="table-search" class="block p-2 pl-10 text-BASE text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Buscar Producto">
+        </section>
+        <section class="flex  items-center justify-center  lg:mt-0 ">
+            <section class="w-full lg:w-2/4 overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
+                <section class="pb-4 bg-white">
+                    <label for="table-search" class="sr-only">Buscar Producto</label>
+                    <section class="mt-1">
+                        <section class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                            </svg>
                         </section>
+                        <input type="text" id="table-search"
+                            class="block p-2 pl-10 text-BASE text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Buscar Producto">
                     </section>
-                    <table class="w-full text-base text-left text-gray-500">
-                        <thead class="text-base text-gray-700 uppercase bg-gray-50">
-                            <tr>
-                                <th scope="col" class="p-4 rounded-l-lg">
-                                    
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Nombre 
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Código
-                                </th>
-                                <th scope="col" class="px-6 py-3 rounded-l-lg">
-                                    Precio
-                                </th>
-                               
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="bg-white border-b ">
-                                <td class="w-4 p-4">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
-                                        <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                    </div>
-                                </td>
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Apple MacBook Pro 17"
-                                </th>
-                                <td class="px-6 py-4">
-                                    #15324
-                                </td>
-                                <td class="px-6 py-4">
-                                    $2999
-                                </td>
-                              
-                            </tr>
-                            <tr class="bg-white border-b ">
-                                <td class="w-4 p-4">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-table-search-2" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2">
-                                        <label for="checkbox-table-search-2" class="sr-only">checkbox</label>
-                                    </div>
-                                </td>
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    Microsoft Surface Pro
-                                </th>
-                                <td class="px-6 py-4">
-                                    #15298
-                                </td>
-                                <td class="px-6 py-4">
-                                    $1999
-                                </td>
-                               
-                            </tr>
-                            <tr class="bg-white border-b   hover:bg-gray-50 ">
-                                <td class="w-4 p-4">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-table-search-3" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2 ">
-                                        <label for="checkbox-table-search-3" class="sr-only">checkbox</label>
-                                    </div>
-                                </td>
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Magic Mouse 2
-                                </th>
-                                <td class="px-6 py-4">
-                                    #15431
-                                </td>
-                               
-                                <td class="px-6 py-4">
-                                    $99
-                                </td>
-                              
-                            </tr>
-                            <tr class="bg-white border-b  hover:bg-gray-50 ">
-                                <td class="w-4 p-4">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-table-3" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2 ">
-                                        <label for="checkbox-table-3" class="sr-only">checkbox</label>
-                                    </div>
-                                </td>
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Apple Watch
-                                </th>
-                                <td class="px-6 py-4">
-                                    #15412
-                                </td>
-                               
-                                <td class="px-6 py-4">
-                                    $179
-                                </td>
-                               
-                            </tr>
-                            <tr class="bg-white border-b  hover:bg-gray-50 ">
-                                <td class="w-4 p-4">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-table-3" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2">
-                                        <label for="checkbox-table-3" class="sr-only">checkbox</label>
-                                    </div>
-                                </td>
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    iPad
-                                </th>
-                                <td class="px-6 py-4">
-                                    #15682
-                                </td>
-                                
-                                <td class="px-6 py-4">
-                                    $699
-                                </td>
-                                
-                            </tr>
-                            <tr class="bg-white  hover:bg-gray-50 ">
-                                <td class="w-4 p-4">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-table-3" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                        <label for="checkbox-table-3" class="sr-only">checkbox</label>
-                                    </div>
-                                </td>
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Apple iMac 27"
-                                </th>
-                                <td class="px-6 py-4">
-                                    #15062
-                                </td>
-                             
-                                <td class="px-6 py-4">
-                                    $3999
-                                </td>
-                              
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <nav class="flex items-center justify-between pt-4" aria-label="Table navigation">
-                        <span class="text-sm font-normal text-gray-500">Mostrando <span class="font-semibold text-gray-900 ">1-10</span> de <span class="font-semibold text-gray-900 ">1000</span></span>
-                        <ul class="inline-flex -space-x-px text-sm h-8">
-                            <li>
-                                <a href="#" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">Anterior</a>
-                            </li>
-                            <li>
-                                <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">2</a>
-                            </li>
-                            <li>
-                                <a href="#" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 ">3</a>
-                            </li>
-                            <li>
-                                <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">4</a>
-                            </li>
-                            <li>
-                                <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">5</a>
-                            </li>
-                            <li>
-                                <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">Siguiente</a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    
-
                 </section>
+                <table class="w-full text-base text-left text-gray-500">
+                    <thead class="text-base text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="p-4 rounded-l-lg">
 
-                
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Nombre
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Código
+                            </th>
+                            <th scope="col" class="px-6 py-3 rounded-l-lg">
+                                Precio
+                            </th>
 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b ">
+                            <td class="w-4 p-4">
+                                <div class="flex items-center">
+                                    <input id="checkbox-table-search-1" type="checkbox"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                                    <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                                </div>
+                            </td>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                Apple MacBook Pro 17"
+                            </th>
+                            <td class="px-6 py-4">
+                                #15324
+                            </td>
+                            <td class="px-6 py-4">
+                                $2999
+                            </td>
+
+                        </tr>
+                        <tr class="bg-white border-b ">
+                            <td class="w-4 p-4">
+                                <div class="flex items-center">
+                                    <input id="checkbox-table-search-2" type="checkbox"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2">
+                                    <label for="checkbox-table-search-2" class="sr-only">checkbox</label>
+                                </div>
+                            </td>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                Microsoft Surface Pro
+                            </th>
+                            <td class="px-6 py-4">
+                                #15298
+                            </td>
+                            <td class="px-6 py-4">
+                                $1999
+                            </td>
+
+                        </tr>
+                        <tr class="bg-white border-b   hover:bg-gray-50 ">
+                            <td class="w-4 p-4">
+                                <div class="flex items-center">
+                                    <input id="checkbox-table-search-3" type="checkbox"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2 ">
+                                    <label for="checkbox-table-search-3" class="sr-only">checkbox</label>
+                                </div>
+                            </td>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                Magic Mouse 2
+                            </th>
+                            <td class="px-6 py-4">
+                                #15431
+                            </td>
+
+                            <td class="px-6 py-4">
+                                $99
+                            </td>
+
+                        </tr>
+                        <tr class="bg-white border-b  hover:bg-gray-50 ">
+                            <td class="w-4 p-4">
+                                <div class="flex items-center">
+                                    <input id="checkbox-table-3" type="checkbox"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2 ">
+                                    <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                </div>
+                            </td>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                Apple Watch
+                            </th>
+                            <td class="px-6 py-4">
+                                #15412
+                            </td>
+
+                            <td class="px-6 py-4">
+                                $179
+                            </td>
+
+                        </tr>
+                        <tr class="bg-white border-b  hover:bg-gray-50 ">
+                            <td class="w-4 p-4">
+                                <div class="flex items-center">
+                                    <input id="checkbox-table-3" type="checkbox"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2">
+                                    <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                </div>
+                            </td>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                iPad
+                            </th>
+                            <td class="px-6 py-4">
+                                #15682
+                            </td>
+
+                            <td class="px-6 py-4">
+                                $699
+                            </td>
+
+                        </tr>
+                        <tr class="bg-white  hover:bg-gray-50 ">
+                            <td class="w-4 p-4">
+                                <div class="flex items-center">
+                                    <input id="checkbox-table-3" type="checkbox"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                                    <label for="checkbox-table-3" class="sr-only">checkbox</label>
+                                </div>
+                            </td>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                Apple iMac 27"
+                            </th>
+                            <td class="px-6 py-4">
+                                #15062
+                            </td>
+
+                            <td class="px-6 py-4">
+                                $3999
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <nav class="flex items-center justify-between pt-4" aria-label="Table navigation">
+                    <span class="text-sm font-normal text-gray-500">Mostrando <span
+                            class="font-semibold text-gray-900 ">1-10</span> de <span
+                            class="font-semibold text-gray-900 ">1000</span></span>
+                    <ul class="inline-flex -space-x-px text-sm h-8">
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">Anterior</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">1</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">2</a>
+                        </li>
+                        <li>
+                            <a href="#" aria-current="page"
+                                class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 ">3</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">4</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">5</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
             </section>
+        </section>
 
-            <section class="flex items-center  justify-center  mt-10 ">
-
-
-                
-                <section class="w-full lg:w-2/4 overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
-                    <table class="w-full text-base text-left text-gray-500 ">
-                        <thead class="text-base text-gray-700 uppercase bg-gray-100 ">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 rounded-l-lg">
-                                    Nombre 
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Cantidad
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Precio Unidad
-                                </th>
-                                <th scope="col" class="px-6 py-3 rounded-r-lg">
-                                    Precio Total
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="bg-white ">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    Apple MacBook Pro 17"
-                                </th>
-                                <td class="px-6 py-4 flex">
-                                    1
-                                    <button type="button" class="text-white px-3 ml-3  focus:ring-4 font-medium rounded-md text-base   bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-red-800"> - </button>
-                                    <button type="button" class="text-white px-3 ml-2 focus:ring-4 font-medium rounded-md text-base   bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-green-800"> + </button>
-                                </td>
-                                <td class="px-6 py-4">
-                                    $2999
-                                </td>
-                                <td class="px-6 py-4">
-                                    $2999
-                                </td>
-                            </tr>
-                            <tr class="bg-white ">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Microsoft Surface Pro
-                                </th>
-                                <td class="px-6 py-4">
-                                    1
-                                    <button type="button" class="text-white px-3 ml-3  focus:ring-4 font-medium rounded-md text-base   bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-red-800"> - </button>
-                                    <button type="button" class="text-white px-3 ml-2 focus:ring-4 font-medium rounded-md text-base   bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-green-800"> + </button>
-                                </td>
-                                <td class="px-6 py-4">
-                                    $1999
-                                </td>
-                                <td class="px-6 py-4">
-                                    $1999
-                                </td>
-                            </tr>
-                            <tr class="bg-white ">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Magic Mouse 2
-                                </th>
-                                <td class="px-6 py-4">
+        <section class="flex items-center  justify-center  mt-10 ">
+            <section class="w-full lg:w-2/4 overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
+                <table class="w-full text-base text-left text-gray-500 ">
+                    <thead class="text-base text-gray-700 uppercase bg-gray-100 ">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 rounded-l-lg">
+                                Nombre
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Cantidad
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Precio Unidad
+                            </th>
+                            <th scope="col" class="px-6 py-3 rounded-r-lg">
+                                Precio Total
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white ">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                Apple MacBook Pro 17"
+                            </th>
+                            <td class="px-6 py-4 flex">
                                 1
-                                 <button type="button" class="text-white px-3 ml-3  focus:ring-4 font-medium rounded-md text-base   bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-red-800"> - </button>
-                                    <button type="button" class="text-white px-3 ml-2 focus:ring-4 font-medium rounded-md text-base   bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-green-800"> + </button>
-                                </td>
-                                <td class="px-6 py-4">
-                                    $99
-                                </td>
-                                <td class="px-6 py-4">
-                                    $99
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr class="font-semibold text-gray-900 bg-gray-100 ">
-                                <th scope="row" class="px-6 py-3 text-base">Total</th>
-                                <td class="px-6 py-3">3</td>
-                                <td></td>
-                                <td class="px-6 py-3">21,000</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    
-                </section>
-
+                                <button type="button"
+                                    class="text-white px-3 ml-3  focus:ring-4 font-medium rounded-md text-base   bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-red-800">
+                                    - </button>
+                                <button type="button"
+                                    class="text-white px-3 ml-2 focus:ring-4 font-medium rounded-md text-base   bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-green-800">
+                                    + </button>
+                            </td>
+                            <td class="px-6 py-4">
+                                $2999
+                            </td>
+                            <td class="px-6 py-4">
+                                $2999
+                            </td>
+                        </tr>
+                        <tr class="bg-white ">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                Microsoft Surface Pro
+                            </th>
+                            <td class="px-6 py-4">
+                                1
+                                <button type="button"
+                                    class="text-white px-3 ml-3  focus:ring-4 font-medium rounded-md text-base   bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-red-800">
+                                    - </button>
+                                <button type="button"
+                                    class="text-white px-3 ml-2 focus:ring-4 font-medium rounded-md text-base   bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-green-800">
+                                    + </button>
+                            </td>
+                            <td class="px-6 py-4">
+                                $1999
+                            </td>
+                            <td class="px-6 py-4">
+                                $1999
+                            </td>
+                        </tr>
+                        <tr class="bg-white ">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                Magic Mouse 2
+                            </th>
+                            <td class="px-6 py-4">
+                                1
+                                <button type="button"
+                                    class="text-white px-3 ml-3  focus:ring-4 font-medium rounded-md text-base   bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-red-800">
+                                    - </button>
+                                <button type="button"
+                                    class="text-white px-3 ml-2 focus:ring-4 font-medium rounded-md text-base   bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-green-800">
+                                    + </button>
+                            </td>
+                            <td class="px-6 py-4">
+                                $99
+                            </td>
+                            <td class="px-6 py-4">
+                                $99
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="font-semibold text-gray-900 bg-gray-100 ">
+                            <th scope="row" class="px-6 py-3 text-base">Total</th>
+                            <td class="px-6 py-3" colspan="2">3</td>
+                            <td class="px-6 py-3">21,000</td>
+                        </tr>
+                    </tfoot>
+                </table>
 
             </section>
 
-            <section class="flex items-center justify-center  lg:mt-10">
 
-                <button type="button" class="text-white mt-10 px-40 focus:ring-4 font-medium rounded-lg text-base  py-2.5 mr-2 mb-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800">Generar Factura</button>
+        </section>
 
-            </section>
-            
-        </main>
+        <section class="flex items-center justify-center  lg:mt-10">
+            <button type="button"
+                class="text-white mt-10 px-40 focus:ring-4 font-medium rounded-lg text-base  py-2.5 mr-2 mb-2 " style="background-color: #1C448E; ">
+                Generar Factura
+            </button>
+        </section>
+
+    </main>
 
     <!--Footer container-->
-    <footer class="text-center  text-white mt-20" style="background-color: #0a4275">
-                
-            
+    <footer class="text-center text-white mt-20 footer-size" style="background-color: #7A7978">
         <!--Copyright section-->
-        <section class="p-4 text-center"  style="background-color: rgba(0, 0, 0, 0.2)"> 
+        <section class="p-4 text-center" style="background-color: rgba(0, 0, 0, 0.2)">
             © 2023 Copyright:
             <a class="text-white" href="https://tailwind-elements.com/">
                 SBDS
             </a>
         </section>
     </footer>
-    
+
 </body>
+
 </html>
