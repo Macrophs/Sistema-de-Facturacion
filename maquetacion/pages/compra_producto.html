@@ -7,17 +7,13 @@
     <title>Empleados</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../css/styles.css">
-
-
 </head>
 
 <body class="bg-slate-200">
     <!--Header-->
-
     <nav class="fixed w-full flex items-center justify-between flex-wrap p-4" style="background-color: #1C448E;">
         <section class="flex  items-center flex-shrink-0 text-white mr-6">
             <img class="h-8 w-8 mr-2" src="../img/logo.svg" alt="logo">
-           
             <span class="font-semibold text-4xl tracking-tight">SDBS</span>
         </section>
 
@@ -29,7 +25,6 @@
                 <img class="w-8 h-8 mr-2 rounded-full" src="../img/user.png" alt="user photo">
                 Bonnie Green
                 <img class="w-2.5 h-2.5 ml-2.5" src="../img/arrow.svg" alt="arrow">
-                
             </button>
 
             <!-- Dropdown menu 
@@ -69,8 +64,7 @@
         </button>
 
         <aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0  mt-16  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-            <section class="h-full px-3 py-4 overflow-y-auto mt-2"
-                style="background-image: linear-gradient(to top, #B1DDF1, #1C448E);">
+            <section class="background-gradientBlue h-full px-3 py-4 overflow-y-auto mt-2">
                 <ul class="space-y-2 font-medium">
 
                     <li>
@@ -135,7 +129,7 @@
         </aside>
     </section>
 
-    <main class="h-auto min-h-screen flex flex-col col  sm:ml-64  sm:p-4  ">
+    <main class="main h-auto min-h-screen flex flex-col col  sm:ml-64  sm:p-4  ">
         <section class=" p-8 mt-10 text-black flex items-center">
             <section class="rounded-full w-10 h-10 flex items-center justify-center mr-3"
                 style="background-color: #1C448E;">
@@ -150,8 +144,8 @@
             <section class="w-full lg:w-2/4 overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
                 <section class="pb-4 bg-white">
                     <label for="table-search" class="sr-only">Buscar Producto</label>
-                    <section class="mt-1">
-                        <section class="relative -z-0 top-7 flex items-center  pl-3 pointer-events-none">
+                    <section class="flex">
+                        <section class="absolute -z-0 top-7 flex items-center pl-3 pointer-events-none">
                             <img class="w-4 h-4  pt-1 "src="../img/search.svg" alt="">
                         </section>
                         <input type="text" id="table-search"
@@ -162,10 +156,7 @@
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-sm text-gray-700 uppercase bg-gray-50">
                         <tr>
-                            <th scope="col" class="p-4 rounded-l-lg">
-
-                            </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" colspan="2" class="px-6 py-3">
                                 Nombre
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -337,7 +328,7 @@
             </section>
         </section>
 
-        <section class="flex items-center  justify-center  mt-10 ">
+        <section class="flex items-center justify-center  mt-10 ">
             <section class="w-full lg:w-2/4 overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
                 <table class="w-full text-sm text-left text-gray-500 ">
                     <thead class="text-sm text-gray-700 uppercase bg-gray-100 ">
@@ -442,14 +433,12 @@
     </main>
 
     <!--Footer container-->
-    <footer class="text-center text-white mt-20 footer-size" style="background-color: #7A7978">
+    <footer class="background-gray footer-size p-2 text-center text-white mt-12">
         <!--Copyright section-->
-        <section class="p-4 text-center" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2023 Copyright:
-            <a class="text-white" href="#">
-                SBDS
-            </a>
-        </section>
+        © 2023 Copyright:
+        <a class="text-white" href="#">
+            SBDS
+        </a>
     </footer>
 
 </body>
