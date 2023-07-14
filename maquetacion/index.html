@@ -10,18 +10,21 @@
     
 </head>
 <body class="bg-slate-200">
-
     <!--Header-->
-     <nav class="flex items-center sticky w-full left-0 top-0 justify-between flex-wrap bg-blue-500 p-6 ">
+
+    <nav class="fixed w-full flex items-center justify-between flex-wrap p-4" style="background-color: #1C448E;">
         <section class="flex  items-center flex-shrink-0 text-white mr-6">
-          <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
-          <span class="font-semibold text-4xl tracking-tight">SDBS</span>
+            <img class="h-8 w-8 mr-2" src="img/logo.svg" alt="logo">
+           
+            <span class="font-semibold text-4xl tracking-tight">SDBS</span>
         </section>
+
+      
     </nav>
 
-    <main class="h-screen ">
+    <main class="max-h-[90vh]">
      
-            <section class="flex flex-col items-center justify-center  px-6 py-6 mx-auto h-screen  lg:py-0">
+            <section class="flex flex-col items-center justify-center  px-6 py-6 mx-auto  h-screen   lg:py-0">
               
                 <section class="w-full rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 bg-white ">
                     <section class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -39,9 +42,8 @@
                             <label for="default-search" class="mb-2 text-sm font-medium  sr-only text-white">Entrar</label>
                             <section class="relative">
                                 <section class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                    </svg>
+                                    <img class="w-4 h-4" src="img/search2.svg" alt="">
+                                    
                                 </section>
                                 <input type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-white border border-gray-300 rounded-lg   bg-blue-500  placeholder-gray-200  focus:ring-blue-500 focus:border-slate-100" placeholder="Ingrese su Usuario" required>
                                 <button type="submit" class="text-black absolute right-2.5 bottom-2.5  hover:bg-gray-300 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 bg-gray-100  focus:ring-blue-800">Entrar</button>
@@ -56,11 +58,11 @@
     </main>
     
     <!--Footer container-->
-    <footer class="text-center text-white mt-10 " style="background-color: #0a4275">
+    <footer class="text-center text-white mt-10 " style="background-color: #7A7978">
         <!--Copyright section-->
-        <section class="p-4 text-center" style="background-color: rgba(0, 0, 0, 0.2)"> 
+        <section class="p-4 text-center" style="background-color: rgba(0, 0, 0, 0.2)""> 
             © 2023 Copyright:
-            <a class="text-white" href="https://tailwind-elements.com/">
+            <a class="text-white" href="#">
                 SBDS
             </a>
         </section>

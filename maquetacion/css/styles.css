@@ -15,9 +15,6 @@
     border-radius: 20px;
 }
 
-.login-background {
-    background-image: url(../img/facturacion-background.jpg);
-}
 
 .footer-size {
     width: calc(100% - 256px);
