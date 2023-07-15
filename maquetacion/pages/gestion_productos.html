@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+
+
+</head>
+
+<body class="bg-slate-200">
+    <!--Header-->
+
+    <nav class="fixed z-40 w-full flex items-center justify-between flex-wrap p-4" style="background-color: #1C448E;">
+        <section class="flex  items-center flex-shrink-0 text-white mr-6">
+            <img class="h-8 w-8 mr-2" src="../img/logo.svg" alt="logo">
+           
+            <span class="font-semibold text-4xl tracking-tight">SDBS</span>
+            <span class="pt-4 pl-2 ">Simple Digital Billing System</span>
+            
+        </section>
+
+        <section>
+            <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
+                class="flex items-center text-sm font-medium  rounded-full hover:text-black md:mr-0 focus:ring-4  focus:ring-gray-700 text-white"
+                type="button">
+                <span class="sr-only">Open user menu</span>
+                <img class="w-8 h-8 mr-2 rounded-full" src="../img/user.png" alt="user photo">
+                Bonnie Green
+                <img class="w-2.5 h-2.5 ml-2.5" src="../img/arrow.svg" alt="arrow">
+                
+            </button>
+
+            <!-- Dropdown menu 
+            <section id="dropdownAvatarName"
+                class="z-10 hidden  divide-y  rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
+                <section class="px-4 py-3 text-sm  text-white">
+                    <section class="font-medium ">Pro User</section>
+                    <section class="truncate"></section>
+                </section>
+                <ul class="py-2 text-sm  text-gray-200"
+                    aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                    <li>
+                        <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Settings</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Earnings</a>
+                    </li>
+                </ul>
+                <section class="py-2">
+                    <a href="#" class="block px-4 py-2 text-sm   hover:bg-gray-600 text-gray-200 hover:text-white">Sign
+                        out</a>
+                </section>
+            </section>-->
+
+        </section>
+    </nav>
+
+    <section class=" ">
+        <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
+            aria-controls="sidebar-multi-level-sidebar" type="button"
+            class="inline-flex  bg-blue-900 items-center p-2 mt-20 ml-3 text-sm  rounded-lg sm:hidden  focus:outline-none focus:ring-2  text-gray-400 hover:bg-gray-700 focus:ring-gray-600">
+            <span class="sr-only">Open sidebar</span>
+            <img class="w-6 h-6"  src="../img/sidebar.svg" alt="sidebar">
+        </button>
+
+        <aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0  mt-16  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+            <section class="h-full px-3 py-4 overflow-y-auto mt-2"
+                style="background-image: linear-gradient(to top, #B1DDF1, #1C448E);">
+                <ul class="space-y-2 font-medium">
+
+                    <li>
+                        <a href="home_admin.html" class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                            <img class="w-5 h-5" src="../img/dashboard.svg" alt="">
+                            <span class="ml-3">Panel de Control</span>
+
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="home_gestion_empleado.html" class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                            <img class="flex-shrink-0 w-5 h-5  transition duration-75 group-hover:text-white" src="../img/user_option.svg" alt="">
+                            
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Gestión de Empleados</span>
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="home_gestion_producto.html" class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                            <img class="flex-shrink-0 w-5 h-5  transition duration-75 group-hover:text-white" src="../img/facturacion_option.svg" alt="">
+                            <span class="flex-1 ml-3 whitespace-nowrap">Gestión de Productos</span>
+
+                        </a>
+                    </li>
+                    <!-- Desplegable
+                    <li>
+                        <button type="button"
+                            class="vinculo-menuLateral flex items-center w-full p-2 text-base  transition duration-75 rounded-lg group  text-white"
+                            aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                            <img class="flex-shrink-0 w-5 h-5  transition duration-75 group-hover:text-white" src="../img/user_option.svg" alt="">
+                            
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Gestión de Usuarios</span>
+                            <img class="w-3 h-3" src="../img/arrow.svg" alt="">
+                        </button>
+                        
+                        <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="#"
+                                    class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">
+                                    Products
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">
+                                    Billing
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">
+                                    Invoice
+                                </a>
+                            </li>
+                        </ul>
+                    </li>-->
+
+                </ul>
+            </section>
+        </aside>
+    </section>
+
+    <main class="h-screen flex flex-col col  sm:ml-64  sm:p-4 max-h-[90vh] ">
+        <section class=" p-8 mt-10 text-black flex items-center">
+            <section class="rounded-full w-10 h-10 flex items-center justify-center mr-3"
+                style="background-color: #1C448E;">
+                <img class="w-7" src="../img/employee.svg">
+            </section>
+            <h1 class="text-xl" style="color: #1C448E;">
+                - Gestión de Productos
+            </h1>
+
+        </section>
+        <section class="flex  items-center justify-center  lg:mt-0  ">
+            
+            <section class="w-full  lg:w-3/4 overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
+                
+                <h4 class="text-2xl text-center font-bold text-blue-700 ">Gestión de Productos</h4>
+
+                
+                
+                
+                    <div class="flex items-center justify-between py-4 bg-white">
+                        
+                        <label for="table-search" class="sr-only">Buscar</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <img class="w-4 h-4" src="../img/search.svg" alt="search">
+                            </div>
+                            <input type="text" id="table-search-users" class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " placeholder="Buscar Productos">
+                        </div>
+                    </div>
+                    
+                    <section class="max-h-[60vh]  overflow-x-auto">
+                        <table class="w-full  text-sm text-left text-gray-500 ">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                                <tr>
+                                    
+                                    <th scope="col" class="px-6 py-3">
+                                        Código
+                                    </th>
+                                    <th scope="col" class="px-10 py-3">
+                                        Nombre
+                                    </th>
+                                    <th scope="col" class="px-10 py-3">
+                                        Cantidad en Stock
+                                    </th>
+                                    <th scope="col" colspan="2" class="px-20 py-3 ">
+                                        Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white border-b  hover:bg-gray-50 ">
+                                    
+                                    <td class="px-6 py-4">
+                                        #12313
+                                    </td>
+                                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
+                                        <!--<img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">-->
+                                        <div class="pl-3">
+                                            <div class="text-base font-semibold">Neil Sims</div>
+                                            
+                                        </div>  
+                                    </th>
+                                    <td class="pl-20 py-4 ">
+                                        5
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="modificar_producto.html" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-blue-600  hover:underline">Editar</a>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-red-600  hover:underline">Eliminar </a>
+                                    </td>
+                                </tr>
+    
+                                <tr class="bg-white border-b  hover:bg-gray-50 ">
+                                    
+                                    <td class="px-6 py-4">
+                                        #12313
+                                    </td>
+                                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
+                                        <!--<img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">-->
+                                        <div class="pl-3">
+                                            <div class="text-base font-semibold">Neil Sims</div>
+                                            
+                                        </div>  
+                                    </th>
+                                    <td class="pl-20 py-4 ">
+                                        5
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="modificar_producto.html" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-blue-600  hover:underline">Editar</a>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-red-600  hover:underline">Eliminar </a>
+                                    </td>
+                                </tr>
+    
+                                <tr class="bg-white border-b  hover:bg-gray-50 ">
+                                    
+                                    <td class="px-6 py-4">
+                                        #12313
+                                    </td>
+                                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
+                                        <!--<img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">-->
+                                        <div class="pl-3">
+                                            <div class="text-base font-semibold">Neil Sims</div>
+                                            
+                                        </div>  
+                                    </th>
+                                    <td class="pl-20 py-4 ">
+                                        5
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="modificar_producto.html" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-blue-600  hover:underline">Editar</a>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-red-600  hover:underline">Eliminar </a>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b  hover:bg-gray-50 ">
+                                    
+                                    <td class="px-6 py-4">
+                                        #12313
+                                    </td>
+                                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
+                                        <!--<img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">-->
+                                        <div class="pl-3">
+                                            <div class="text-base font-semibold">Neil Sims</div>
+                                            
+                                        </div>  
+                                    </th>
+                                    <td class="pl-20 py-4 ">
+                                        5
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="modificar_producto.html" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-blue-600  hover:underline">Editar</a>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-red-600  hover:underline">Eliminar </a>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b  hover:bg-gray-50 ">
+                                    
+                                    <td class="px-6 py-4">
+                                        #12313
+                                    </td>
+                                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
+                                        <!--<img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">-->
+                                        <div class="pl-3">
+                                            <div class="text-base font-semibold">Neil Sims</div>
+                                            
+                                        </div>  
+                                    </th>
+                                    <td class="pl-20 py-4 ">
+                                        5
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="modificar_producto.html" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-blue-600  hover:underline">Editar</a>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-red-600  hover:underline">Eliminar </a>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white border-b  hover:bg-gray-50 ">
+                                    
+                                    <td class="px-6 py-4">
+                                        #12313
+                                    </td>
+                                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
+                                        <!--<img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">-->
+                                        <div class="pl-3">
+                                            <div class="text-base font-semibold">Neil Sims</div>
+                                            
+                                        </div>  
+                                    </th>
+                                    <td class="pl-20 py-4 ">
+                                        5
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="modificar_producto.html" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-blue-600  hover:underline">Editar</a>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <!-- Modal toggle -->
+                                        <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-red-600  hover:underline">Eliminar </a>
+                                    </td>
+                                </tr>
+                               
+                               
+                                
+                            </tbody>
+                        </table>
+    
+                        <nav class="flex items-center justify-between pt-4" aria-label="Table navigation">
+                            <span class="text-sm font-normal text-gray-500">Mostrando <span
+                                    class="font-semibold text-gray-900 ">1-10</span> de <span
+                                    class="font-semibold text-gray-900 ">1000</span></span>
+                            <ul class="inline-flex -space-x-px text-sm h-8">
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">Anterior</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">1</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">2</a>
+                                </li>
+                                <li>
+                                    <a href="#" aria-current="page"
+                                        class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 ">3</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">4</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">5</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">Siguiente</a>
+                                </li>
+                            </ul>
+                        </nav>
+    
+    
+                        <!-- Edit user modal -->
+                        <div id="editUserModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="relative w-full max-w-2xl max-h-full">
+                                <!-- Modal content -->
+                                <form action="#" class="relative bg-white rounded-lg shadow ">
+                                    <!-- Modal header -->
+                                    <div class="flex items-start justify-between p-4 border-b rounded-t ">
+                                        <h3 class="text-xl font-semibold text-gray-900 ">
+                                            Edit user
+                                        </h3>
+                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="editUserModal">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="p-6 space-y-6">
+                                        <div class="grid grid-cols-6 gap-6">
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="first-name" class="block mb-2 text-sm font-medium text-gray-900 ">Nombre</label>
+                                                <input type="text" name="first-name" id="first-name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="Bonnie" required="">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="last-name" class="block mb-2 text-sm font-medium text-gray-900 ">Apellido</label>
+                                                <input type="text" name="last-name" id="last-name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="Green" required="">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Correo</label>
+                                                <input type="email" name="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="example@company.com" required="">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="phone-number" class="block mb-2 text-sm font-medium text-gray-900 ">Número Telefónico</label>
+                                                <input type="number" name="phone-number" id="phone-number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 " placeholder="e.g. +(12)3456 789" required="">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="department" class="block mb-2 text-sm font-medium text-gray-900 ">Cédula</label>
+                                                <input type="text" name="department" id="department" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="Development" required="">
+                                            </div>
+                                    
+    
+                                        </div>
+                                    </div>
+                                    <!-- Modal footer -->
+                                    <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b ">
+                                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Save all</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                    
+                
+
+
+            </section>
+      
+    
+
+
+
+        </section>
+
+       
+
+    </main>
+
+    <!--Footer container-->
+    <footer class="text-center text-white mt-10 footer-size" style="background-color: #7A7978">
+        <!--Copyright section-->
+        <section class="p-4 text-center" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2023 Copyright:
+            <a class="text-white" href="#">
+                SBDS
+            </a>
+        </section>
+    </footer>
+
+</body>
+
+</html>
