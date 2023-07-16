@@ -4,22 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleados</title>
+    <title>Empleados - Modificar Clientes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../css/styles.css">
-
-
 </head>
 
-<body class="bg-slate-200">
+<body>
     <!--Header-->
 
-    <nav class="fixed z-40 w-full flex items-center justify-between flex-wrap p-4" style="background-color: #1C448E;">
+    <nav class="background-blue fixed w-full flex items-center justify-between flex-wrap p-4 z-10">
         <section class="flex  items-center flex-shrink-0 text-white mr-6">
             <img class="h-8 w-8 mr-2" src="../img/logo.svg" alt="logo">
-           
+
             <span class="font-semibold text-4xl tracking-tight">SDBS</span>
-            <span class="pt-4 pl-2 ">Simple Digital Billing System</span>
+            <span class="hidden sm:block pt-4 pl-2 ">Simple Digital Billing System</span>
         </section>
 
         <section>
@@ -136,28 +134,26 @@
         </aside>
     </section>
 
-    <main class="h-screen flex flex-col col  sm:ml-64  sm:p-4 max-h-[90vh] ">
+    <main class=" flex flex-col sm:ml-64 p-10">
         <section class=" p-8 mt-10 text-black flex items-center">
-            <section class="rounded-full w-10 h-10 flex items-center justify-center mr-3"
-                style="background-color: #1C448E;">
+            <section class="background-blue rounded-full w-10 h-10 flex items-center justify-center mr-3">
                 <img class="w-7" src="../img/user.svg">
             </section>
-            <h1 class="text-xl" style="color: #1C448E;">
+            <h1 class="text-blue text-xl">
                 - Modificacion de Clientes
             </h1>
 
         </section>
-        <section class="flex  items-center justify-center  lg:mt-0  ">
+        <section class="flex items-center justify-center mb-10">
             
             <section class="w-full lg:w-2/4 overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
                 
-                <h4 class="text-2xl text-center font-bold text-blue-700 ">Editar los Datos de un Cliente</h4>
+                <h4 class="text-blue mb-4 text-2xl text-center font-bold">Editar los Datos de un Cliente</h4>
 
                 <form action="home_empleado.html">
-            
                     <div class="relative z-0 w-full mb-8 group">
                         <input type="email" value="correo@gmail.com" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Correo Electrónico</label>
+                        <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Correo Electrónico</label>
                     </div>
 
                     <div class="grid md:grid-cols-2 md:gap-6">
@@ -176,34 +172,25 @@
                             <label for="floating_cedula" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cédula (V12345678)</label>
                         </div>
                         <div class="relative z-0 w-full mb-8 group">
+                            
+                            <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Número Telfónico (412-XXXXXXX)</label>
                             <input type="tel" value="412-3121313" pattern="[0-9]{3}-[0-9]{7}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                            <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Número Telfónico (412-XXXXXXX)</label>
                         </div>
                         
                     </div>
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Editar</button>
+                    <button type="submit" class="background-blue text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Editar</button>
                     </form>
             </section>
-      
-    
-
-
-
         </section>
-
-       
-
     </main>
 
     <!--Footer container-->
-    <footer class="text-center text-white mt-10 footer-size" style="background-color: #7A7978">
+    <footer class="absolute bottom-0 background-gray footer-size p-2 text-center text-white">
         <!--Copyright section-->
-        <section class="p-4 text-center" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2023 Copyright:
-            <a class="text-white" href="#">
-                SBDS
-            </a>
-        </section>
+        © 2023 Copyright:
+        <a class="text-white" href="#">
+            SBDS
+        </a>
     </footer>
 
 </body>

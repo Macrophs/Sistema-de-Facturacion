@@ -12,11 +12,9 @@
 <body>
 
     <!--Header-->
-
-    <nav class="background-blue fixed w-full flex items-center justify-between flex-wrap p-4">
+    <nav class="background-blue fixed w-full flex items-center justify-between flex-wrap p-4 z-10">
         <section class="flex  items-center flex-shrink-0 text-white mr-6">
             <img class="h-8 w-8 mr-2" src="../img/logo.svg" alt="logo">
-
             <span class="font-semibold text-4xl tracking-tight">SDBS</span>
         </section>
 
@@ -24,7 +22,7 @@
             <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
                 class="flex items-center text-sm font-medium  rounded-full hover:text-black md:mr-0 focus:ring-4  focus:ring-gray-700 text-white"
                 type="button">
-                <span class="sr-only">Open user menu</span>
+                <!-- <span class="sr-only">Open user menu</span> -->
                 <img class="w-8 h-8 mr-2 rounded-full" src="../img/user.png" alt="user photo">
                 Bonnie Green
                 <img class="w-2.5 h-2.5 ml-2.5" src="../img/arrow.svg" alt="arrow">
@@ -70,7 +68,7 @@
         <aside id="sidebar-multi-level-sidebar"
             class="fixed top-0 left-0  mt-16  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
             aria-label="Sidebar">
-            <section class="background-gradientBlue h-full px-3 py-4 overflow-y-auto mt-2">
+            <section class="relative background-gradientBlue h-full px-3 py-4 overflow-y-auto mt-2">
                 <ul class="space-y-2 font-medium">
                     <li>
                         <a href="/maquetacion/pages/home_empleado.html"
@@ -134,16 +132,24 @@
                 </li>-->
 
                 </ul>
+                <section class="absolute bottom-48 w-11/12 m-auto flex justify-center items-center">
+                    <a href="/maquetacion/"
+                        class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                        <img class="text-blue w-5 h-5" src="../img/icono-salir.svg">
+                        <span class="ml-3 font-bold text-white">Salir</span>
+                    </a>
+                </section>
+
             </section>
         </aside>
     </section>
 
-    <main class="main h-screen flex flex-col col  sm:ml-64  sm:p-4  max-h-[90vh] ">
-        <section class="flex flex-col items-center justify-center w-[calc(100% - 16rem)]">
+    <main class="main h-screen flex flex-col items-center justify-center sm:ml-64  sm:p-4  max-h-[90vh] ">
+        <section class="flex flex-col items-center justify-center w-11/12 ">
             <h1 class="text-blue font-bold mt-20 text-3xl font-bol mb-4 text-center">Factura</h1>
-            <section class='w-11/12 ml-16'>
-                <table class="table-auto w-11/12">
-                    <thead>
+            <section class='w-full overflow-x-auto shadow-md'>
+                <table class='w-full text-center'>
+                    <thead class="background-blue text-white font-bold uppercase h-16">
                         <tr>
                             <td>Producto</td>
                             <td>Precio Unitario</td>
@@ -151,20 +157,21 @@
                             <td>ToTal</td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Chocolate</td>
-                            <td>$ 2,00</td>
-                            <td>1</td>
-                            <td>$ 2,00</td>
+
+                    <tbody class="mt-11">
+                        <tr class="border-bottomBlue">
+                            <td class="pt-10">Chocolate</td>
+                            <td class="pt-10">$ 2,00</td>
+                            <td class="pt-10">1</td>
+                            <td class="pt-10">$ 2,00</td>
                         </tr>
-                        <tr>
+                        <tr class="border-bottomBlue">
                             <td>Galleta</td>
                             <td>$ 1,00</td>
                             <td>1</td>
                             <td>$ 1,00</td>
                         </tr>
-                        <tr>
+                        <tr class="border-bottomBlue">
                             <td>Pepito</td>
                             <td>$ 1,00</td>
                             <td>1</td>
@@ -172,12 +179,42 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <table class="flex justify-end space-x-8 p-6 text-center font-bold">
+                    <thead>
+                        <tr>
+                            <td class="text-blue">SubTotal:</td>
+                        </tr>
+                        <tr>
+                            <td>IVA:</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-blue font-bold">$ 4,00</td>
+                        </tr>
+                        <tr>
+                            <td>$ 0,64</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <section class="flex justify-end w-full">
+                    <section class="flex justify-around items-center background-blue w-48 h-10 text-white font-bold">
+                        <p>Total:</p>
+                        <p>$ 4,64</p>
+                    </section>
+                </section>
+
+                <section class="flex justify-start w-full mt-5">
+                    <p class="text-blue text-xl lg:text-2xl font-bold">¡Gracias por su compra!</p>
+                </section>
             </section>
         </section>
     </main>
 
     <!--Footer container-->
-    <footer class="background-gray footer-size p-2 text-center text-white mt-12">
+    <footer class="absolute bottom-0 background-gray footer-size p-2 text-center text-white" >
         <!--Copyright section-->
         © 2023 Copyright:
         <a class="text-white" href="#">

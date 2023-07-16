@@ -4,24 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleados</title>
+    <title>Empleados - Comprar Productos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
-<body class="bg-slate-200">
+<body>
     <!--Header-->
-    <nav class="fixed w-full flex items-center justify-between flex-wrap p-4" style="background-color: #1C448E;">
+    <nav class="fixed w-full flex items-center justify-between flex-wrap p-4 z-10" style="background-color: #1C448E;">
         <section class="flex  items-center flex-shrink-0 text-white mr-6">
             <img class="h-8 w-8 mr-2" src="../img/logo.svg" alt="logo">
+
             <span class="font-semibold text-4xl tracking-tight">SDBS</span>
+            <span class="hidden sm:block pt-4 pl-2 ">Simple Digital Billing System</span>
         </section>
 
         <section>
             <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
                 class="flex items-center text-sm font-medium  rounded-full hover:text-black md:mr-0 focus:ring-4  focus:ring-gray-700 text-white"
                 type="button">
-                <span class="sr-only">Open user menu</span>
+                <!-- <span class="sr-only">Open user menu</span> -->
                 <img class="w-8 h-8 mr-2 rounded-full" src="../img/user.png" alt="user photo">
                 Bonnie Green
                 <img class="w-2.5 h-2.5 ml-2.5" src="../img/arrow.svg" alt="arrow">
@@ -55,38 +57,45 @@
         </section>
     </nav>
 
-    <section class=" ">
+    <section>
         <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
             aria-controls="sidebar-multi-level-sidebar" type="button"
             class="inline-flex  bg-blue-900 items-center p-2 mt-20 ml-3 text-sm  rounded-lg sm:hidden  focus:outline-none focus:ring-2  text-gray-400 hover:bg-gray-700 focus:ring-gray-600">
             <span class="sr-only">Open sidebar</span>
-            <img class="w-6 h-6"  src="../img/sidebar.svg" alt="sidebar">
+            <img class="w-6 h-6" src="../img/sidebar.svg" alt="sidebar">
         </button>
 
-        <aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0  mt-16  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+        <aside id="sidebar-multi-level-sidebar"
+            class="fixed top-0 left-0  mt-16  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+            aria-label="Sidebar">
             <section class="background-gradientBlue h-full px-3 py-4 overflow-y-auto mt-2">
                 <ul class="space-y-2 font-medium">
 
                     <li>
-                        <a href="home_empleado.html" class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                        <a href="home_empleado.html"
+                            class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
                             <img class="w-5 h-5" src="../img/dashboard.svg" alt="">
                             <span class="ml-3">Panel de Control</span>
 
                         </a>
                     </li>
-                    
+
                     <li>
-                        <a href="gestion_clientes.html" class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
-                            <img class="flex-shrink-0 w-5 h-5  transition duration-75 group-hover:text-white" src="../img/user_option.svg" alt="">
-                            
+                        <a href="gestion_clientes.html"
+                            class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                            <img class="flex-shrink-0 w-5 h-5  transition duration-75 group-hover:text-white"
+                                src="../img/user_option.svg" alt="">
+
                             <span class="flex-1 ml-3 text-left whitespace-nowrap">Gestión de Clientes</span>
 
                         </a>
                     </li>
 
                     <li>
-                        <a href="cedula_cliente.html" class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
-                            <img class="flex-shrink-0 w-5 h-5  transition duration-75 group-hover:text-white" src="../img/facturacion_option.svg" alt="">
+                        <a href="cedula_cliente.html"
+                            class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                            <img class="flex-shrink-0 w-5 h-5  transition duration-75 group-hover:text-white"
+                                src="../img/facturacion_option.svg" alt="">
                             <span class="flex-1 ml-3 whitespace-nowrap">Facturación</span>
 
                         </a>
@@ -129,10 +138,9 @@
         </aside>
     </section>
 
-    <main class="main h-auto min-h-screen flex flex-col col  sm:ml-64  sm:p-4  ">
+    <main class="main flex flex-col col  sm:ml-64 p-4  ">
         <section class=" p-8 mt-10 text-black flex items-center">
-            <section class="rounded-full w-10 h-10 flex items-center justify-center mr-3"
-                style="background-color: #1C448E;">
+            <section class="background-blue rounded-full w-10 h-10 flex items-center justify-center mr-3">
                 <img class="w-7" src="../img/list.svg">
             </section>
             <h1 class="text-xl" style="color: #1C448E;">
@@ -146,7 +154,7 @@
                     <label for="table-search" class="sr-only">Buscar Producto</label>
                     <section class="flex">
                         <section class="absolute -z-0 top-7 flex items-center pl-3 pointer-events-none">
-                            <img class="w-4 h-4  pt-1 "src="../img/search.svg" alt="">
+                            <img class="w-4 h-4  pt-1 " src="../img/search.svg" alt="">
                         </section>
                         <input type="text" id="table-search"
                             class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
@@ -423,9 +431,10 @@
 
         </section>
 
-        <section class="flex items-center justify-center  lg:mt-10">
+        <section class=" flex items-center justify-center mb-16 lg:mt-10">
             <a href="facturacion.html"
-                class="text-white mt-10 px-40 focus:ring-4 font-medium rounded-lg text-sm  py-2.5 mr-2 mb-2 " style="background-color: #1C448E; ">
+                class="background-blue text-white text-center mt-10 w-2/3 sm:w-96 focus:ring-4 font-medium rounded-lg text-sm  py-2.5 mr-2 mb-2 "
+            >
                 Generar Factura
             </a>
         </section>
@@ -433,14 +442,13 @@
     </main>
 
     <!--Footer container-->
-    <footer class="background-gray footer-size p-2 text-center text-white mt-12">
+    <footer class="absolute bottom-0 background-gray footer-size p-2 text-center text-white">
         <!--Copyright section-->
         © 2023 Copyright:
         <a class="text-white" href="#">
             SBDS
         </a>
     </footer>
-
 </body>
 
 </html>

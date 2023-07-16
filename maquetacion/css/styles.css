@@ -7,6 +7,11 @@
     --black: #050404;
 }
 
+html, body{
+    background-color: rgb(225, 232, 240);
+    min-height: 100vh;
+    position: relative;
+}
 /* Colores para el texto */
 .text-blue {
     color: var(--marian-blue);
@@ -26,7 +31,7 @@
 
 /* Colores para el fondo */
 .background-blue {
-    background-color: var(--marian-blue);
+    background-color: var(--marian-blue) !important;
 }
 
 .background-uranian {
@@ -62,6 +67,7 @@
 
 .main{
     width: calc(100% - 256px);
+    margin-left: 256px;
     padding-top: 50px;
 }
 
@@ -74,6 +80,11 @@
     background-color: #7A7978;
 }
 
+/* Borde azul para los productos de la factura */
+.border-bottomBlue{
+    border-bottom: 1px solid #0b2f702F;
+}
+
 @media (max-width: 639px) {
     .footer-size {
         width: 100%;
@@ -82,5 +93,6 @@
 
     .main{
         width: 100%;
+        margin: auto;
     }
 }
