@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleados - Modificar Clientes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <!--Header-->
+
+    <nav class="background-blue fixed w-full flex items-center justify-between flex-wrap p-4 z-10">
+        <section class="flex  items-center flex-shrink-0 text-white mr-6">
+            <img class="h-8 w-8 mr-2" src="../img/logo.svg" alt="logo">
+
+            <span class="font-semibold text-4xl tracking-tight">SDBS</span>
+            <span class="hidden sm:block pt-4 pl-2 ">Simple Digital Billing System</span>
+        </section>
+
+        <section>
+            <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
+                class="flex items-center text-sm font-medium  rounded-full hover:text-black md:mr-0 focus:ring-4  focus:ring-gray-700 text-white"
+                type="button">
+                <span class="sr-only">Open user menu</span>
+                <img class="w-8 h-8 mr-2 rounded-full" src="../img/user.png" alt="user photo">
+                Bonnie Green
+                <img class="w-2.5 h-2.5 ml-2.5" src="../img/arrow.svg" alt="arrow">
+                
+            </button>
+
+            <!-- Dropdown menu 
+            <section id="dropdownAvatarName"
+                class="z-10 hidden  divide-y  rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
+                <section class="px-4 py-3 text-sm  text-white">
+                    <section class="font-medium ">Pro User</section>
+                    <section class="truncate"></section>
+                </section>
+                <ul class="py-2 text-sm  text-gray-200"
+                    aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                    <li>
+                        <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Settings</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2  hover:bg-gray-600 hover:text-white">Earnings</a>
+                    </li>
+                </ul>
+                <section class="py-2">
+                    <a href="#" class="block px-4 py-2 text-sm   hover:bg-gray-600 text-gray-200 hover:text-white">Sign
+                        out</a>
+                </section>
+            </section>-->
+
+        </section>
+    </nav>
+
+    <section class=" ">
+        <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
+            aria-controls="sidebar-multi-level-sidebar" type="button"
+            class="inline-flex  bg-blue-900 items-center p-2 mt-20 ml-3 text-sm  rounded-lg sm:hidden  focus:outline-none focus:ring-2  text-gray-400 hover:bg-gray-700 focus:ring-gray-600">
+            <span class="sr-only">Open sidebar</span>
+            <img class="w-6 h-6"  src="../img/sidebar.svg" alt="sidebar">
+        </button>
+
+        <aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0  mt-16  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+            <section class="h-full px-3 py-4 overflow-y-auto mt-2"
+                style="background-image: linear-gradient(to top, #B1DDF1, #1C448E);">
+                <ul class="space-y-2 font-medium">
+
+                    <li>
+                        <a href="home_empleado.html" class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                            <img class="w-5 h-5" src="../img/dashboard.svg" alt="">
+                            <span class="ml-3">Panel de Control</span>
+
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="gestion_clientes.html" class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                            <img class="flex-shrink-0 w-5 h-5  transition duration-75 group-hover:text-white" src="../img/user_option.svg" alt="">
+                            
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Gestión de Clientes</span>
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="cedula_cliente.html" class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                            <img class="flex-shrink-0 w-5 h-5  transition duration-75 group-hover:text-white" src="../img/facturacion_option.svg" alt="">
+                            <span class="flex-1 ml-3 whitespace-nowrap">Facturación</span>
+
+                        </a>
+                    </li>
+                    <!-- Desplegable
+                    <li>
+                        <button type="button"
+                            class="vinculo-menuLateral flex items-center w-full p-2 text-base  transition duration-75 rounded-lg group  text-white"
+                            aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                            <img class="flex-shrink-0 w-5 h-5  transition duration-75 group-hover:text-white" src="../img/user_option.svg" alt="">
+                            
+                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Gestión de Usuarios</span>
+                            <img class="w-3 h-3" src="../img/arrow.svg" alt="">
+                        </button>
+                        
+                        <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                            <li>
+                                <a href="#"
+                                    class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">
+                                    Products
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">
+                                    Billing
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group  text-white hover:bg-gray-700">
+                                    Invoice
+                                </a>
+                            </li>
+                        </ul>
+                    </li>-->
+
+                </ul>
+                <section class="absolute bottom-48 w-11/12 m-auto flex justify-center items-center">
+                    <a href="../index.html"
+                        class="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+                        <img class="text-blue w-5 h-5" src="../img/icono-salir.svg">
+                        <span class="ml-3 font-bold text-white">Salir</span>
+                    </a>
+                </section>
+            </section>
+        </aside>
+    </section>
+
+    <main class=" flex flex-col sm:ml-64 p-10">
+        <section class=" p-8 mt-10 text-black flex items-center">
+            <section class="background-blue rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                <img class="w-7" src="../img/client.svg">
+            </section>
+            <h1 class="text-blue text-xl">
+                - Modificacion de Clientes
+            </h1>
+
+        </section>
+        <section class="flex items-center justify-center mb-10">
+            
+            <section class="w-full lg:w-2/4 overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
+                
+                <h4 class="text-blue mb-4 text-2xl text-center font-bold">Editar los Datos de un Cliente</h4>
+
+                <form action="home_empleado.html">
+                    <div class="relative z-0 w-full mb-8 group">
+                        <input type="email" value="correo@gmail.com" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Correo Electrónico</label>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 md:gap-6">
+                        <div class="relative z-0 w-full mb-8 group">
+                            <input type="text" value="José" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre</label>
+                        </div>
+                        <div class="relative z-0 w-full mb-8 group">
+                            <input type="text" value="Torres" name="floating_last_name" id="floating_last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Apellido</label>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 md:gap-6">
+                        <div class="relative z-0 w-full mb-8 group">
+                            <input type="text" value="V14232311" name="floating_cedula" id="floating_cedula" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label for="floating_cedula" class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cédula (V12345678)</label>
+                        </div>
+                        <div class="relative z-0 w-full mb-8 group">
+                            
+                            <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Número Telfónico (412-XXXXXXX)</label>
+                            <input type="tel" value="412-3121313" pattern="[0-9]{3}-[0-9]{7}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        </div>
+                        
+                    </div>
+                    <button type="submit" class="background-blue text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Editar</button>
+                    </form>
+            </section>
+        </section>
+    </main>
+
+    <!--Footer container-->
+    <footer class="absolute bottom-0 background-gray footer-size p-2 text-center text-white">
+        <!--Copyright section-->
+        © 2023 Copyright:
+        <a class="text-white" href="#">
+            SBDS
+        </a>
+    </footer>
+
+</body>
+
+</html>
