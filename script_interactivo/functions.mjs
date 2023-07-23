@@ -140,16 +140,25 @@ export async function create_recipe() {
 //? Función para crear una Categoria 
 export async function create_category() {
 
+  //Ruta de las Recetas pra verigicar luego si exista ya esa categoria
+  const files = await fs.readdir("./Recetas/");
+
   // Se crea la pregunta para pedir el nombre de la categoria
   const question = {
     type: "input",
     name: "categoryName",
     message: "¿Cuál es el nombre de la categoría que deseas crear?",
+    validate: function (name) {
+      if (files.includes(name)) {
+        return ("Esta Receta ya Existe")
+      }
+      return true;
+    }
   };
 
   // Se solicita el nombre de la categoria
   const answer = await inquirer.prompt(question);
-  
+
   // Mediante el nombre se crea una carpeta con el nombre de la categoria 
   try {
     await fs.mkdir(`./Recetas/${answer.categoryName}`);
@@ -189,7 +198,7 @@ export async function delete_category() {
   if (category === 0 || category === "Volver") return;
 
   // Eliminar Carpeta de Categoría junto a sus recetas
-  await fs.rm("./Recetas/" + category, {recursive:true});
+  await fs.rm("./Recetas/" + category, { recursive: true });
 
   console.log("Categoría '" + category + "' Eliminada Correctamente");
 }
