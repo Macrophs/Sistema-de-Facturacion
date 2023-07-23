@@ -5,14 +5,12 @@ import process from "node:process";
 //? Se importan todas las funciones desde el archivo Functions.mjs
 import * as Recipes from "./functions.mjs";
 
-//*Nombre default
+//* Nombre default
 let title = "Recetas";
 
 //? si se pasó algun argumento mediante "node script.mjs argumento", este se tomara como el nombre del sistema
-if (process.argv[2] != undefined) 
+if (process.argv[2] != undefined)
   title = process.argv[2];
-
-
 
 //? Opciones del menu
 let options_menu = [
@@ -47,8 +45,8 @@ let options_menu = [
 async function main() {
   console.log(
     "\n¡Hola, Bienvenido a Mundo " +
-      title +
-      "! \n Antes de empezar asegurese que dentro de este directorio se encuentra la carpeta llamada 'Recetas'"
+    title +
+    "! \n Antes de empezar asegurese que dentro de este directorio se encuentra la carpeta llamada 'Recetas'"
   );
 
   try {
@@ -60,54 +58,70 @@ async function main() {
       message: "Por Favor eligue una opción",
       choices: options_menu,
     });
+
     let menu_option = parseInt(answers.option);
+
     switch (menu_option) {
       case 1:
         //? Leer Recetas .txt
+        console.log("Seleccionaste: Leer Receta");
         do {
-          console.log("Seleccionaste: Leer Receta");
           await Recipes.read_recipe();
+
           resp = await Recipes.exit();
         } while (resp == false);
 
         break;
+
       case 2:
         //? Crear Receta .txt
+        console.log("Seleccionaste: Crear Receta");
+
         do {
-          console.log("Seleccionaste: Crear Receta");
           await Recipes.create_recipe();
+
           resp = await Recipes.exit();
         } while (resp == false);
-
         break;
+
       case 3:
         //? Crear Categoría 
+        console.log("Seleccionaste: Crear Categoría");
+
         do {
-          console.log("Seleccionaste: Crear Categoría");
-          //
+          // Se llama a la funcion para crear la categoria
+          await Recipes.create_category()
+
           resp = await Recipes.exit();
         } while (resp == false);
         break;
+
       case 4:
         //? Eliminar Receta .txt
+        console.log("Seleccionaste: Eliminar Receta");
+
         do {
-          console.log("Seleccionaste: Eliminar Receta");
-          //
+          await Recipes.delete_recipe()
+
           resp = await Recipes.exit();
         } while (resp == false);
         break;
+
       case 5:
         //? Eliminar Categoría
+        console.log("Seleccionaste: Eliminar Categoría");
+
         do {
-          console.log("Seleccionaste: Eliminar Categoría");
-          //
+          await Recipes.delete_category()
           resp = await Recipes.exit();
         } while (resp == false);
         break;
+
       case 6:
         //? Salir del Script
         console.log("Saliendo del Script...");
         break;
+
       default:
         console.log("Opción inválida. Inténtalo de nuevo.");
         break;

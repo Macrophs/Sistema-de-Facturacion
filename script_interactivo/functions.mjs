@@ -20,7 +20,7 @@ export async function exit() {
   }
 }
 
-//?función que muestra las categorias disponibles
+//? función que muestra las categorias disponibles
 export async function show_category() {
   try {
     const files = await fs.readdir("./Recetas");
@@ -45,7 +45,7 @@ export async function show_category() {
   }
 }
 
-//?función que muestra las recetas disponibles en cierta categoria
+//? función que muestra las recetas disponibles en cierta categoria
 export async function show_recipe(category) {
   try {
     const files = await fs.readdir("./Recetas/" + category);
@@ -137,6 +137,62 @@ export async function create_recipe() {
   console.log("Receta '" + data.name + "' creada en '" + category + "'");
 }
 
+//? Función para crear una Categoria 
+export async function create_category() {
+
+  // Se crea la pregunta para pedir el nombre de la categoria
+  const question = {
+    type: "input",
+    name: "categoryName",
+    message: "¿Cuál es el nombre de la categoría que deseas crear?",
+  };
+
+  // Se solicita el nombre de la categoria
+  const answer = await inquirer.prompt(question);
+  
+  // Mediante el nombre se crea una carpeta con el nombre de la categoria 
+  try {
+    await fs.mkdir(`./Recetas/${answer.categoryName}`);
+    console.log(`Categoría '${answer.categoryName}' fue creada exitosamente.`);
+  }
+
+  // Si ocurre un error, le mostrar un mensaje de error
+  catch (error) {
+    console.error(`Error al crear la categoría: ${error}`);
+  }
+}
+
+//? Función para eliminar una receta en especifico
+export async function delete_recipe() {
+  // Obtener categoria y receta
+  let category = await show_category();
+
+  // No se encontraron Categorías o se seleccionó Volver
+  if (category === 0 || category === "Volver") return;
+
+  let recipe = await show_recipe(category);
+
+  // No se encontraron recetas o se seleccionó Volver
+  if (recipe === 0 || recipe === "Volver") return;
+
+  await fs.unlink("./Recetas/" + category + "/" + recipe);
+
+  console.log("Receta '" + recipe + "' Eliminada Correctamente");
+}
+
+//? Función para eliminar una Categoría en especifico
+export async function delete_category() {
+  // Obtener categoria y receta
+  let category = await show_category();
+
+  // No se encontraron Categorías o se seleccionó Volver
+  if (category === 0 || category === "Volver") return;
+
+  // Eliminar Carpeta de Categoría junto a sus recetas
+  await fs.rm("./Recetas/" + category, {recursive:true});
+
+  console.log("Categoría '" + category + "' Eliminada Correctamente");
+}
 
 
 
