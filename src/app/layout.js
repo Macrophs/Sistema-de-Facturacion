@@ -5,8 +5,7 @@ import Navbar from '@/components/Navbar/Navbar'
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body >
-        <Navbar />
+      <body class="bg-slate-200">
         {children}
       </body>
     </html>
