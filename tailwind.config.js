@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        marianBlue: '#1C448E'
+        marianBlue: '#1C448E',
+        lightGray: '#7A7978'
       }
     },
   },

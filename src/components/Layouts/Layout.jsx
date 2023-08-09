@@ -1,3 +1,4 @@
+import FooterGeneral from "../Footers/FooterGeneral";
 import Navbar from "../Navbar/Navbar";
 
 /**
@@ -8,9 +9,11 @@ import Navbar from "../Navbar/Navbar";
 export default function Layout({ children }) {
     return (
         <>
-        <Navbar />
-            <main class="ml-64 pt-12 flex flex-col sm:h-screen ">
+            <Navbar />
+            <main class="sm:w-[calc(100%_-_256px)] sm:ml-64 pt-12 flex flex-col sm:h-screen ">
+                {children}
             </main>
+            <FooterGeneral />
         </>
     )
 }
