@@ -1,4 +1,4 @@
-
+import Image from "next/image";
 /**
  * Este es un componente para el formulario de inicio de sesion en la pagina Home
  */
@@ -15,15 +15,15 @@ export default function FormHome() {
                     </h1>
 
                     <section className="flex justify-center items-center">
-                        <img className="rounded-full w-60 h-60" src="/images/home/user-icon.png" alt="image description" />
+                        <Image className="rounded-full" width={240} height={240} wid src="/images/home/user-icon.png" alt="image description" />
                     </section>
 
 
-                    <form className="block" action="pages/home_empleado.html" >
+                    <form className="block" action={"cedula_cliente"} >
                         <label for="default-search" className="mb-2 text-sm font-medium  sr-only text-white">Entrar</label>
                         <section className="relative">
                             <section className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <img className="w-4 h-4" src="/images/search2.svg" alt="lupa" />
+                                <Image width={16} height={16} src="/images/search2.svg" alt="lupa" />
 
                             </section>
                             <input type="search" id="default-search" className="bg-marianBlue block w-full p-4 pl-10 text-sm text-white border border-gray-300 rounded-lg  placeholder-gray-200  focus:ring-blue-500 focus:border-slate-100" placeholder="Ingrese su Usuario" required />

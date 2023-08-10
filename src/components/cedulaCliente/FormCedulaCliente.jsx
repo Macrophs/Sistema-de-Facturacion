@@ -1,4 +1,4 @@
-
+import Image from "next/image"
 /**
  * Este es un componente de la pagina cedula cliente para el formulario de solicitud de cedula cliente
  */
@@ -9,13 +9,13 @@ export default function FormCedulaCliente() {
             <section>
                 <h1 className="text-3xl font-bold text-black mb-6 text-center">Ingreso Facturación</h1>
 
-                <form className="flex items-center justify-center flex-col " action="compra_producto.html">
+                <form className="flex items-center justify-center flex-col " action="compra_productos">
                     <label for="website-admin" className="block mb-7 text-base font-medium  text-black">Datos del
                         Cliente</label>
                     <div className="flex lg:w-96">
                         <span
                             className="bg-marianBlue inline-flex items-center px-3 text-base border border-r-0 rounded-l-md text-black border-gray-400">
-                            <img className="w-4 h-4" src="../images/icons/user.svg" alt="icon user" />
+                            <Image width={16} height={16} src="../images/icons/user.svg" alt="icon user" />
 
                         </span>
                         <input type="number" id="website-admin"
