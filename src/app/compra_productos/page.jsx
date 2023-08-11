@@ -5,10 +5,10 @@ import FormCedulaCliente from "@/components/cedulaCliente/FormCedulaCliente";
 
 
 /**
- * Esta es una pagina para la peticion de la cedula al cliente
+ * Esta es una pagina para la selección de productos a comprar
  */
 
-export default function CedulaClientePage() {
+export default function CompraProductosPage() {
     return (
         <Layout>
             <PageMarker icon={'list.svg'} marker={'Compra de Productos'} />

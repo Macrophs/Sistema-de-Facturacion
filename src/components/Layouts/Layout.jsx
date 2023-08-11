@@ -14,7 +14,7 @@ const links = [
         icon: "dashboard.svg",
     },
     {
-        url : "/",
+        url : "gestion_clientes",
         label : "Gestión de Clientes",
         icon : "user_option.svg",
     },

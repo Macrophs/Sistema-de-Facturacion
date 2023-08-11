@@ -16,7 +16,7 @@ export default function CompraProductos() {
         <TableReadyToBuy/>
       
         <section className=" flex items-center justify-center mb-16 lg:mt-10">
-          <StandarButton/>
+          <StandarButton url={"factura"} label={"Generar Factura"}/>
         </section>
     </>
   )
