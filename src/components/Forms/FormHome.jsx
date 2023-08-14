@@ -19,7 +19,7 @@ export default function FormHome() {
                     </section>
 
 
-                    <form className="block" action={"cedula_cliente"} >
+                    <form className="block" action={"/employee/cedula_cliente"} >
                         <label for="default-search" className="mb-2 text-sm font-medium  sr-only text-white">Entrar</label>
                         <section className="relative">
                             <section className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

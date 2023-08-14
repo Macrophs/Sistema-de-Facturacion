@@ -1,6 +1,6 @@
-import Search from "../Tables/Search";
+import Search from "../../Tables/Search";
 import TableProducts from "./TableProducts";
-import Pagination from "../Tables/Pagination";
+import Pagination from "../../Tables/Pagination";
 import DataClient from "./DataClient";
 /**
  * Este es un componente relacionado a la compra de productos, contendrá la tabla con los productos

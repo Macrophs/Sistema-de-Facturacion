@@ -14,12 +14,12 @@ const links = [
     icon: "dashboard.svg",
   },
   {
-    url: "gestion_clientes",
+    url: "/employee/gestion_clientes",
     label: "Gestión de Clientes",
     icon: "user_option.svg",
   },
   {
-    url: "cedula_cliente",
+    url: "/employee/cedula_cliente",
     label: "Facturación",
     icon: "facturacion_option.svg",
   },

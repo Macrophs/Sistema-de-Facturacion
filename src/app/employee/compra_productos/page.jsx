@@ -1,7 +1,7 @@
-import CompraProductos from "@/components/CompraProductos/CompraProductos";
+import CompraProductos from "@/components/Employee/CompraProductos/CompraProductos";
 import Layout from "@/components/Layouts/Layout";
 import PageMarker from "@/components/PageMarker/PageMarker";
-import FormCedulaCliente from "@/components/cedulaCliente/FormCedulaCliente";
+import FormCedulaCliente from "@/components/Employee/cedulaCliente/FormCedulaCliente";
 
 
 /**

@@ -1,5 +1,5 @@
 
-import Factura from "@/components/Factura/Factura";
+import Factura from "@/components/Employee/Factura/Factura";
 import Layout from "@/components/Layouts/Layout";
 import PageMarker from "@/components/PageMarker/PageMarker";
 
