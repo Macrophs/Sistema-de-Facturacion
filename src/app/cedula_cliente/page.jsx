@@ -9,7 +9,7 @@ import FormCedulaCliente from "@/components/cedulaCliente/FormCedulaCliente";
 
 export default function CedulaClientePage() {
     return (
-        <Layout>
+        <Layout rol={1}>
             <PageMarker icon={'user.svg'} marker={'Ingreso Cliente'} />
             <FormCedulaCliente />
         </Layout>

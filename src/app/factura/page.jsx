@@ -11,7 +11,7 @@ import PageMarker from "@/components/PageMarker/PageMarker";
 
 export default function FacturaPage() {
     return (
-        <Layout>
+        <Layout rol={1}>
             <PageMarker icon={'facturacion_option.svg'} marker={'Factura de Compra'} />
             <Factura/>
         </Layout>

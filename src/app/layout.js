@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import Navbar from '@/components/Navbar/Navbar'
+import Navbar from '@/components/Globals/Navbar/Navbar'
 // const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {

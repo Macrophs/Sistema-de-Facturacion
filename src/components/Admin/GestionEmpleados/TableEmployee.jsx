@@ -1,8 +1,8 @@
 /**
- * Este es un componente para utilizar la tabla que muestra la gestion de clientes
+ * Este es un componente para utilizar la tabla que muestra la gestion de empleados
  */
 
-export default function TableClient() {
+export default function TableEmployee() {
   const elements = [
     {
       label: "Neil Sims",
@@ -27,7 +27,7 @@ export default function TableClient() {
   ];
 
   return (
-    <table className="w-full  text-sm text-left text-gray-500 ">
+    <table className="w-full text-sm text-left text-gray-500 ">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
         <tr>
           <th scope="col" className="px-6 py-3">
@@ -51,6 +51,7 @@ export default function TableClient() {
             >
               <div className="pl-3">
                 <div className="text-base font-semibold">{label}</div>
+                <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
               </div>
             </td>
 

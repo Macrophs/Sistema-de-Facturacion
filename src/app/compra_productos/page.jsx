@@ -10,7 +10,7 @@ import FormCedulaCliente from "@/components/cedulaCliente/FormCedulaCliente";
 
 export default function CompraProductosPage() {
     return (
-        <Layout>
+        <Layout rol={1}>
             <PageMarker icon={'list.svg'} marker={'Compra de Productos'} />
             <CompraProductos />
         </Layout>

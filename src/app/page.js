@@ -1,7 +1,6 @@
-import FooterHome from "@/components/Footers/FooterHome";
 import FormHome from "@/components/Forms/FormHome";
-import Navbar from "@/components/Navbar/Navbar";
-
+import FooterHome from "@/components/Globals/Footers/FooterHome";
+import Navbar from "@/components/Globals/Navbar/Navbar";
 
 export default function Home() {
   return (

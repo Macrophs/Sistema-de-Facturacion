@@ -1,40 +1,37 @@
-/**
- * Este es un componente para utilizar la tabla que muestra la gestion de clientes
- */
+const elements = [
+  {
+    codigo: "#12313",
+  },
+  {
+    codigo: "#12313",
+  },
+  {
+    codigo: "#12313",
+  },
+  {
+    codigo: "#12313",
+  },
+  {
+    codigo: "#12313",
+  },
+];
 
-export default function TableClient() {
-  const elements = [
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-  ];
-
+export default function TableProducts() {
   return (
-    <table className="w-full  text-sm text-left text-gray-500 ">
+    <table className="w-full text-sm text-left text-gray-500 ">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
         <tr>
           <th scope="col" className="px-6 py-3">
-            Cédula
+            CÓDIGO
           </th>
           <th scope="col" className="px-10 py-3">
-            Nombre
+            NOMBRE
+          </th>
+          <th scope="col" className="px-10 py-3">
+            PRECIO
+          </th>
+          <th scope="col" className="px-10 py-3 text-center">
+            CANTIDAD EN STOCK
           </th>
           <th scope="col" colspan="2" className=" pl-32 py-3 ">
             Acciones
@@ -42,17 +39,22 @@ export default function TableClient() {
         </tr>
       </thead>
       <tbody>
-        {elements.map(({ label, cedula }) => (
-          <tr key={cedula} className="bg-white border-b  hover:bg-gray-50 ">
-            <td className="px-6 py-4">{cedula}</td>
+        {elements.map(({ codigo }) => (
+          <tr key={codigo} className="bg-white border-b  hover:bg-gray-50 ">
+            <td className="px-6 py-4">{codigo}</td>
+
             <td
               scope="row"
               className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
             >
               <div className="pl-3">
-                <div className="text-base font-semibold">{label}</div>
+                <div className="text-base font-semibold">Chocolate</div>
               </div>
             </td>
+
+            <td className="px-6 py-4 text-center">1$</td>
+            
+            <td className="px-6 py-4 text-center">5</td>
 
             <td className="px-6 py-4">
               <a
@@ -73,7 +75,7 @@ export default function TableClient() {
                 data-modal-show="editUserModal"
                 className="font-medium text-red-600  hover:underline"
               >
-                Eliminar{" "}
+                Eliminar
               </a>
             </td>
           </tr>
