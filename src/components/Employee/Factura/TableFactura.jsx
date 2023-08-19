@@ -34,9 +34,9 @@ export default function TableFactura({}) {
 
 
     return (
-        <section className="flex flex-col items-center justify-center w-11/12 ">
-            <h1 className="text-marianBlue font-bold mt-20 text-3xl font-bol mb-4 text-center">Factura</h1>
-            <section className='w-full overflow-x-auto shadow-md'>
+        <>
+            
+            <section className='w-full overflow-x-auto text-lg'>
                 <table className='w-full text-center'>
                     <thead className="bg-marianBlue text-white font-bold uppercase h-16">
                         <tr>
@@ -90,6 +90,6 @@ export default function TableFactura({}) {
                     <p className="text-marianBlue text-xl lg:text-2xl font-bold">¡Gracias por su compra!</p>
                 </section>
             </section>
-        </section>
+        </>
     )
 }
