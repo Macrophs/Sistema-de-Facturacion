@@ -41,6 +41,11 @@ const linksAdmin = [
       label: "Gestión de Productos",
       icon: "facturacion_option.svg",
     },
+    {
+      url: "/admin/gestion_facturas",
+      label: "Gestión de Facturas",
+      icon: "factura.svg",
+    },
   ];
   
 
