@@ -1,3 +1,6 @@
+import DeleteModalButton from "@/components/Buttons/DeleteModalButton";
+import EditModalButton from "@/components/Buttons/EditModalButton";
+
 const elements = [
   {
     codigo: "#12313",
@@ -16,7 +19,7 @@ const elements = [
   },
 ];
 
-export default function TableProducts() {
+export default function TableProducts({ setComponentVisible, setShowModal }) {
   return (
     <table className="w-full text-sm text-left text-gray-500 ">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -53,30 +56,22 @@ export default function TableProducts() {
             </td>
 
             <td className="px-6 py-4 text-center">1$</td>
-            
+
             <td className="px-6 py-4 text-center">5</td>
 
             <td className="px-6 py-4">
-              <a
-                href="modificar_cliente.html"
-                type="button"
-                data-modal-target="editUserModal"
-                data-modal-show="editUserModal"
-                className="text-marianBlue font-medium hover:underline"
-              >
-                Editar
-              </a>
+              <EditModalButton
+                id={1}
+                setComponentVisible={setComponentVisible}
+                setShowModal={setShowModal}
+              />
             </td>
             <td className="px-6 py-4">
-              <a
-                href="#"
-                type="button"
-                data-modal-target="editUserModal"
-                data-modal-show="editUserModal"
-                className="font-medium text-red-600  hover:underline"
-              >
-                Eliminar
-              </a>
+              <DeleteModalButton
+                id={1}
+                setComponentVisible={setComponentVisible}
+                setShowModal={setShowModal}
+              />
             </td>
           </tr>
         ))}

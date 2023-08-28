@@ -8,8 +8,8 @@ export default function Modal({isVisible , onClose, children}) {
     if(!isVisible) return null;
     return(
         <section className="fixed inset-0 bg-black bg-opacity-25  backdrop-blur-sm z-20 flex justify-center items-center ">
-            <section className="w-2/3 flex flex-col ">
-                <button className="text-white text-xl place-self-end" onClick={() => onClose()} >X</button>
+            <section className="relative w-2/3 flex flex-col ">
+                <button className="absolute top-1 right-4 text-black text-xl place-self-end" onClick={() => onClose()} >X</button>
                 <section className="bg-slate-100  p-10 rounded-md ">
                     {children}
                 </section>

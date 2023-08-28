@@ -9,7 +9,7 @@ import { useState } from "react";
 import AddModalButton from "@/components/Buttons/AddModalButton";
 import NewClient from "./NewClient";
 import EditClient from "./EditClient";
-import DeleteClient from "./DeleteClient";
+import WarningModal from "@/components/Modal/WarningModal";
 
 /**
  * Este es un componente relacionado a la gestion de clientes
@@ -20,10 +20,7 @@ export default function GestionClientes() {
   const [showModal, setShowModal] = useState(false);
   const [componentVisible, setComponentVisible] = useState("/");
 
-  let componentModal;
-
-
-  //(componentVisible.split("/")) = Edit/{id}
+  let componentModal = [""];
 
   let componentSelect = componentVisible.split("/");
 
@@ -35,7 +32,7 @@ export default function GestionClientes() {
     componentModal = <EditClient id={componentSelect[1]}/>
 
   else if(componentSelect[0] === "Delete")
-    componentModal = <DeleteClient id={componentSelect[1]}/>
+    componentModal = <WarningModal id={componentSelect[1]} entity={'Cliente'} identifier={'V30123422'} name={'Jose Perez'}/>
 
   return (
     <section className="flex items-center justify-center  lg:mt-0 ">
@@ -44,10 +41,10 @@ export default function GestionClientes() {
           Gestión de Clientes
         </h4>
 
-        <div class="flex items-center justify-between py-4 bg-white">
+        <div className="flex items-center justify-between py-4 bg-white">
           <Search label={"Buscar Cliente"} />
           
-          <AddModalButton url={"/"} label={"Registrar Cliente"} className=" w-full" setShowModal={setShowModal} setComponentVisible={setComponentVisible} />
+          <AddModalButton url={"/"} label={"Registrar Cliente"} setShowModal={setShowModal} setComponentVisible={setComponentVisible} />
           
         </div>
 

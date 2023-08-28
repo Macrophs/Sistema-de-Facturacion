@@ -2,7 +2,10 @@
  * Este es un componente para utilizar la tabla que muestra la gestion de empleados
  */
 
-export default function TableEmployee() {
+import DeleteModalButton from "@/components/Buttons/DeleteModalButton";
+import EditModalButton from "@/components/Buttons/EditModalButton";
+
+export default function TableEmployee({ setComponentVisible, setShowModal }) {
   const elements = [
     {
       label: "Neil Sims",
@@ -51,31 +54,26 @@ export default function TableEmployee() {
             >
               <div className="pl-3">
                 <div className="text-base font-semibold">{label}</div>
-                <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
+                <div class="font-normal text-gray-500">
+                  neil.sims@flowbite.com
+                </div>
               </div>
             </td>
 
             <td className="px-6 py-4">
-              <a
-                href="modificar_cliente.html"
-                type="button"
-                data-modal-target="editUserModal"
-                data-modal-show="editUserModal"
-                className="text-marianBlue font-medium hover:underline"
-              >
-                Editar
-              </a>
+              <EditModalButton
+                id={1}
+                setComponentVisible={setComponentVisible}
+                setShowModal={setShowModal}
+              />
             </td>
+            
             <td className="px-6 py-4">
-              <a
-                href="#"
-                type="button"
-                data-modal-target="editUserModal"
-                data-modal-show="editUserModal"
-                className="font-medium text-red-600  hover:underline"
-              >
-                Eliminar{" "}
-              </a>
+              <DeleteModalButton
+                id={1}
+                setComponentVisible={setComponentVisible}
+                setShowModal={setShowModal}
+              />
             </td>
           </tr>
         ))}

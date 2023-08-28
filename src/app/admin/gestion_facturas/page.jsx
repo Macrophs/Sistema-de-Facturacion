@@ -1,5 +1,5 @@
 
-import GestionFacturas from "@/components/Admin/GestionFacturas/GestionEmpleados";
+import GestionFacturas from "@/components/Admin/GestionFacturas/GestionFacturas";
 import Layout from "@/components/Layouts/Layout";
 import PageMarker from "@/components/PageMarker/PageMarker";
 
