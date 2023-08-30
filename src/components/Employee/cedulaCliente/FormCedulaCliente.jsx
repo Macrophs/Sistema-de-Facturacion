@@ -19,7 +19,7 @@ export default function FormCedulaCliente() {
 
                         </span>
                         <input type="number" id="website-admin"
-                            className="rounded-none rounded-r-lg border  block flex-1 min-w-0 w-full text-base p-2.5  bg-slate-200 border-gray-400 placeholder-gray-600 text-black focus:ring-blue-500 focus:border-blue-500"
+                            className="rounded-none rounded-r-lg border  block flex-1 min-w-0 w-full text-base p-2.5  bg-white border-gray-400 placeholder-gray-600 text-black focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Cédula" />
                     </div>
                     <button type="submit"

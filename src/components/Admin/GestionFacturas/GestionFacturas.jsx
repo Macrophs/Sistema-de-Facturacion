@@ -26,6 +26,7 @@ export default function GestionFacturas() {
         entity={"Facturación"}
         identifier={"#2020"}
         name={""}
+        onClose={()=> setShowModal(false)}
       />
     );
 

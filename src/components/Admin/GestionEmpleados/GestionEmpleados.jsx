@@ -29,7 +29,7 @@ export default function GestionEmpleados() {
     componentModal = <EditEmpleado id={componentSelect[1]}/>
 
   else if(componentSelect[0] === "Delete")
-    componentModal = <WarningModal id={componentSelect[1]} entity={"Empleado"} identifier={'V30123422'} name={'Jose Perez'}/>
+    componentModal = <WarningModal id={componentSelect[1]} entity={"Empleado"} identifier={'V30123422'} name={'Jose Perez'} onClose={()=> setShowModal(false)}/>
 
   return (
     <section className="flex items-center justify-center  lg:mt-0 ">

@@ -32,6 +32,7 @@ export default function GestionProductos() {
         entity={"Producto"}
         identifier={"#2020"}
         name={"Chocolate"}
+        onClose={()=> setShowModal(false)}
       />
     );
 
