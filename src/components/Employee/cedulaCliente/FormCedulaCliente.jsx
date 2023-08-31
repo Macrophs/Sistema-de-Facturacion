@@ -1,3 +1,4 @@
+import StandarButton from "@/components/Buttons/StandarButton"
 import Image from "next/image"
 /**
  * Este es un componente de la pagina cedula cliente para el formulario de solicitud de cedula cliente
@@ -22,8 +23,7 @@ export default function FormCedulaCliente() {
                             className="rounded-none rounded-r-lg border  block flex-1 min-w-0 w-full text-base p-2.5  bg-white border-gray-400 placeholder-gray-600 text-black focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Cédula" />
                     </div>
-                    <button type="submit"
-                        className="bg-marianBlue text-white mt-10 px-32 md:px-40 focus:ring-4 font-medium rounded-lg text-base  py-2.5 mr-2 mb-2 ">Ingresar</button>
+                    <StandarButton url={"compra_productos"} label={"Ingresar"} className={"mt-10 min-w-full"}/>
 
                 </form>
             </section>

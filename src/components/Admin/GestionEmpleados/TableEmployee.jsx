@@ -2,8 +2,8 @@
  * Este es un componente para utilizar la tabla que muestra la gestion de empleados
  */
 
-import DeleteModalButton from "@/components/Buttons/DeleteModalButton";
-import EditModalButton from "@/components/Buttons/EditModalButton";
+
+import StandarButton from "@/components/Buttons/StandarButton";
 
 export default function TableEmployee({ setComponentVisible, setShowModal }) {
   const elements = [
@@ -61,18 +61,20 @@ export default function TableEmployee({ setComponentVisible, setShowModal }) {
             </td>
 
             <td className="px-6 py-4">
-              <EditModalButton
-                id={1}
-                setComponentVisible={setComponentVisible}
-                setShowModal={setShowModal}
-              />
+            <StandarButton url={"#"} label={"Editar"} 
+            className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "} 
+            id={1} 
+            onClick={() => {setShowModal(true); setComponentVisible("Edit/")}} 
+
+            />
             </td>
             
             <td className="px-6 py-4">
-              <DeleteModalButton
-                id={1}
-                setComponentVisible={setComponentVisible}
-                setShowModal={setShowModal}
+              <StandarButton url={"#"} label={"Eliminar"} 
+              className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "} 
+              id={1} 
+              onClick={() => {setShowModal(true); setComponentVisible("Delete/")}} 
+
               />
             </td>
           </tr>

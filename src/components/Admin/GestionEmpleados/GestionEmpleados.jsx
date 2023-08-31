@@ -3,11 +3,11 @@ import Search from "@/components/Tables/Search";
 import TableEmployee from "./TableEmployee";
 import Pagination from "@/components/Tables/Pagination";
 import { useState } from "react";
-import AddModalButton from "@/components/Buttons/AddModalButton";
 import Modal from "@/components/Modal/Modal";
 import NewEmpleado from "./NewEmpleado";
 import EditEmpleado from "./EditEmpleado";
 import WarningModal from "@/components/Modal/WarningModal";
+import StandarButton from "@/components/Buttons/StandarButton";
 
 /**
  * Este es un componente que engloba toda la estructura de la interfaz gestion de empleados
@@ -38,14 +38,13 @@ export default function GestionEmpleados() {
           Gestión de Empleados
         </h4>
 
-        <div class="flex items-center justify-between py-4 bg-white">
+        <div class="flex items-center justify-between flex-col md:flex-row py-4 bg-white">
           <Search label={"Buscar Empleado"} />
 
-          <AddModalButton
-            url={"/"}
+          <StandarButton
+            url={"#"}
             label={"Registrar Empleado"}
-            setShowModal={setShowModal}
-            setComponentVisible={setComponentVisible}
+            onClick={() => {setShowModal(true); setComponentVisible("Add/")}}
           />
         </div>
 

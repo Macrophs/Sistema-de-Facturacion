@@ -1,33 +1,61 @@
 'use client'
-import Image from "next/image"
+
 import TableBuy from "./TableBuy"
 import TableReadyToBuy from "./TableReadyToBuy"
 import StandarButton from "../../Buttons/StandarButton"
 import { useState } from "react"
 import Modal from "@/components/Modal/Modal"
 import ModalProducts from "./ModalProducts"
-import AddModalButton from "@/components/Buttons/AddModalButton"
+
 /**
  * Este es un componente de la pagina compra producto, que contendrá todo el contenido de la compra
  */
 
 export default function CompraProductos() {
-  const [showModal, setShowModal] = useState(false);
-  
+  const [showModal, setShowModal] = useState(false); //mostrar y ocultar modal
+  const [price, setPrice] = useState(0);        //Obtener y Colocar Precio en modal
+  const [products, setProducts] = useState();   //Obtener y Agregar Productos a la compra
+  const [deleteProduct, setdeleteProduct] = useState();   //Eliminar Productos de la compra desde TableProduct
+  const [deleteSelectProduct, setdeleteSelectProduct] = useState(); //Quitar Checkbox de TableProduct al eliminar un producto en Tablebuy
+
+  function obtainPrice(price)
+  {
+    setPrice(price);
+  }
+
+  function obtainProducts(products)
+  {
+    setProducts(products);
+  }
+
+  function obtainDeleteProduct(product)
+  {
+    setdeleteProduct(product);
+  }
+
+  function obtainDeleteSelectProduct(product)
+  {
+    setdeleteSelectProduct(product);
+  }
+
   return (
     <>
       
-        <TableBuy/>
+        <TableBuy ProductsChange={obtainProducts}  DeleteProduct={obtainDeleteProduct} DeleteSelectProduct={deleteSelectProduct} />
    
    
-        <TableReadyToBuy/>
+        <TableReadyToBuy PriceChange={obtainPrice} Products={products} DeleteProduct={deleteProduct} DeleteSelectProduct={obtainDeleteSelectProduct} />
       
         <section className=" flex items-center justify-center mb-16 lg:mt-10" >
-          <AddModalButton url={"factura"} label={"Generar Factura"} setShowModal={setShowModal} setComponentVisible={()=> null}  />
+          <StandarButton url={"#"} label={"Continuar Compra"}  
+          onClick={() => {setShowModal(true)}} 
+          className={price > 0 ? " bg-marianBlue" : "bg-gray-400 opacity-20 pointer-events-none" } //true = algun producto seleccionado, false = ningun producto seleccinado
+
+          />
         </section>
         
         <Modal isVisible={showModal} onClose={()=> setShowModal(false)}>
-          <ModalProducts onClose={()=> setShowModal(false)}/>
+          <ModalProducts Price_Buy={price} onClose={()=> setShowModal(false)}/>
         </Modal>
     </>
   )

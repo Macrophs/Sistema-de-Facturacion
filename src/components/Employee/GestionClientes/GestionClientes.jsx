@@ -6,10 +6,10 @@ import TableClient from "./TableClient";
 import Modal from "@/components/Modal/Modal";
 
 import { useState } from "react";
-import AddModalButton from "@/components/Buttons/AddModalButton";
 import NewClient from "./NewClient";
 import EditClient from "./EditClient";
 import WarningModal from "@/components/Modal/WarningModal";
+import StandarButton from "@/components/Buttons/StandarButton";
 
 /**
  * Este es un componente relacionado a la gestion de clientes
@@ -41,10 +41,10 @@ export default function GestionClientes() {
           Gestión de Clientes
         </h4>
 
-        <div className="flex items-center justify-between py-4 bg-white">
+        <div className="flex items-center flex-col md:flex-row justify-between py-4 bg-white">
           <Search label={"Buscar Cliente"} />
           
-          <AddModalButton url={"/"} label={"Registrar Cliente"} setShowModal={setShowModal} setComponentVisible={setComponentVisible} />
+          <StandarButton  url={"#"} label={"Registrar Cliente"} onClick={() => {setShowModal(true); setComponentVisible("Add/")}} />
           
         </div>
 

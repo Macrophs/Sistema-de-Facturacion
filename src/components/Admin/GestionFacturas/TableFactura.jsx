@@ -2,7 +2,8 @@
  * Este es un componente para utilizar la tabla que muestra la gestion de Facturas
  */
 
-import DeleteModalButton from "@/components/Buttons/DeleteModalButton";
+
+import StandarButton from "@/components/Buttons/StandarButton";
 
 export default function TableFactura({setShowModal, setComponentVisible}) {
   const elements = [
@@ -78,21 +79,20 @@ export default function TableFactura({setShowModal, setComponentVisible}) {
               <span className="text-green-600 font-medium"> ${total} </span>
             </td>
             <td className="px-10 py-4">
-              <a
-                href="#"
-                type="button"
-                data-modal-target="editUserModal"
-                data-modal-show="editUserModal"
-                className="text-marianBlue font-medium hover:underline"
-              >
-                Visualizar
-              </a>
+
+              <StandarButton url={"gestion_facturas/factura"} label={"Visualizar"} 
+              className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue "} 
+              id={1} 
+            
+
+              />
             </td>
             <td className="px-10 py-4">
-              <DeleteModalButton
-                id={1}
-                setComponentVisible={setComponentVisible}
-                setShowModal={setShowModal}
+              <StandarButton url={"#"} label={"Eliminar"} 
+              className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "} 
+              id={1} 
+              onClick={() => {setShowModal(true); setComponentVisible("Delete/")}} 
+
               />
             </td>
           </tr>

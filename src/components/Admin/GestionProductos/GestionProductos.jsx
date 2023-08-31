@@ -2,12 +2,12 @@
 import Search from "@/components/Tables/Search";
 import TableProducts from "./TableProducts";
 import Pagination from "@/components/Tables/Pagination";
-import AddModalButton from "@/components/Buttons/AddModalButton";
 import { useState } from "react";
 import NewProducto from "./NewProducto";
 import Modal from "@/components/Modal/Modal";
 import EditProducto from "./EditProducto";
 import WarningModal from "@/components/Modal/WarningModal";
+import StandarButton from "@/components/Buttons/StandarButton";
 
 /**
  * Este es un componente que engloba toda la estructura de la interfaz gestion de productos
@@ -43,14 +43,13 @@ export default function GestionProductos() {
           Gestión de Productos
         </h4>
 
-        <div class="flex items-center justify-between py-4 bg-white">
+        <div class="flex items-center justify-between flex-col md:flex-row py-4 bg-white">
           <Search label={"Buscar Producto"} />
 
-          <AddModalButton
-            url={"/"}
+          <StandarButton
+            url={"#"}
             label={"Registrar Producto"}
-            setShowModal={setShowModal}
-            setComponentVisible={setComponentVisible}
+            onClick={() => {setShowModal(true); setComponentVisible("Add/")}}
           />
         </div>
 
