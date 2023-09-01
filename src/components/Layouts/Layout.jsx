@@ -60,7 +60,7 @@ export default function Layout({ children, rol }) {
     <>
       <Navbar />
       <SideBar links={rol === 1 ? links : linksAdmin} />
-      <main class="sm:w-[calc(100%_-_256px)] sm:ml-64 pt-12 flex flex-col sm:h-full min-h-[95.8vh]">
+      <main className="sm:w-[calc(100%_-_256px)] sm:ml-64 pt-12 flex flex-col sm:h-full min-h-[95.8vh]">
         {children}
       </main>
       <FooterGeneral />

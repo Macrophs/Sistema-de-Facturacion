@@ -7,7 +7,7 @@ import Image from "next/image"
 export default function Search({ label}) {
     return (
         <section className="pb-4 bg-white">
-            <label for="table-search" className="sr-only">{label}</label>
+            <label className="sr-only">{label}</label>
                 <section className="relative">
                     <section className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <Image width={16} height={16} src="/images/icons/search.svg" alt="Search Icon Image"/>

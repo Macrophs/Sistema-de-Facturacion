@@ -11,7 +11,22 @@ import { useEffect, useState } from "react";
 
 export default function TableReadyToBuy(props) {
 
-  
+    const admin =  [
+        {
+            name: "admin1",
+            lastname:"admin1"
+        },
+        {
+            name: "admin2",
+            lastname:"admin2"
+        },
+              
+    ]
+    
+    localStorage.setItem("admin",JSON.stringify(admin));
+
+    console.log(localStorage.getItem("admin"));
+
     const [productos, setProductos] = useState([]); //useState para manejar los productos a comprar y su cantidad
 
     // useEfect que al recibir un nuevo producto del componente TableProduct, lo agrega a la lista de productos a comprar

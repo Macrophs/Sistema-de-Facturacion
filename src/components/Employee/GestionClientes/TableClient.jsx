@@ -1,32 +1,20 @@
+"use client"
 /**
  * Este es un componente para utilizar la tabla que muestra la gestion de clientes
  */
 
+import obtainClientHelper from "@/JS/Helpers/ObtainClientHelper";
 import StandarButton from "@/components/Buttons/StandarButton";
+import { useEffect, useState } from "react";
 
-export default function TableClient( {setComponentVisible, setShowModal}) {
-  const elements = [
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-  ];
+export default function TableClient( {setComponentVisible, setShowModal, NewClient}) {
+
+  const [clients, setClients] = useState([]); //se encarga de almacenar los datos de los clientes a mostrar
+
+  //useEffect para obtener los clientes, se actualiza cada vez que se agregue un nuevo cliente mediante [NewClient]
+  useEffect(() => {
+    setClients(obtainClientHelper);
+  }, [NewClient]);
 
   return (
     <table className="w-full  text-sm text-left text-gray-500 ">
@@ -38,33 +26,33 @@ export default function TableClient( {setComponentVisible, setShowModal}) {
           <th scope="col" className="px-10 py-3">
             Nombre
           </th>
-          <th scope="col" colspan="2" className=" pl-32 py-3 ">
+          <th scope="col" colSpan={2} className=" pl-32 py-3 ">
             Acciones
           </th>
         </tr>
       </thead>
       <tbody>
-        {elements.map(({ label, cedula }) => (
-          <tr key={cedula} className="bg-white border-b  hover:bg-gray-50 ">
+        {clients.map(({ name, cedula },index) => (
+          <tr key={index} className="bg-white border-b  hover:bg-gray-50 ">
             <td className="px-6 py-4">{cedula}</td>
             <td
               scope="row"
               className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
             >
               <div className="pl-3">
-                <div className="text-base font-semibold">{label}</div>
+                <div className="text-base font-semibold">{name}</div>
               </div>
             </td>
 
             <td className="px-6 py-4">
 
-              <StandarButton url={"#"} label={"Editar"} className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "} id={1} onClick={() => {setShowModal(true); setComponentVisible("Edit/")}} />
+              <StandarButton url={"#"} label={"Editar"} className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "} id={index} onClick={() => {setShowModal(true); setComponentVisible("Edit/")}} />
 
             </td>
 
             <td className="px-6 py-4">
 
-              <StandarButton url={"#"} label={"Eliminar"} className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "} id={1} onClick={() => {setShowModal(true); setComponentVisible("Delete/")}} />
+              <StandarButton url={"#"} label={"Eliminar"} className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "} id={index} onClick={() => {setShowModal(true); setComponentVisible("Delete/")}} />
       
             </td>
           </tr>

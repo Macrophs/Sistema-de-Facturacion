@@ -20,13 +20,19 @@ export default function GestionClientes() {
   const [showModal, setShowModal] = useState(false);
   const [componentVisible, setComponentVisible] = useState("/");
 
+  const [client, setClient] = useState();
+
+  function addClient(client){
+    setClient(client)
+  }
+
   let componentModal = [""];
 
   let componentSelect = componentVisible.split("/");
 
   // Se asigna la vista a la modal, dependiendo de la opción seleccionada
   if(componentSelect[0] === "Add")
-    componentModal = <NewClient/>
+    componentModal = <NewClient onClose={()=> setShowModal(false)} NewClient={addClient} />
 
   else if(componentSelect[0] === "Edit")
     componentModal = <EditClient id={componentSelect[1]}/>
@@ -48,7 +54,7 @@ export default function GestionClientes() {
           
         </div>
 
-        <TableClient setShowModal={setShowModal} setComponentVisible={setComponentVisible} />
+        <TableClient setShowModal={setShowModal} setComponentVisible={setComponentVisible} NewClient={client}/>
 
         <Pagination />
       </section>
