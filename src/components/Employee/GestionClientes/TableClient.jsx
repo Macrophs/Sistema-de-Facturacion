@@ -1,11 +1,12 @@
 "use client"
+
+import { obtainClientHelper } from "@/Helpers/ObtainDataHelper";
+import StandarButton from "@/components/Buttons/StandarButton";
+import { useEffect, useState } from "react";
+
 /**
  * Este es un componente para utilizar la tabla que muestra la gestion de clientes
  */
-
-import obtainClientHelper from "@/JS/Helpers/ObtainClientHelper";
-import StandarButton from "@/components/Buttons/StandarButton";
-import { useEffect, useState } from "react";
 
 export default function TableClient( {setComponentVisible, setShowModal, NewClient}) {
 

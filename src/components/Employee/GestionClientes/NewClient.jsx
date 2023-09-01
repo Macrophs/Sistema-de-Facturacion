@@ -1,13 +1,12 @@
 "use client"
-/**
- * Este es un componente para agregar nuevos clientes al sistema
- */
-
-import NewClientHelper from "@/JS/Helpers/NewClientHelper";
+import NewClientHelper from "@/Helpers/NewClientHelper";
 import {isValidCedula, isValidEmail, isValidPhoneNumber} from "@/JS/ValidateInput"; //funciones para validar input
 import StandarButton from "@/components/Buttons/StandarButton";
 import { useState } from "react";
 
+/**
+ * Este es un componente para agregar nuevos clientes al sistema
+*/
 
 export default function NewClient({onClose, NewClient}) {
 

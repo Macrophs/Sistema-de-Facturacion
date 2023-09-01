@@ -2,7 +2,6 @@
 import Search from "../../Tables/Search";
 
 import Pagination from "../../Tables/Pagination";
-import TableClient from "./TableClient";
 import Modal from "@/components/Modal/Modal";
 
 import { useState } from "react";
@@ -10,6 +9,7 @@ import NewClient from "./NewClient";
 import EditClient from "./EditClient";
 import WarningModal from "@/components/Modal/WarningModal";
 import StandarButton from "@/components/Buttons/StandarButton";
+import TableClient from "./TableClient";
 
 /**
  * Este es un componente relacionado a la gestion de clientes
