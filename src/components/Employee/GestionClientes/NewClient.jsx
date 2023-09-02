@@ -8,14 +8,15 @@ import { useState } from "react";
  * Este es un componente para agregar nuevos clientes al sistema
 */
 
-export default function NewClient({onClose, NewClient}) {
+export default function NewClient({onClose, NewClient ,Cedula}) {
 
+    
     //useState que contendrá toda la informacion de los input del formulario
     const [formData, setformData] = useState({
         name: "",
         lastname: "",
         email: "",
-        cedula: "",
+        cedula: Cedula ? Cedula : "",
         phone: "",
 
     });

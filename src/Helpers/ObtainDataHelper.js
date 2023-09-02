@@ -14,3 +14,13 @@ export const obtainEmployeesHelper = () => {
     //devuelve los datos de los empleados
     return JSON.parse(localStorage.getItem("employee"));
 }
+
+export const obtainProductsHelper = () => {
+    //devuelve los datos de los empleados
+    return JSON.parse(localStorage.getItem("products"));
+}
+
+export const obtainFacturasHelper = () => {
+    //devuelve los datos de los empleados
+    return JSON.parse(localStorage.getItem("facturas"));
+}

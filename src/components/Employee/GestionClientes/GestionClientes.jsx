@@ -10,6 +10,7 @@ import EditClient from "./EditClient";
 import WarningModal from "@/components/Modal/WarningModal";
 import StandarButton from "@/components/Buttons/StandarButton";
 import TableClient from "./TableClient";
+import { useSearchParams } from 'next/navigation'
 
 /**
  * Este es un componente relacionado a la gestion de clientes
@@ -17,7 +18,12 @@ import TableClient from "./TableClient";
 
 export default function GestionClientes() {
   // showModal = bool que determina si se muestra o no la ventana modal, componentVisible = Almacena que tipo de contenido se quiere mostrar en la modal
-  const [showModal, setShowModal] = useState(false);
+
+  //obtener cedula de la url
+  const searchParams = useSearchParams();
+  const cedula = searchParams.get("newCedula");
+
+  const [showModal, setShowModal] = useState(cedula ? true : false);
   const [componentVisible, setComponentVisible] = useState("/");
 
   const [client, setClient] = useState();
@@ -32,13 +38,18 @@ export default function GestionClientes() {
 
   // Se asigna la vista a la modal, dependiendo de la opción seleccionada
   if(componentSelect[0] === "Add")
-    componentModal = <NewClient onClose={()=> setShowModal(false)} NewClient={addClient} />
+    componentModal = <NewClient onClose={()=> setShowModal(false)} NewClient={addClient} Cedula={null} />
 
   else if(componentSelect[0] === "Edit")
     componentModal = <EditClient id={componentSelect[1]}/>
 
   else if(componentSelect[0] === "Delete")
     componentModal = <WarningModal id={componentSelect[1]} entity={'Cliente'} identifier={'V30123422'} name={'Jose Perez'} onClose={()=> setShowModal(false)}/>
+
+    if(cedula !== null)
+    {
+      componentModal = <NewClient onClose={()=> setShowModal(false)} NewClient={addClient} Cedula={cedula} />
+    }
 
   return (
     <section className="flex items-center justify-center  lg:mt-0 ">

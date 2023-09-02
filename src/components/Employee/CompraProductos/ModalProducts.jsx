@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ShowMethod from "./ShowMethod";
 import StandarButton from "@/components/Buttons/StandarButton";
-export default function ModalProducts({onClose, Price_Buy}) {
+export default function ModalProducts({onClose, Price_Buy, ClientData}) {
 
     const [page, setPage] = useState(1); //almacena si se mostrará la vista de selección de método de pago o la de confirmación de compra
     const [method, setMethod] = useState(null); // almacena el método de pago a usar
@@ -86,7 +86,7 @@ export default function ModalProducts({onClose, Price_Buy}) {
                <section className="flex justify-center items-center  flex-col mt-5 text-xl">
 
                     <section className="p-2">
-                        <p><span className="text-marianBlue font-bold">Cliente: </span> José Antonio González Díaz</p>
+                        <p><span className="text-marianBlue font-bold">Cliente: </span>{ClientData.name} {ClientData.lastname} </p>
                         <p className="pt-2"><span className="text-marianBlue font-bold">Método de Pago: </span> Pago Móvil</p>
                         <p className="pt-2"><span className="text-marianBlue font-bold">Total a Pagar: </span> <span className="text-green-500"> {Price_Buy}$ </span></p>
 

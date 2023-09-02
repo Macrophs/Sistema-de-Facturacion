@@ -13,7 +13,7 @@ export default function TableBuy(props) {
   return (
     <section className="flex  items-center justify-center  lg:mt-0 ">
       <section className="w-full lg:w-2/4 overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
-        <DataClient />
+        <DataClient Client={props.ClientData} />
         <Search label={"Buscar Productos"} />
 
         <TableProducts ProductsChange={props.ProductsChange} DeleteProduct={props.DeleteProduct} ProductToUnselect={props.DeleteSelectProduct}  />

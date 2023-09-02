@@ -77,6 +77,18 @@ export default function CreateLocalStorage()
                 price_unit: 15,
                 quantity_stock:100,
             },
+            {
+                name: "Chaos",
+                code:"#12347",
+                price_unit: 2,
+                quantity_stock:100,
+            },
+            {
+                name: "Chess Tris",
+                code:"#12346",
+                price_unit: 30,
+                quantity_stock:50,
+            },
                 
         ]
         
@@ -89,18 +101,38 @@ export default function CreateLocalStorage()
             {
                 date: "19/08/2023",
                 code:"#12345",
-                client_id: 1,
+                name: "client1",
+                lastname:"client1",
+                cedula:"V30530511",
+                email:"client1@gmail.com",
+                phone:"412-5951509",
                 products:[
-                    1,
-                    2
+                    {
+                        name: "Chess Tris",
+                        price_unit: 30,
+                        quantity:4,
+                    },
+                    {
+                        name: "Chaos",
+                        price_unit: 2,
+                        quantity:4,
+                    },
                 ]
             },
             {
                 date: "19/08/2023",
                 code:"#12345",
-                client_id: 1,
+                name: "client1",
+                lastname:"client1",
+                cedula:"V30530511",
+                email:"client1@gmail.com",
+                phone:"412-5951509",
                 products:[
-                    2
+                    {
+                        name: "Chaos",
+                        price_unit: 2,
+                        quantity:4,
+                    },
                 ]
             },
                 

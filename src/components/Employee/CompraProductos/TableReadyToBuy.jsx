@@ -11,22 +11,6 @@ import { useEffect, useState } from "react";
 
 export default function TableReadyToBuy(props) {
 
-    const admin =  [
-        {
-            name: "admin1",
-            lastname:"admin1"
-        },
-        {
-            name: "admin2",
-            lastname:"admin2"
-        },
-              
-    ]
-    
-    localStorage.setItem("admin",JSON.stringify(admin));
-
-    console.log(localStorage.getItem("admin"));
-
     const [productos, setProductos] = useState([]); //useState para manejar los productos a comprar y su cantidad
 
     // useEfect que al recibir un nuevo producto del componente TableProduct, lo agrega a la lista de productos a comprar
@@ -76,9 +60,14 @@ export default function TableReadyToBuy(props) {
 
     //aumentar la cantidad a comprar de un producto
     const IncrementQuantity = (id) =>{
-        const newElements = [...productos];
-        newElements[id].quantity += 1;
-        setProductos(newElements);
+        if(productos[id].quantity_stock > productos[id].quantity) //comprobacion de que no se supere la cantidad en stock
+        {
+            const newElements = [...productos];
+            newElements[id].quantity += 1;
+            setProductos(newElements);
+
+        }
+        
        
     };
     
@@ -134,11 +123,11 @@ export default function TableReadyToBuy(props) {
                     </thead>
                     <tbody>
                         {/*Se muestran todos los productos a comprar*/}
-                        { productos.map(({label,quantity,price_unit},index) =>(
+                        { productos.map(({name,quantity,price_unit},index) =>(
                             <tr className="bg-white " key={index}>
                            
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    {label}
+                                    {name}
                                 </th>
                                 <td className="px-6 py-4 flex">
                                     {quantity}
@@ -173,7 +162,7 @@ export default function TableReadyToBuy(props) {
                     <tfoot>
                         <tr className="font-semibold text-gray-900 bg-gray-100 ">
                             <th scope="row" className="px-6 py-3 text-sm">Total</th>
-                            <td className="px-6 py-3" colspan="2">{final_quantity}</td>
+                            <td className="px-6 py-3" colSpan={"2"}>{final_quantity}</td>
                             <td colSpan={2} className="px-6 py-3">{final_price}</td>
                         </tr>
                     </tfoot>

@@ -1,3 +1,4 @@
+import { obtainProductsHelper } from "@/Helpers/ObtainDataHelper";
 import Image from "next/image"
 import { useEffect, useState } from "react";
 
@@ -7,51 +8,19 @@ import { useEffect, useState } from "react";
  */
 
 export default function TableProducts(props) {
+    
+    
+    const [elements, setElements] = useState([]);
 
-    const elements = [
-        {
-            label: "Appel MacBook Pro 17",
-            code: "#15324",
-            quantity: 1,
-            price_unit: "2999",
-        },
-        {
-            label: "Microsoft Surface Pro",
-            code: "#15328",
-            quantity: 1,
-            price_unit: "1999",
-        },
-        {
-            label: "Apple Watch",
-            code: "#15412",
-            quantity: 1,
-            price_unit: "100",
-        },
-        {
-            label: "Chocolate",
-            code: "#15445",
-            quantity: 1,
-            price_unit: "100",
-        },
-        {
-            label: "Chupeta",
-            code: "#15446",
-            quantity: 1,
-            price_unit: "100",
-        },
-        {
-            label: "Chaos",
-            code: "#15447",
-            quantity: 1,
-            price_unit: "100",
-        },
-        {
-            label: "Pirulin",
-            code: "#15448",
-            quantity: 1,
-            price_unit: "100",
-        },
-    ]
+    useEffect(() => {
+        const products = [...obtainProductsHelper()]; //se obtiene una copia de los productos almacenados en la bd
+
+        const newProducts = products.map((product) => { //se le añaden a todos los productos un nuevo campo Quantity para realizar la compra
+            return {...product, quantity:1};
+        }) 
+        setElements(newProducts);
+    },[props.ProductsChange]);
+
 
     //*Funcion para Manejar si se va a eliminar o agregar un producto
     function ProductsMannager(id)
@@ -87,11 +56,14 @@ export default function TableProducts(props) {
         <table className="w-full text-sm text-left text-gray-500">
             <thead className="text-sm text-gray-700 uppercase bg-gray-50">
                 <tr>
-                    <th scope="col" colspan="2" className="px-6 py-3">
+                    <th scope="col" colSpan={"2"} className="px-6 py-3">
                         Nombre
                     </th>
                     <th scope="col" className="px-6 py-3">
                         Código
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        Stock
                     </th>
                     <th scope="col" className="px-6 py-3 rounded-l-lg">
                         Precio
@@ -100,7 +72,7 @@ export default function TableProducts(props) {
                 </tr>
             </thead>
             <tbody>                {/*Se muestran los elementos de la tabla */}
-                {elements.map(({label,code,price_unit},index) =>{
+                {elements.map(({name,code,price_unit, quantity_stock},index) =>{
                     if(index < limitindex){
                         return(
                             <tr className="bg-white border-b" key={index} >
@@ -110,15 +82,18 @@ export default function TableProducts(props) {
                                         <input id={"checkbox"+index}  onChange={()=> ProductsMannager(index) }
                                         type="checkbox"
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "/>
-                                            <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
+                                            <label  className="sr-only">checkbox</label>
                                     </section>
                                 </td>
 
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                {label}
+                                {name}
                                 </th>
                                 <td className="px-6 py-4">
                                     {code}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {quantity_stock}
                                 </td>
                                 <td className="px-6 py-4">
                                     ${price_unit}
