@@ -7,7 +7,14 @@ import { obtainFacturasHelper } from "@/Helpers/ObtainDataHelper";
 import StandarButton from "@/components/Buttons/StandarButton";
 import { useEffect, useState } from "react";
 
-export default function TableFactura({setShowModal, setComponentVisible}) {
+export default function TableFactura({setShowModal, setComponentVisible, PaginatorController}) {
+
+  const [paginator, setPaginator] = useState({LimitUp:1,LimitDown:5});
+
+  useEffect(() => {
+    setPaginator(PaginatorController);
+  }, [PaginatorController]);
+
 
   const [facturas, setFacturas] = useState([{
     name: "",
@@ -58,37 +65,44 @@ export default function TableFactura({setShowModal, setComponentVisible}) {
         </tr>
       </thead>
       <tbody>
-        {facturas.map(({ code, date, cedula, name,lastname, products }) => (
-          <tr key={code} className="bg-white border-b  hover:bg-gray-50 ">
-            <td className="px-6 py-4">{code}</td>
-            <td className="px-6 py-4">{date}</td>
-            <td className="px-6 py-4">
-              {cedula}{" "}
-              <span className="text-black font-medium"> {name} {lastname}</span>
-            </td>
-            <td className="px-12 py-4">
-              {" "}
-              <span className="text-green-600 font-medium"> ${CalculateTotal(products)} </span>
-            </td>
-            <td className="px-10 py-4">
+        {facturas.map(({ code, date, cedula, name,lastname, products },index) => {
+          index++;
+          if(index >= paginator.LimitDown && index <= paginator.LimitUp )
+          {
+              return(
+                <tr key={code} className="bg-white border-b  hover:bg-gray-50 ">
+                  <td className="px-6 py-4">{code}</td>
+                  <td className="px-6 py-4">{date}</td>
+                  <td className="px-6 py-4">
+                    {cedula}{" "}
+                    <span className="text-black font-medium"> {name} {lastname}</span>
+                  </td>
+                  <td className="px-12 py-4">
+                    {" "}
+                    <span className="text-green-600 font-medium"> ${CalculateTotal(products)} </span>
+                  </td>
+                  <td className="px-10 py-4">
 
-              <StandarButton url={"gestion_facturas/factura?Code="+code} label={"Visualizar"} 
-              className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue "} 
-              id={1} 
-            
+                    <StandarButton url={"gestion_facturas/factura?Code="+code} label={"Visualizar"} 
+                    className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue "} 
+                    id={1} 
+                  
 
-              />
-            </td>
-            <td className="px-10 py-4">
-              <StandarButton url={"#"} label={"Eliminar"} 
-              className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "} 
-              id={1} 
-              onClick={() => {setShowModal(true); setComponentVisible("Delete/")}} 
+                    />
+                  </td>
+                  <td className="px-10 py-4">
+                    <StandarButton url={"#"} label={"Eliminar"} 
+                    className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "} 
+                    id={1} 
+                    onClick={() => {setShowModal(true); setComponentVisible("Delete/")}} 
 
-              />
-            </td>
-          </tr>
-        ))}
+                    />
+                  </td>
+                </tr>
+              );
+          }
+          
+        })}
       </tbody>
     </table>
   );

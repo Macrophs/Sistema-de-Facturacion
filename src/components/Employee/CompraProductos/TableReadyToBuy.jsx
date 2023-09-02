@@ -166,8 +166,9 @@ export default function TableReadyToBuy(props) {
                     <tfoot>
                         <tr className="font-semibold text-gray-900 bg-gray-100 ">
                             <th scope="row" className="px-6 py-3 text-sm">Total</th>
-                            <td className="px-6 py-3" colSpan={"2"}>{final_quantity}</td>
-                            <td colSpan={2} className="px-6 py-3">{final_price}</td>
+                            <td className="px-6 py-3" >Cantidad de Productos: {final_quantity}</td>
+                            <td className="px-6 py-3" >IVA: { (16 * final_price ) / 100}</td>
+                            <td colSpan={2} className="px-6 py-3">SubTotal: {final_price}</td>
                         </tr>
                     </tfoot>
                 </table>

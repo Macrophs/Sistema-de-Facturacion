@@ -11,6 +11,7 @@ import WarningModal from "@/components/Modal/WarningModal";
 import StandarButton from "@/components/Buttons/StandarButton";
 import TableClient from "./TableClient";
 import { useSearchParams } from 'next/navigation'
+import { obtainClientHelper } from "@/Helpers/ObtainDataHelper";
 
 /**
  * Este es un componente relacionado a la gestion de clientes
@@ -28,10 +29,16 @@ export default function GestionClientes() {
 
   const [client, setClient] = useState();
 
+  const [paginatorController, setPaginatorController] = useState({LimitUp:1,LimitDown:5});
+
   function addClient(client){
     setClient(client)
   }
 
+  function ObtainChangeTable(changes)
+  {
+    setPaginatorController(changes);
+  }
   let componentModal = [""];
 
   let componentSelect = componentVisible.split("/");
@@ -65,9 +72,9 @@ export default function GestionClientes() {
           
         </div>
 
-        <TableClient setShowModal={setShowModal} setComponentVisible={setComponentVisible} NewClient={client}/>
+        <TableClient setShowModal={setShowModal} setComponentVisible={setComponentVisible} NewClient={client} PaginatorController={paginatorController}/>
 
-        <Pagination />
+        <Pagination newData={client} obtainData={obtainClientHelper} ChangeTable={ObtainChangeTable}/>
       </section>
     <Modal isVisible={showModal} onClose={()=> setShowModal(false)}>
       {componentModal}

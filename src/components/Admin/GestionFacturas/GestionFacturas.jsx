@@ -5,6 +5,7 @@ import Pagination from "@/components/Tables/Pagination";
 import Modal from "@/components/Modal/Modal";
 import { useState } from "react";
 import WarningModal from "@/components/Modal/WarningModal";
+import { obtainFacturasHelper } from "@/Helpers/ObtainDataHelper";
 
 /**
  * Este es un componente que engloba toda la estructura de la interfaz gestion de Facturas
@@ -13,6 +14,13 @@ import WarningModal from "@/components/Modal/WarningModal";
 export default function GestionFacturas() {
   const [showModal, setShowModal] = useState(false);
   const [componentVisible, setComponentVisible] = useState("/");
+
+  const [paginatorController, setPaginatorController] = useState({LimitUp:1,LimitDown:5});
+
+  function ObtainChangeTable(changes)
+  {
+    setPaginatorController(changes);
+  }
 
   let componentModal = [""];
 
@@ -44,9 +52,10 @@ export default function GestionFacturas() {
         <TableFactura
           setShowModal={setShowModal}
           setComponentVisible={setComponentVisible}
+          PaginatorController={paginatorController}
         />
 
-        <Pagination />
+        <Pagination newData={null} obtainData={obtainFacturasHelper} ChangeTable={ObtainChangeTable} />
       </section>
       <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
         {componentModal}

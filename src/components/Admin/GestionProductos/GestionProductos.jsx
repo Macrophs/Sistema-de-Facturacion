@@ -8,6 +8,7 @@ import Modal from "@/components/Modal/Modal";
 import EditProducto from "./EditProducto";
 import WarningModal from "@/components/Modal/WarningModal";
 import StandarButton from "@/components/Buttons/StandarButton";
+import { obtainProductsHelper } from "@/Helpers/ObtainDataHelper";
 
 /**
  * Este es un componente que engloba toda la estructura de la interfaz gestion de productos
@@ -22,6 +23,13 @@ export default function GestionProductos() {
 
   function addproduct(product){
     setProducts(product)
+  }
+
+  const [paginatorController, setPaginatorController] = useState({LimitUp:1,LimitDown:5});
+
+  function ObtainChangeTable(changes)
+  {
+    setPaginatorController(changes);
   }
 
   let componentModal = [""];
@@ -60,9 +68,9 @@ export default function GestionProductos() {
           />
         </div>
 
-        <TableProducts setShowModal={setShowModal} setComponentVisible={setComponentVisible} newProduct={product}/>
+        <TableProducts setShowModal={setShowModal} setComponentVisible={setComponentVisible} newProduct={product} PaginatorController={paginatorController}/>
 
-        <Pagination />
+        <Pagination newData={product} obtainData={obtainProductsHelper} ChangeTable={ObtainChangeTable}/>
       </section>
       <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
         {componentModal}

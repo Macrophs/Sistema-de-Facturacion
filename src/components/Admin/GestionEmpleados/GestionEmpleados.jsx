@@ -8,6 +8,7 @@ import NewEmpleado from "./NewEmpleado";
 import EditEmpleado from "./EditEmpleado";
 import WarningModal from "@/components/Modal/WarningModal";
 import StandarButton from "@/components/Buttons/StandarButton";
+import { obtainEmployeesHelper } from "@/Helpers/ObtainDataHelper";
 
 /**
  * Este es un componente que engloba toda la estructura de la interfaz gestion de empleados
@@ -22,6 +23,14 @@ export default function GestionEmpleados() {
   function addEmployee(employee){
     setEmployee(employee)
   }
+
+  const [paginatorController, setPaginatorController] = useState({LimitUp:1,LimitDown:5});
+
+  function ObtainChangeTable(changes)
+  {
+    setPaginatorController(changes);
+  }
+  
 
   let componentModal = [""];
 
@@ -54,9 +63,9 @@ export default function GestionEmpleados() {
           />
         </div>
 
-        <TableEmployee setShowModal={setShowModal} setComponentVisible={setComponentVisible} newEmployee={employee}/>
+        <TableEmployee setShowModal={setShowModal} setComponentVisible={setComponentVisible} newEmployee={employee} PaginatorController={paginatorController}/>
 
-        <Pagination />
+        <Pagination newData={employee} obtainData={obtainEmployeesHelper} ChangeTable={ObtainChangeTable}/>
       </section>
       <Modal isVisible={showModal} onClose={()=> setShowModal(false)}>
         {componentModal}

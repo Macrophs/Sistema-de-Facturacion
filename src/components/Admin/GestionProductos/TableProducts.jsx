@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 
 
-export default function TableProducts({ setComponentVisible, setShowModal, newProduct }) {
+export default function TableProducts({ setComponentVisible, setShowModal, newProduct, PaginatorController }) {
 
   const [products, setProducts] = useState([
     {
@@ -20,6 +20,11 @@ export default function TableProducts({ setComponentVisible, setShowModal, newPr
     setProducts(obtainProductsHelper);
   }, [newProduct]);
 
+  const [paginator, setPaginator] = useState({LimitUp:1,LimitDown:5});
+
+  useEffect(() => {
+    setPaginator(PaginatorController);
+  }, [PaginatorController]);
 
   return (
     <table className="w-full text-sm text-left text-gray-500 ">
@@ -43,42 +48,49 @@ export default function TableProducts({ setComponentVisible, setShowModal, newPr
         </tr>
       </thead>
       <tbody>
-        {products.map(({ name,code, price_unit, quantity_stock }) => (
-          <tr key={code} className="bg-white border-b  hover:bg-gray-50 ">
-            <td className="px-6 py-4">{code}</td>
+        {products.map(({ name,code, price_unit, quantity_stock },index) => 
+        {
+          index++;
+          if(index >= paginator.LimitDown && index <= paginator.LimitUp )
+          { //Mostrar solos los registros que se encuentran en el rango segun la pagina actual
+              return (
+                <tr key={code} className="bg-white border-b  hover:bg-gray-50 ">
+                  <td className="px-6 py-4">{code}</td>
 
-            <td
-              scope="row"
-              className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
-            >
-              <div className="pl-3">
-                <div className="text-base font-semibold">{name}</div>
-              </div>
-            </td>
+                  <td
+                    scope="row"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
+                  >
+                    <div className="pl-3">
+                      <div className="text-base font-semibold">{name}</div>
+                    </div>
+                  </td>
 
-            <td className="px-6 py-4 text-center">{price_unit}$</td>
+                  <td className="px-6 py-4 text-center">{price_unit}$</td>
 
-            <td className="px-6 py-4 text-center">{quantity_stock}</td>
+                  <td className="px-6 py-4 text-center">{quantity_stock}</td>
 
-            <td className="px-6 py-4">
+                  <td className="px-6 py-4">
 
-            <StandarButton url={"#"} label={"Editar"} 
-            className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "} 
-            id={1} 
-            onClick={() => {setShowModal(true); setComponentVisible("Edit/")}} 
+                  <StandarButton url={"#"} label={"Editar"} 
+                  className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "} 
+                  id={1} 
+                  onClick={() => {setShowModal(true); setComponentVisible("Edit/")}} 
 
-            />
-            </td>
-            <td className="px-6 py-4">
-            <StandarButton url={"#"} label={"Eliminar"} 
-            className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "} 
-            id={1} 
-            onClick={() => {setShowModal(true); setComponentVisible("Delete/")}} 
+                  />
+                  </td>
+                  <td className="px-6 py-4">
+                  <StandarButton url={"#"} label={"Eliminar"} 
+                  className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "} 
+                  id={1} 
+                  onClick={() => {setShowModal(true); setComponentVisible("Delete/")}} 
 
-            />
-            </td>
-          </tr>
-        ))}
+                  />
+                  </td>
+                </tr>
+              );
+          }
+        })}
       </tbody>
     </table>
   );
