@@ -7,11 +7,20 @@ import Image from "next/image";
 import Link from "next/link";
 import ShowMethod from "./ShowMethod";
 import StandarButton from "@/components/Buttons/StandarButton";
-export default function ModalProducts({onClose, Price_Buy, ClientData}) {
+import { CreateFacturaHelper } from "@/Helpers/CreateFacturaHelper";
+import { useRouter } from "next/navigation";
+export default function ModalProducts({onClose, Price_Buy, ClientData, ProductsData}) {
 
     const [page, setPage] = useState(1); //almacena si se mostrará la vista de selección de método de pago o la de confirmación de compra
     const [method, setMethod] = useState(null); // almacena el método de pago a usar
     const [checked, setChecked] = useState(false); // almacena si se confirmó el pago de la compra
+
+
+    const CreateFactura = () =>
+    {
+        const code = CreateFacturaHelper(ClientData,method,ProductsData);
+        window.location.href = "factura?Code="+code;
+    }
 
     if(page === 1)
     {   //retornar vista donde se selecciona el método de pago
@@ -101,9 +110,9 @@ export default function ModalProducts({onClose, Price_Buy, ClientData}) {
                     onClick={() => onClose()} 
 
                     /> 
-                  <StandarButton label={"Terminar Compra"} url={"factura"}  
+                  <StandarButton label={"Terminar Compra"} url={"#"}  
                     className={` ${!checked ? "bg-gray-400 opacity-20 pointer-events-none" : " bg-marianBlue" } xl:min-w-36 `}
-                    onClick={()=> setPage(2)}
+                    onClick={()=> CreateFactura()}
 
                      /> 
                 

@@ -33,7 +33,7 @@ export default function TableClient( {setComponentVisible, setShowModal, NewClie
         </tr>
       </thead>
       <tbody>
-        {clients.map(({ name, cedula },index) => (
+        {clients.map(({ name,lastname, cedula },index) => (
           <tr key={index} className="bg-white border-b  hover:bg-gray-50 ">
             <td className="px-6 py-4">{cedula}</td>
             <td
@@ -41,7 +41,7 @@ export default function TableClient( {setComponentVisible, setShowModal, NewClie
               className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
             >
               <div className="pl-3">
-                <div className="text-base font-semibold">{name}</div>
+                <div className="text-base font-semibold">{name} {lastname}</div>
               </div>
             </td>
 

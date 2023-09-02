@@ -26,6 +26,10 @@ export default function TableReadyToBuy(props) {
 
     },[props.Products]);
     
+    useEffect(() => {
+        props.FinishProducts(productos);
+    }, [productos]);
+
     // useEfect que al recibir un nuevo producto del componente TableProduct, lo elimina de la lista de productos a comprar
     useEffect(()=>{
 

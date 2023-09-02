@@ -3,46 +3,38 @@
  */
 
 
+import { obtainFacturasHelper } from "@/Helpers/ObtainDataHelper";
 import StandarButton from "@/components/Buttons/StandarButton";
+import { useEffect, useState } from "react";
 
 export default function TableFactura({setShowModal, setComponentVisible}) {
-  const elements = [
-    {
-      code: "#12345",
-      date: "25/08/2023",
-      client_cedula: "V30123422",
-      client_name: "Neil Sims",
-      total: 10000,
-    },
-    {
-      code: "#12345",
-      date: "25/08/2023",
-      client_cedula: "V30123422",
-      client_name: "Neil Sims",
-      total: 10000,
-    },
-    {
-      code: "#12345",
-      date: "25/08/2023",
-      client_cedula: "V30123422",
-      client_name: "Neil Sims",
-      total: 10000,
-    },
-    {
-      code: "#12345",
-      date: "25/08/2023",
-      client_cedula: "V30123422",
-      client_name: "Neil Sims",
-      total: 10000,
-    },
-    {
-      code: "#12345",
-      date: "25/08/2023",
-      client_cedula: "V30123422",
-      client_name: "Neil Sims",
-      total: 10000,
-    },
-  ];
+
+  const [facturas, setFacturas] = useState([{
+    name: "",
+    lastname: "",
+    code: undefined ,
+    cedula:"",
+    date: "",
+    products:[]
+
+  }]); //se encarga de almacenar los datos de las facturas a mostrar
+
+  //useEffect para obtener las facturas
+  useEffect(() => {
+    setFacturas(obtainFacturasHelper);
+  }, []);
+
+  const CalculateTotal = (products) =>
+  {
+    let total = 0;
+    for (const product of products )
+      total += product.quantity * product.price_unit;
+      
+    const iva = 16;
+    let price_iva = (iva * total ) / 100 ;
+    return total + price_iva;
+    
+  }
 
   return (
     <table className="w-full text-sm text-left text-gray-500 ">
@@ -66,21 +58,21 @@ export default function TableFactura({setShowModal, setComponentVisible}) {
         </tr>
       </thead>
       <tbody>
-        {elements.map(({ code, date, client_cedula, client_name, total }) => (
+        {facturas.map(({ code, date, cedula, name,lastname, products }) => (
           <tr key={code} className="bg-white border-b  hover:bg-gray-50 ">
             <td className="px-6 py-4">{code}</td>
             <td className="px-6 py-4">{date}</td>
             <td className="px-6 py-4">
-              {client_cedula}{" "}
-              <span className="text-black font-medium"> {client_name}</span>
+              {cedula}{" "}
+              <span className="text-black font-medium"> {name} {lastname}</span>
             </td>
             <td className="px-12 py-4">
               {" "}
-              <span className="text-green-600 font-medium"> ${total} </span>
+              <span className="text-green-600 font-medium"> ${CalculateTotal(products)} </span>
             </td>
             <td className="px-10 py-4">
 
-              <StandarButton url={"gestion_facturas/factura"} label={"Visualizar"} 
+              <StandarButton url={"gestion_facturas/factura?Code="+code} label={"Visualizar"} 
               className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue "} 
               id={1} 
             

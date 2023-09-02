@@ -3,7 +3,7 @@
  * Este es un componente de la pagina factura, que contendrá la parte superior de la factura
  */
 
-export default function HeaderFactura() {
+export default function HeaderFactura({Factura}) {
   return (
     <>
        <section className="flex flex-col flex-wrap justify-center sm:justify-normal sm:items-start items-center sm:flex-row text-xl   w-full">
@@ -22,10 +22,10 @@ export default function HeaderFactura() {
                   <p> FACTURAR A</p>
                 </section> 
                 <section className=" font-medium">
-                    <p>[Nombre]</p>  
-                    <p>[Cédula]</p>  
-                    <p>[Correo]</p>  
-                    <p>[Teléfono]</p>  
+                    <p>{Factura.name} {Factura.lastname}</p>  
+                    <p>{Factura.cedula}</p>  
+                    <p>{Factura.email}</p>  
+                    <p>{Factura.phone}</p>  
                 </section>
             </section>
             <section className=" p-5 m-5 pl-0 w-full sm:w-[45%]">
@@ -35,8 +35,8 @@ export default function HeaderFactura() {
                   <p> FECHA</p>
               </section>
               <section className=" flex items-center flex-wrap justify-center text-black font-medium">
-                  <p className="w-1/2"> #2034</p>
-                  <p> 19/08/2023</p>
+                  <p className="w-1/2"> #{Factura.code}</p>
+                  <p> {Factura.date}</p>
               </section>
             </section>
                     

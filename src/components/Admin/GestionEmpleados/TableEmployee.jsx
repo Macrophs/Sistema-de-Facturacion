@@ -3,32 +3,26 @@
  */
 
 
+import { obtainEmployeesHelper } from "@/Helpers/ObtainDataHelper";
 import StandarButton from "@/components/Buttons/StandarButton";
+import { useEffect, useState } from "react";
 
-export default function TableEmployee({ setComponentVisible, setShowModal }) {
-  const elements = [
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-    {
-      label: "Neil Sims",
-      cedula: "V30123422",
-    },
-  ];
+export default function TableEmployee({ setComponentVisible, setShowModal, newEmployee }) {
 
+  const [employee, setEmployee] = useState([
+    {
+      name:"",
+      lastname:"",
+      cedula:"",
+      email:"",
+    }
+  ]); //se encarga de almacenar los datos de los empleados a mostrar
+
+  //useEffect para obtener los empleados
+  useEffect(() => {
+    setEmployee(obtainEmployeesHelper);
+  }, [newEmployee]);
+  
   return (
     <table className="w-full text-sm text-left text-gray-500 ">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -45,7 +39,7 @@ export default function TableEmployee({ setComponentVisible, setShowModal }) {
         </tr>
       </thead>
       <tbody>
-        {elements.map(({ label, cedula }) => (
+        {employee.map(({ name, lastname, email, cedula }) => (
           <tr key={cedula} className="bg-white border-b  hover:bg-gray-50 ">
             <td className="px-6 py-4">{cedula}</td>
             <td
@@ -53,9 +47,9 @@ export default function TableEmployee({ setComponentVisible, setShowModal }) {
               className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
             >
               <div className="pl-3">
-                <div className="text-base font-semibold">{label}</div>
+                <div className="text-base font-semibold">{name} {lastname}</div>
                 <div class="font-normal text-gray-500">
-                  neil.sims@flowbite.com
+                  {email}
                 </div>
               </div>
             </td>

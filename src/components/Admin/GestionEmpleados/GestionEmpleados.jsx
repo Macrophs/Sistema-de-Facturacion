@@ -17,13 +17,19 @@ export default function GestionEmpleados() {
   const [showModal, setShowModal] = useState(false);
   const [componentVisible, setComponentVisible] = useState("/");
 
+  const [employee, setEmployee] = useState();
+
+  function addEmployee(employee){
+    setEmployee(employee)
+  }
+
   let componentModal = [""];
 
   let componentSelect = componentVisible.split("/");
 
   // Se asigna la vista a la modal, dependiendo de la opción seleccionada
   if(componentSelect[0] === "Add")
-    componentModal = <NewEmpleado/>
+    componentModal = <NewEmpleado onClose={()=> setShowModal(false)} newEmployee={addEmployee} />
 
   else if(componentSelect[0] === "Edit")
     componentModal = <EditEmpleado id={componentSelect[1]}/>
@@ -48,7 +54,7 @@ export default function GestionEmpleados() {
           />
         </div>
 
-        <TableEmployee setShowModal={setShowModal} setComponentVisible={setComponentVisible}/>
+        <TableEmployee setShowModal={setShowModal} setComponentVisible={setComponentVisible} newEmployee={employee}/>
 
         <Pagination />
       </section>

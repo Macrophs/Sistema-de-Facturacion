@@ -1,7 +1,9 @@
 "use client"
-import NewClientHelper from "@/Helpers/NewClientHelper";
+import NewItemDBHelper from "@/Helpers/NewItemDBHelper";
+import NewClientHelper from "@/Helpers/NewItemDBHelper";
 import {isValidCedula, isValidEmail, isValidPhoneNumber} from "@/JS/ValidateInput"; //funciones para validar input
 import StandarButton from "@/components/Buttons/StandarButton";
+import Input from "@/components/Tables/Input";
 import { useState } from "react";
 
 /**
@@ -81,7 +83,7 @@ export default function NewClient({onClose, NewClient ,Cedula}) {
     {
         const validationErrors = validateForm(formData);
         if (Object.keys(validationErrors).length === 0) {
-            setFinish(NewClientHelper(formData)); //se envia a la bd
+            setFinish(NewItemDBHelper(formData,"client")); //se envia a la bd
             NewClient(true);  //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente
           }
         setErrors(validationErrors); //se actualizan los errores
@@ -99,56 +101,32 @@ export default function NewClient({onClose, NewClient ,Cedula}) {
                 <form action="cedula_cliente.html">
 
                     <div className="relative z-0 w-full mb-8 group">
-                        <input type="email" name="email" value={formData.email} onChange={InputChange} id="email"
-                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " required />
-                        <label for="email"
-                            className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Correo
-                            Electrónico</label>
+                        <Input label={"Correo Electrónico"} name={"email"} type={"email"} value={formData.email} InputChange={InputChange} />
+                        
                         {errors.email && <p className="text-red-500">{errors.email}</p>}
                         
                     </div>
 
                     <div className="grid md:grid-cols-2 md:gap-6">
                         <div className="relative z-0 w-full mb-8 group">
-                            <input type="text" name="name" value={formData.name} onChange={InputChange} id="name"
-                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " required />
-                            <label for="name"
-                                className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre</label>
+                            <Input label={"Nombre"} name={"name"} type={"text"} value={formData.name} InputChange={InputChange} />
                             {errors.name && <p className="text-red-500">{errors.name}</p>}
                         </div>
 
-                        <div className="relative z-0 w-full mb-8 group">
-                            <input type="text" name="lastname" value={formData.lastname} onChange={InputChange} id="lastname"
-                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " required />
-                            <label for="lastname"
-                                className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Apellido</label>
+                    <div className="relative z-0 w-full mb-8 group">
+                            <Input label={"Apellido"} name={"lastname"} type={"text"} value={formData.lastname} InputChange={InputChange} />
                              {errors.lastname && <p className="text-red-500">{errors.lastname}</p>}
                         </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 md:gap-6">
                         <div className="relative z-0 w-full mb-8 group">
-                            <input type="text" name="cedula" value={formData.cedula} onChange={InputChange} id="cedula"
-                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " required />
-                            <label for="cedula"
-                                className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                                Cédula (V12345678)
-                            </label>
+                            <Input label={"Cédula (V12345678)"} name={"cedula"} type={"text"} value={formData.cedula} InputChange={InputChange} />
                             {errors.cedula && <p className="text-red-500">{errors.cedula}</p>}
                         </div>
 
                         <div className="relative z-0 w-full mb-8 group">
-                            <input type="tel" pattern="[0-9]{3}-[0-9]{7}" name="phone" value={formData.phone} onChange={InputChange} id="phone"
-                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " required />
-                            <label for="phone"
-                                className="top-3 peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                                Número Telfónico (412-XXXXXXX)
-                            </label>
+                            <Input label={"Número Teléfonico (XXX-XXXXXXX)"} name={"phone"} type={"text"} value={formData.phone} InputChange={InputChange} />
                             {errors.phone && <p className="text-red-500">{errors.phone}</p>}
                         </div>
 

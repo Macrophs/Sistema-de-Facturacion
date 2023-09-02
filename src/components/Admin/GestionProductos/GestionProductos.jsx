@@ -17,12 +17,19 @@ export default function GestionProductos() {
   const [showModal, setShowModal] = useState(false);
   const [componentVisible, setComponentVisible] = useState("/");
 
+
+  const [product, setProducts] = useState();
+
+  function addproduct(product){
+    setProducts(product)
+  }
+
   let componentModal = [""];
 
   let componentSelect = componentVisible.split("/");
 
   // Se asigna la vista a la modal, dependiendo de la opción seleccionada
-  if (componentSelect[0] === "Add") componentModal = <NewProducto />;
+  if (componentSelect[0] === "Add") componentModal = <NewProducto onClose={()=> setShowModal(false)} newProduct={addproduct} />;
   else if (componentSelect[0] === "Edit")
     componentModal = <EditProducto id={componentSelect[1]} />;
   else if (componentSelect[0] === "Delete")
@@ -53,7 +60,7 @@ export default function GestionProductos() {
           />
         </div>
 
-        <TableProducts setShowModal={setShowModal} setComponentVisible={setComponentVisible}/>
+        <TableProducts setShowModal={setShowModal} setComponentVisible={setComponentVisible} newProduct={product}/>
 
         <Pagination />
       </section>

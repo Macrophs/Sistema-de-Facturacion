@@ -36,6 +36,7 @@ export default function CompraProductos() {
   const [products, setProducts] = useState();   //Obtener y Agregar Productos a la compra
   const [deleteProduct, setdeleteProduct] = useState();   //Eliminar Productos de la compra desde TableProduct
   const [deleteSelectProduct, setdeleteSelectProduct] = useState(); //Quitar Checkbox de TableProduct al eliminar un producto en Tablebuy
+  const [finishProducts, setFinishProducts] = useState(); //Quitar Checkbox de TableProduct al eliminar un producto en Tablebuy
 
   useEffect(() => {
       const totalClient = obtainClientHelper();
@@ -71,13 +72,19 @@ export default function CompraProductos() {
     setdeleteSelectProduct(product);
   }
 
+  function obtainFinishProducts(products)
+  {
+    console.log(products);
+    setFinishProducts(products);
+  }
+
   return (
     <>
       
         <TableBuy ProductsChange={obtainProducts}  DeleteProduct={obtainDeleteProduct} DeleteSelectProduct={deleteSelectProduct} ClientData={client} />
    
    
-        <TableReadyToBuy PriceChange={obtainPrice} Products={products} DeleteProduct={deleteProduct} DeleteSelectProduct={obtainDeleteSelectProduct} />
+        <TableReadyToBuy PriceChange={obtainPrice} Products={products} DeleteProduct={deleteProduct} DeleteSelectProduct={obtainDeleteSelectProduct} FinishProducts={obtainFinishProducts} />
       
         <section className=" flex items-center justify-center mb-16 lg:mt-10" >
           <StandarButton url={"#"} label={"Continuar Compra"}  
@@ -88,7 +95,7 @@ export default function CompraProductos() {
         </section>
         
         <Modal isVisible={showModal} onClose={()=> setShowModal(false)}>
-          <ModalProducts Price_Buy={price} ClientData={client} onClose={()=> setShowModal(false)}/>
+          <ModalProducts Price_Buy={price} ClientData={client} ProductsData={finishProducts} onClose={()=> setShowModal(false)}/>
         </Modal>
     </>
   )

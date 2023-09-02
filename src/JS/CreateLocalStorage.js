@@ -26,11 +26,17 @@ export default function CreateLocalStorage()
         const employee =  [
             {
                 name: "employee1",
-                lastname:"employee1"
+                lastname:"employee1",
+                cedula:"V30230511",
+                email:"employee1@gmail.com",
+                phone:"412-1351509"
             },
             {
                 name: "employee2",
-                lastname:"employee2"
+                lastname:"employee2",
+                cedula:"V30530511",
+                email:"employee2@gmail.com",
+                phone:"412-5931509"
             },
                 
         ]
@@ -95,17 +101,18 @@ export default function CreateLocalStorage()
         localStorage.setItem("products",JSON.stringify(products));
     }
 
-    if(localStorage.getItem("factura") === null)
+    if(localStorage.getItem("facturas") === null)
     {
         const factura =  [
             {
                 date: "19/08/2023",
-                code:"#12345",
+                code:12345,
                 name: "client1",
                 lastname:"client1",
                 cedula:"V30530511",
                 email:"client1@gmail.com",
                 phone:"412-5951509",
+                method:1,
                 products:[
                     {
                         name: "Chess Tris",
@@ -121,12 +128,13 @@ export default function CreateLocalStorage()
             },
             {
                 date: "19/08/2023",
-                code:"#12345",
+                code:12346,
                 name: "client1",
                 lastname:"client1",
                 cedula:"V30530511",
                 email:"client1@gmail.com",
                 phone:"412-5951509",
+                method:2,
                 products:[
                     {
                         name: "Chaos",
@@ -137,8 +145,7 @@ export default function CreateLocalStorage()
             },
                 
         ]
-        
-        localStorage.setItem("factura",JSON.stringify(factura));
+        localStorage.setItem("facturas",JSON.stringify(factura));
     }
 }
     
