@@ -64,9 +64,11 @@ export default function GestionClientes() {
       />
     );
 
-    if (cedula !== null) {
-      componentModal = <NewClient onClose={() => setShowModal(false)} NewClient={addClient} Cedula={cedula} />
-    }
+    
+    
+  }
+  if (cedula !== null) {
+    componentModal = <NewClient onClose={() => setShowModal(false)} NewClient={addClient} Cedula={cedula} />
   }
 
   return (
