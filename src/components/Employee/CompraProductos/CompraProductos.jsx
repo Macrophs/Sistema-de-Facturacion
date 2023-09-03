@@ -74,7 +74,6 @@ export default function CompraProductos() {
 
   function obtainFinishProducts(products)
   {
-    console.log(products);
     setFinishProducts(products);
   }
 
