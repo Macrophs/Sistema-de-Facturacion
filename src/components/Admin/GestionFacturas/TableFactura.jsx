@@ -91,12 +91,15 @@ export default function TableFactura({setShowModal, setComponentVisible, Paginat
                     />
                   </td>
                   <td className="px-10 py-4">
-                    <StandarButton url={"#"} label={"Eliminar"} 
-                    className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "} 
-                    id={1} 
-                    onClick={() => {setShowModal(true); setComponentVisible("Delete/")}} 
-
-                    />
+                  <StandarButton
+                    url={"#"}
+                    label={"Eliminar"}
+                    className={"bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500"}
+                    onClick={() => {
+                      setShowModal(true);
+                      setComponentVisible(`Delete/${code}`);
+                    }}
+                  />
                   </td>
                 </tr>
               );

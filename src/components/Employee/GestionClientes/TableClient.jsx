@@ -8,13 +8,13 @@ import { useEffect, useState } from "react";
  * Este es un componente para utilizar la tabla que muestra la gestion de clientes
  */
 
-export default function TableClient( {setComponentVisible, setShowModal, NewClient, PaginatorController}) {
+export default function TableClient({ setComponentVisible, setShowModal, NewClient, PaginatorController }) {
 
   const [clients, setClients] = useState([
     {
-      name:"",
-      lastname:"",
-      cedula:"",
+      name: "",
+      lastname: "",
+      cedula: "",
     }
   ]); //se encarga de almacenar los datos de los clientes a mostrar
 
@@ -24,7 +24,7 @@ export default function TableClient( {setComponentVisible, setShowModal, NewClie
   }, [NewClient]);
 
 
-  const [paginator, setPaginator] = useState({LimitUp:1,LimitDown:5});
+  const [paginator, setPaginator] = useState({ LimitUp: 1, LimitDown: 5 });
 
   useEffect(() => {
     setPaginator(PaginatorController);
@@ -46,36 +46,55 @@ export default function TableClient( {setComponentVisible, setShowModal, NewClie
         </tr>
       </thead>
       <tbody>
-        {clients.map(({ name,lastname, cedula },index) => {
+        {clients.map(({ name, lastname, cedula }, index) => {
           index++;
-          if(index >= paginator.LimitDown && index <= paginator.LimitUp ){ //Mostrar solos los registros que se encuentran en el rango segun la pagina actual
-              return (
-                  <tr key={index} className="bg-white border-b  hover:bg-gray-50 ">
-                  <td className="px-6 py-4">{cedula}</td>
-                  <td
-                    scope="row"
-                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
-                  >
-                    <div className="pl-3">
-                      <div className="text-base font-semibold">{name} {lastname}</div>
-                    </div>
-                  </td>
+          if (index >= paginator.LimitDown && index <= paginator.LimitUp) { //Mostrar solos los registros que se encuentran en el rango segun la pagina actual
+            return (
+              <tr key={index} className="bg-white border-b  hover:bg-gray-50 ">
+                <td className="px-6 py-4">{cedula}</td>
+                <td
+                  scope="row"
+                  className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
+                >
+                  <div className="pl-3">
+                    <div className="text-base font-semibold">{name} {lastname}</div>
+                  </div>
+                </td>
 
-                  <td className="px-6 py-4">
+                <td className="px-6 py-4">
 
-                    <StandarButton url={"#"} label={"Editar"} className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "} id={index} onClick={() => {setShowModal(true); setComponentVisible("Edit/")}} />
+                  <StandarButton
+                    url={"#"}
+                    label={"Editar"}
+                    className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "}
+                    id={index}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowModal(true);
+                      setComponentVisible("Edit/");
+                    }}
+                  />
 
-                  </td>
+                </td>
 
-                  <td className="px-6 py-4">
+                <td className="px-6 py-4">
 
-                    <StandarButton url={"#"} label={"Eliminar"} className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "} id={index} onClick={() => {setShowModal(true); setComponentVisible("Delete/")}} />
-            
-                  </td>
-                </tr>
-              );
+                  <StandarButton
+                    url={"#"}
+                    label={"Eliminar"}
+                    className={"bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500"}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowModal(true);
+                      setComponentVisible(`Delete/${cedula}`);
+                    }}
+                  />
+
+                </td>
+              </tr>
+            );
           }
-          
+
         })}
       </tbody>
     </table>

@@ -29,14 +29,13 @@ export default function GestionClientes() {
 
   const [client, setClient] = useState();
 
-  const [paginatorController, setPaginatorController] = useState({LimitUp:1,LimitDown:5});
+  const [paginatorController, setPaginatorController] = useState({ LimitUp: 1, LimitDown: 5 });
 
-  function addClient(client){
+  function addClient(client) {
     setClient(client)
   }
 
-  function ObtainChangeTable(changes)
-  {
+  function ObtainChangeTable(changes) {
     setPaginatorController(changes);
   }
   let componentModal = [""];
@@ -44,19 +43,31 @@ export default function GestionClientes() {
   let componentSelect = componentVisible.split("/");
 
   // Se asigna la vista a la modal, dependiendo de la opción seleccionada
-  if(componentSelect[0] === "Add")
-    componentModal = <NewClient onClose={()=> setShowModal(false)} NewClient={addClient} Cedula={null} />
+  if (componentSelect[0] === "Add")
+    componentModal = <NewClient onClose={() => setShowModal(false)} NewClient={addClient} Cedula={null} />
 
-  else if(componentSelect[0] === "Edit")
-    componentModal = <EditClient id={componentSelect[1]}/>
+  else if (componentSelect[0] === "Edit")
+    componentModal = <EditClient id={componentSelect[1]} />
 
-  else if(componentSelect[0] === "Delete")
-    componentModal = <WarningModal id={componentSelect[1]} entity={'Cliente'} identifier={'V30123422'} name={'Jose Perez'} onClose={()=> setShowModal(false)}/>
+  else if (componentSelect[0] === "Delete") {
 
-    if(cedula !== null)
-    {
-      componentModal = <NewClient onClose={()=> setShowModal(false)} NewClient={addClient} Cedula={cedula} />
+    const cedula = componentSelect[1];
+    const fullName = componentSelect[2]; // Aquí deberías obtener el nombre completo de algún modo, ya sea pasándolo por la URL o buscándolo en tus datos.
+
+    componentModal = (
+      <WarningModal
+        id={cedula}
+        entity={"Cliente"}
+        identifier={cedula}
+        name={fullName}
+        onClose={() => setShowModal(false)}
+      />
+    );
+
+    if (cedula !== null) {
+      componentModal = <NewClient onClose={() => setShowModal(false)} NewClient={addClient} Cedula={cedula} />
     }
+  }
 
   return (
     <section className="flex items-center justify-center  lg:mt-0 ">
@@ -67,18 +78,18 @@ export default function GestionClientes() {
 
         <div className="flex items-center flex-col md:flex-row justify-between py-4 bg-white">
           <Search label={"Buscar Cliente"} />
-          
-          <StandarButton  url={"#"} label={"Registrar Cliente"} onClick={() => {setShowModal(true); setComponentVisible("Add/")}} />
-          
+
+          <StandarButton url={"#"} label={"Registrar Cliente"} onClick={() => { setShowModal(true); setComponentVisible("Add/") }} />
+
         </div>
 
-        <TableClient setShowModal={setShowModal} setComponentVisible={setComponentVisible} NewClient={client} PaginatorController={paginatorController}/>
+        <TableClient setShowModal={setShowModal} setComponentVisible={setComponentVisible} NewClient={client} PaginatorController={paginatorController} />
 
-        <Pagination newData={client} obtainData={obtainClientHelper} ChangeTable={ObtainChangeTable}/>
+        <Pagination newData={client} obtainData={obtainClientHelper} ChangeTable={ObtainChangeTable} />
       </section>
-    <Modal isVisible={showModal} onClose={()=> setShowModal(false)}>
-      {componentModal}
-    </Modal>
+      <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
+        {componentModal}
+      </Modal>
     </section>
   );
 }

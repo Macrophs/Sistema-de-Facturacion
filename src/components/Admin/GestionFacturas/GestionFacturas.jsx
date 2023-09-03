@@ -15,10 +15,9 @@ export default function GestionFacturas() {
   const [showModal, setShowModal] = useState(false);
   const [componentVisible, setComponentVisible] = useState("/");
 
-  const [paginatorController, setPaginatorController] = useState({LimitUp:1,LimitDown:5});
+  const [paginatorController, setPaginatorController] = useState({ LimitUp: 1, LimitDown: 5 });
 
-  function ObtainChangeTable(changes)
-  {
+  function ObtainChangeTable(changes) {
     setPaginatorController(changes);
   }
 
@@ -27,16 +26,19 @@ export default function GestionFacturas() {
   let componentSelect = componentVisible.split("/");
 
   // Se asigna la vista a la modal, dependiendo de la opción seleccionada
-  if (componentSelect[0] === "Delete")
+  if (componentSelect[0] === "Delete") {
+
+    const codigo = componentSelect[1];
     componentModal = (
       <WarningModal
-        id={componentSelect[1]}
+        id={codigo}
         entity={"Facturación"}
-        identifier={"#2020"}
+        identifier={codigo}
         name={""}
-        onClose={()=> setShowModal(false)}
+        onClose={() => setShowModal(false)}
       />
     );
+  }
 
   return (
     <section className="flex items-center justify-center  lg:mt-0 ">
