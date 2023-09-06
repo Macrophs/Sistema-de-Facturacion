@@ -73,7 +73,7 @@ export default function TableProducts({ setComponentVisible, setShowModal, newPr
                   <StandarButton url={"#"} label={"Editar"}
                     className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "}
                     id={1}
-                    onClick={() => { setShowModal(true); setComponentVisible("Edit/") }}
+                    onClick={() => { setShowModal(true); setComponentVisible(`Edit/${code}`) }}
 
                   />
                 </td>

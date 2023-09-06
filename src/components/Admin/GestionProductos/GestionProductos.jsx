@@ -20,8 +20,8 @@ export default function GestionProductos() {
 
   const [product, setProducts] = useState();
 
-  function addproduct(product) {
-    setProducts(product)
+  function addproduct() {
+    setProducts(!product)
   }
 
   const [paginatorController, setPaginatorController] = useState({ LimitUp: 1, LimitDown: 5 });
@@ -39,7 +39,7 @@ export default function GestionProductos() {
   if (action === "Add") {
     componentModal = <NewProducto onClose={() => setShowModal(false)} newProduct={addproduct} />;
   } else if (action === "Edit") {
-    componentModal = <EditProducto id={productCode} />;
+    componentModal = <EditProducto id={productCode} onClose={() => setShowModal(false)}  NewProduct={addproduct} />;
   } else if (action === "Delete") {
     componentModal = (
       <WarningModal

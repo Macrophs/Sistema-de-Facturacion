@@ -46,7 +46,7 @@ export default function WarningModal({ id, entity, identifier, name, onClose }) 
             window.location.href = '/admin/gestion_facturas';
         }
         else if (entity === "Cliente") {
-            currentEntitys = JSON.parse(localStorage.getItem("clients"));
+            currentEntitys = JSON.parse(localStorage.getItem("client"));
             if (!currentEntitys) return;
 
             const clientIndex = currentEntitys.findIndex(client => client.cedula === identifier);
@@ -54,7 +54,7 @@ export default function WarningModal({ id, entity, identifier, name, onClose }) 
 
             currentEntitys.splice(clientIndex, 1);
 
-            localStorage.setItem("clients", JSON.stringify(currentEntitys));
+            localStorage.setItem("client", JSON.stringify(currentEntitys));
             window.location.href = '/employee/gestion_clientes';
         }
 

@@ -3,7 +3,7 @@
  */
 
 import NewItemDBHelper from "@/Helpers/NewItemDBHelper";
-import { isValidCedula, isValidEmail, isValidPhoneNumber } from "@/JS/ValidateInput";
+import { isValidCedula, isValidEmail, isValidPhoneNumber, validateForm } from "@/JS/ValidateInput";
 import StandarButton from "@/components/Buttons/StandarButton";
 import Input from "@/components/Tables/Input";
 import { useEffect, useState } from "react";
@@ -34,55 +34,14 @@ export default function NewEmpleado({onClose, newEmployee}) {
         }));
       };
       
-
-    //almacena los errores al escribir información en los input
-    const validateForm = (data) => {
-
-        const errors = {};
-
-        //validaciones input name
-        if (data.name.length === 0)
-            errors.name = 'El nombre es requerido';
-        else if(data.name.length > 25) 
-            errors.name = 'El nombre no puede tener más de 25 caracteres';
-    
       
-        //validaciones input lastname
-        if (data.lastname.length === 0) 
-            errors.lastname = 'El apellido es requerido';
-        else if (data.lastname.length > 25) 
-            errors.lastname = 'El apellido no puede tener más de 25 caracteres';
-        
-        //validaciones input email
-        if (data.email.length === 0) 
-            errors.email = 'El correo electrónico es requerido';
-        else if(!isValidEmail(data.email)) 
-            errors.email = 'El correo electrónico no es válido';
-    
-        //validaciones input phone
-        if (data.phone.length === 0) 
-            errors.phone = 'El número de teléfono es requerido';
-        else if (!isValidPhoneNumber(data.phone)) 
-            errors.phone = 'El número de teléfono no es válido';
-    
-
-        //validaciones input cedula
-        if (data.cedula.length === 0) 
-            errors.cedula = 'La cédula es requerida';
-        else if (!isValidCedula(data.cedula)) 
-            errors.cedula = 'La cédula no es válida';
-        
-        return errors;
-    };
-
-  
     //se encarga de validar que la información del formulario no tenga ningun error, para poder enviarla a la bd
     const ValidateData =() =>
     {
-        const validationErrors = validateForm(formData);
+        const validationErrors = validateForm(formData,"employee"); //Se llama a la función que valida los posibles errores en los input
         if (Object.keys(validationErrors).length === 0) {
             setFinish(NewItemDBHelper(formData,"employee")); //se envia a la bd
-            newEmployee(true);  //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente
+            newEmployee();  //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente
           }
         setErrors(validationErrors); //se actualizan los errores
     }

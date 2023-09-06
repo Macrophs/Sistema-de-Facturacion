@@ -71,7 +71,7 @@ export default function TableClient({ setComponentVisible, setShowModal, NewClie
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowModal(true);
-                      setComponentVisible("Edit/");
+                      setComponentVisible(`Edit/${cedula}`);
                     }}
                   />
 
@@ -83,10 +83,9 @@ export default function TableClient({ setComponentVisible, setShowModal, NewClie
                     url={"#"}
                     label={"Eliminar"}
                     className={"bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500"}
-                    onClick={(e) => {
-                      e.stopPropagation();
+                    onClick={() => {
                       setShowModal(true);
-                      setComponentVisible(`Delete/${cedula}`);
+                      setComponentVisible(`Delete/${cedula}/${name}`);
                     }}
                   />
 

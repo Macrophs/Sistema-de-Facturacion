@@ -6,7 +6,7 @@ export const verificationLoginHelper = (username) => {
     const clients = obtainClientHelper();
     
     if(admins && admins.some(admin => admin.name === username)) return "admin";
-    if(employees && employees.some(employee => employee.name === username)) return "empleado";
+    if(employees && employees.some(employee => employee.name === username)) return "employee";
     if(clients && clients.some(client => client.name === username)) return "cliente";
 
     return null;

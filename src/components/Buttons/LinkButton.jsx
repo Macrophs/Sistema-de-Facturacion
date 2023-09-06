@@ -5,10 +5,10 @@ import Link from "next/link"
  * @params props url: direccion a la que se redireccionará, label: nombre de la interfaz, icon: icono representativo de la interfaz
  */
 
-export default function LinkButton({ url,icon, label }) {
+export default function LinkButton({ url,icon, label, ...params }) {
     return (
 
-        <Link href={url} className="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group">
+        <Link href={url} className="vinculo-menuLateral flex items-center p-2  rounded-lg text-white group" {...params} >
                 
             <Image className="flex-shrink-0  transition duration-75 group-hover:text-white" width={20} height={20}
             src={`/images/icons/${icon}`} alt={`${label} Icon image`}/>

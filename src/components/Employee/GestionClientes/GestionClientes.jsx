@@ -27,12 +27,12 @@ export default function GestionClientes() {
   const [showModal, setShowModal] = useState(cedula ? true : false);
   const [componentVisible, setComponentVisible] = useState("/");
 
-  const [client, setClient] = useState();
+  const [client, setClient] = useState(false);
 
   const [paginatorController, setPaginatorController] = useState({ LimitUp: 1, LimitDown: 5 });
 
-  function addClient(client) {
-    setClient(client)
+  function addClient() {
+    setClient(!client)
   }
 
   function ObtainChangeTable(changes) {
@@ -47,18 +47,18 @@ export default function GestionClientes() {
     componentModal = <NewClient onClose={() => setShowModal(false)} NewClient={addClient} Cedula={null} />
 
   else if (componentSelect[0] === "Edit")
-    componentModal = <EditClient id={componentSelect[1]} />
+    componentModal = <EditClient id={componentSelect[1]}  onClose={() => setShowModal(false)}  NewClient={addClient}  />
 
   else if (componentSelect[0] === "Delete") {
 
-    const cedula = componentSelect[1];
+    const ceduladelete = componentSelect[1];
     const fullName = componentSelect[2]; // Aquí deberías obtener el nombre completo de algún modo, ya sea pasándolo por la URL o buscándolo en tus datos.
 
     componentModal = (
       <WarningModal
-        id={cedula}
+        id={ceduladelete}
         entity={"Cliente"}
-        identifier={cedula}
+        identifier={ceduladelete}
         name={fullName}
         onClose={() => setShowModal(false)}
       />

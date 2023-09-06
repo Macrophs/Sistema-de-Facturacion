@@ -20,8 +20,8 @@ export default function GestionEmpleados() {
 
   const [employee, setEmployee] = useState();
 
-  function addEmployee(employee) {
-    setEmployee(employee)
+  function addEmployee() {
+    setEmployee(!employee)
   }
 
   const [paginatorController, setPaginatorController] = useState({ LimitUp: 1, LimitDown: 5 });
@@ -40,7 +40,7 @@ export default function GestionEmpleados() {
     componentModal = <NewEmpleado onClose={() => setShowModal(false)} newEmployee={addEmployee} />
 
   else if (componentSelect[0] === "Edit")
-    componentModal = <EditEmpleado id={componentSelect[1]} />
+    componentModal = <EditEmpleado id={componentSelect[1]} onClose={() => setShowModal(false)}  NewEmployee={addEmployee} />
 
   else if (componentSelect[0] === "Delete") {
     const cedula = componentSelect[1];

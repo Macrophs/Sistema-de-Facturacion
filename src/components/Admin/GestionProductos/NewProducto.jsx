@@ -4,6 +4,7 @@
 
 import NewItemDBHelper from "@/Helpers/NewItemDBHelper";
 import { obtainFacturasHelper } from "@/Helpers/ObtainDataHelper";
+import { validateForm } from "@/JS/ValidateInput";
 import StandarButton from "@/components/Buttons/StandarButton";
 import Input from "@/components/Tables/Input";
 import { useEffect, useState } from "react";
@@ -32,38 +33,15 @@ export default function NewProducto({onClose , newProduct}) {
     };
     
 
-  //almacena los errores al escribir información en los input
-  const validateForm = (data) => {
-
-      const errors = {};
-
-      //validaciones input name
-      if (data.name.length === 0)
-          errors.name = 'El nombre es requerido';
-      else if(data.name.length > 25) 
-          errors.name = 'El nombre no puede tener más de 25 caracteres';
-
-      if (data.price_unit <= 0)
-          errors.price_unit = 'El Precio es requerido';
-      else if(data.price_unit >= 10000) 
-          errors.price_unit = 'El Precio no puede ser mayor a 10000';
-
-      if (data.quantity_stock <= 0)
-          errors.quantity_stock = 'El Stock es requerido';
-      else if(data.quantity_stock >= 1000) 
-          errors.quantity_stock = 'El Stock no puede ser mayor a 1000';
-
-      return errors;
-  };
-
+  
 
   //se encarga de validar que la información del formulario no tenga ningun error, para poder enviarla a la bd
   const ValidateData =() =>
   {
-      const validationErrors = validateForm(formData);
+      const validationErrors = validateForm(formData,"product"); //Se llama a la función que valida los posibles errores en los input
       if (Object.keys(validationErrors).length === 0) {
           setFinish(NewItemDBHelper(formData,"products")); //se envia a la bd
-          newProduct(true);  //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente
+          newProduct();  //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente
         } 
       setErrors(validationErrors); //se actualizan los errores
   } 

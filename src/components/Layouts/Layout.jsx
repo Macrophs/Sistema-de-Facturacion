@@ -1,6 +1,9 @@
+"use client"
+import { usePathname, useRouter } from "next/navigation";
 import FooterGeneral from "../Globals/Footers/FooterGeneral";
 import Navbar from "../Globals/Navbar/Navbar";
 import SideBar from "../Globals/SideBar/SideBar";
+import { useEffect } from "react";
 
 /**
  * Constantes que almacenan las Urls a las que se podran acceder en la interfaz dependiendo el rol
@@ -8,11 +11,6 @@ import SideBar from "../Globals/SideBar/SideBar";
  */
 
 const links = [
-  {
-    url: "#",
-    label: "Panel de Control",
-    icon: "dashboard.svg",
-  },
   {
     url: "/employee/gestion_clientes",
     label: "Gestión de Clientes",
@@ -47,6 +45,7 @@ const linksAdmin = [
       icon: "factura.svg",
     },
   ];
+  
   
 
 /**

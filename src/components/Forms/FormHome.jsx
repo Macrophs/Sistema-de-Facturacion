@@ -16,8 +16,10 @@ export default function FormHome() {
 
     if (role === "admin") {
       window.location.href = "/admin";
-    } else if (role === "empleado") {
+      localStorage.setItem("ActiveUser",JSON.stringify({username,role}));
+    } else if (role === "employee") {
       window.location.href = "/employee/cedula_cliente";
+      localStorage.setItem("ActiveUser",JSON.stringify({username,role}));
     } else {
       alert("Usuario no encontrado");
     }
