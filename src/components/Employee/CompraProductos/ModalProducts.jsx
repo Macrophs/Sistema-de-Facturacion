@@ -7,11 +7,20 @@ import Image from "next/image";
 import Link from "next/link";
 import ShowMethod from "./ShowMethod";
 import StandarButton from "@/components/Buttons/StandarButton";
-export default function ModalProducts({onClose, Price_Buy, ClientData}) {
+import { CreateFacturaHelper } from "@/Helpers/CreateFacturaHelper";
+import { useRouter } from "next/navigation";
+export default function ModalProducts({onClose, Price_Buy, ClientData, ProductsData}) {
 
     const [page, setPage] = useState(1); //almacena si se mostrará la vista de selección de método de pago o la de confirmación de compra
     const [method, setMethod] = useState(null); // almacena el método de pago a usar
     const [checked, setChecked] = useState(false); // almacena si se confirmó el pago de la compra
+
+
+    const CreateFactura = () =>
+    {
+        const code = CreateFacturaHelper(ClientData,method,ProductsData);
+        window.location.href = "factura?Code="+code;
+    }
 
     if(page === 1)
     {   //retornar vista donde se selecciona el método de pago
@@ -88,7 +97,7 @@ export default function ModalProducts({onClose, Price_Buy, ClientData}) {
                     <section className="p-2">
                         <p><span className="text-marianBlue font-bold">Cliente: </span>{ClientData.name} {ClientData.lastname} </p>
                         <p className="pt-2"><span className="text-marianBlue font-bold">Método de Pago: </span> Pago Móvil</p>
-                        <p className="pt-2"><span className="text-marianBlue font-bold">Total a Pagar: </span> <span className="text-green-500"> {Price_Buy}$ </span></p>
+                        <p className="pt-2"><span className="text-marianBlue font-bold">Total a Pagar: </span> <span className="text-green-500"> {Price_Buy + Math.round(parseFloat([(16 * Price_Buy ) / 100]) * 100) / 100}$ </span></p>
 
                         <input checked={checked} onChange={()=> setChecked(!checked)} id="check" type="checkbox" className="mt-5 w-4 h-4 bg-marianBlue border-marianBlue rounded focus:ring-marianBlue "/>
                         <label htmlFor="check" className="p-2 font-medium" >La compra ha sido Pagada</label>
@@ -101,9 +110,9 @@ export default function ModalProducts({onClose, Price_Buy, ClientData}) {
                     onClick={() => onClose()} 
 
                     /> 
-                  <StandarButton label={"Terminar Compra"} url={"factura"}  
+                  <StandarButton label={"Terminar Compra"} url={"#"}  
                     className={` ${!checked ? "bg-gray-400 opacity-20 pointer-events-none" : " bg-marianBlue" } xl:min-w-36 `}
-                    onClick={()=> setPage(2)}
+                    onClick={()=> CreateFactura()}
 
                      /> 
                 

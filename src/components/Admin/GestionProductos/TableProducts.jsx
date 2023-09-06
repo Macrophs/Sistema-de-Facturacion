@@ -1,24 +1,31 @@
+import { obtainProductsHelper } from "@/Helpers/ObtainDataHelper";
 import StandarButton from "@/components/Buttons/StandarButton";
+import { useEffect, useState } from "react";
 
-const elements = [
-  {
-    codigo: "#12313",
-  },
-  {
-    codigo: "#12313",
-  },
-  {
-    codigo: "#12313",
-  },
-  {
-    codigo: "#12313",
-  },
-  {
-    codigo: "#12313",
-  },
-];
 
-export default function TableProducts({ setComponentVisible, setShowModal }) {
+
+export default function TableProducts({ setComponentVisible, setShowModal, newProduct, PaginatorController }) {
+
+  const [products, setProducts] = useState([
+    {
+      name: "",
+      code: "",
+      quantity_stock: undefined,
+      price_unit: undefined
+    }
+  ]); //se encarga de almacenar los datos de los Productos a mostrar
+
+  //useEffect para obtener los Productos
+  useEffect(() => {
+    setProducts(obtainProductsHelper);
+  }, [newProduct]);
+
+  const [paginator, setPaginator] = useState({ LimitUp: 1, LimitDown: 5 });
+
+  useEffect(() => {
+    setPaginator(PaginatorController);
+  }, [PaginatorController]);
+
   return (
     <table className="w-full text-sm text-left text-gray-500 ">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -41,42 +48,51 @@ export default function TableProducts({ setComponentVisible, setShowModal }) {
         </tr>
       </thead>
       <tbody>
-        {elements.map(({ codigo }) => (
-          <tr key={codigo} className="bg-white border-b  hover:bg-gray-50 ">
-            <td className="px-6 py-4">{codigo}</td>
+        {products.map(({ name, code, price_unit, quantity_stock }, index) => {
+          index++;
+          if (index >= paginator.LimitDown && index <= paginator.LimitUp) { //Mostrar solos los registros que se encuentran en el rango segun la pagina actual
+            return (
+              <tr key={code} className="bg-white border-b  hover:bg-gray-50 ">
+                <td className="px-6 py-4">{code}</td>
 
-            <td
-              scope="row"
-              className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
-            >
-              <div className="pl-3">
-                <div className="text-base font-semibold">Chocolate</div>
-              </div>
-            </td>
+                <td
+                  scope="row"
+                  className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
+                >
+                  <div className="pl-3">
+                    <div className="text-base font-semibold">{name}</div>
+                  </div>
+                </td>
 
-            <td className="px-6 py-4 text-center">1$</td>
+                <td className="px-6 py-4 text-center">{price_unit}$</td>
 
-            <td className="px-6 py-4 text-center">5</td>
+                <td className="px-6 py-4 text-center">{quantity_stock}</td>
 
-            <td className="px-6 py-4">
+                <td className="px-6 py-4">
 
-            <StandarButton url={"#"} label={"Editar"} 
-            className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "} 
-            id={1} 
-            onClick={() => {setShowModal(true); setComponentVisible("Edit/")}} 
+                  <StandarButton url={"#"} label={"Editar"}
+                    className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "}
+                    id={1}
+                    onClick={() => { setShowModal(true); setComponentVisible(`Edit/${code}`) }}
 
-            />
-            </td>
-            <td className="px-6 py-4">
-            <StandarButton url={"#"} label={"Eliminar"} 
-            className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "} 
-            id={1} 
-            onClick={() => {setShowModal(true); setComponentVisible("Delete/")}} 
-
-            />
-            </td>
-          </tr>
-        ))}
+                  />
+                </td>
+                <td className="px-6 py-4">
+                  <StandarButton
+                    url={"#"}
+                    label={"Eliminar"}
+                    className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500 "}
+                    id={1}
+                    onClick={() => {
+                      setShowModal(true);
+                      setComponentVisible(`Delete/${code}/${name}`);  // Pasamos el código y el nombre del producto como parte del string
+                    }}
+                  />
+                </td>
+              </tr>
+            );
+          }
+        })}
       </tbody>
     </table>
   );

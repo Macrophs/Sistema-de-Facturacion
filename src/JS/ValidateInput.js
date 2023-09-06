@@ -2,13 +2,71 @@
     //archivo que contendrá las funciones con las que se puede verificar los input
 
 
-    export const isValidEmail = (email) =>{
+      //almacena los errores al escribir información en los input
+      export const validateForm = (data,type) => {
+
+          const errors = {};
+
+          //validaciones input name
+          if (data.name.length === 0)
+              errors.name = 'El nombre es requerido';
+          else if(data.name.length > 25) 
+              errors.name = 'El nombre no puede tener más de 25 caracteres';
+
+          //Validaciones para Empleados y Clientes
+          if(type === "employee" || type === "client")
+          {
+              //validaciones input lastname
+              if (data.lastname.length === 0) 
+                  errors.lastname = 'El apellido es requerido';
+              else if (data.lastname.length > 25) 
+                  errors.lastname = 'El apellido no puede tener más de 25 caracteres';
+              
+              //validaciones input email
+              if (data.email.length === 0) 
+                  errors.email = 'El correo electrónico es requerido';
+              else if(!isValidEmail(data.email)) 
+                  errors.email = 'El correo electrónico no es válido';
+          
+              //validaciones input phone
+              if (data.phone.length === 0) 
+                  errors.phone = 'El número de teléfono es requerido';
+              else if (!isValidPhoneNumber(data.phone)) 
+                  errors.phone = 'El número de teléfono no es válido';
+          
+
+              //validaciones input cedula
+              if (data.cedula.length === 0) 
+                  errors.cedula = 'La cédula es requerida';
+              else if (!isValidCedula(data.cedula)) 
+                  errors.cedula = 'La cédula no es válida';
+          }
+          //Validaciones para Productos
+          else if(type === "product")
+          {
+            //validaciones Precio de los productos
+            if (data.price_unit <= 0)
+                errors.price_unit = 'El Precio es requerido';
+            else if(data.price_unit >= 10000) 
+                errors.price_unit = 'El Precio no puede ser mayor a 10000';
+            
+            //validaciones stock de los productos
+            if (data.quantity_stock <= 0)
+                errors.quantity_stock = 'El Stock es requerido';
+            else if(data.quantity_stock >= 1000) 
+            errors.quantity_stock = 'El Stock no puede ser mayor a 1000';
+          }
+
+          return errors;
+      };
+
+      const isValidEmail = (email) =>{
         // Expresión para verificar el formato del correo 
         const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
         return emailPattern.test(email);
       }
     
-      export const isValidPhoneNumber = (phone) => {
+      const isValidPhoneNumber = (phone) => {
         // Expresión regular para validar el formato del número de teléfono  xxx-xxxxxxx
         const phonePattern = /^\d{3}-\d{7}$/;
         return phonePattern.test(phone);
@@ -19,5 +77,7 @@
         const cedulaPattern = /^[VEJ]\d{8}$/;
         return cedulaPattern.test(cedula);
       };
+
+      
 
     

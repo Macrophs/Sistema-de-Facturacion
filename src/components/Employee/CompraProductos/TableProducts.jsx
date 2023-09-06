@@ -9,6 +9,13 @@ import { useEffect, useState } from "react";
 
 export default function TableProducts(props) {
     
+    const [paginator, setPaginator] = useState({LimitUp:1,LimitDown:5});
+
+    useEffect(() => {
+      setPaginator(props.PaginatorController);
+    }, [props.PaginatorController]);
+  
+
     
     const [elements, setElements] = useState([]);
 
@@ -51,7 +58,6 @@ export default function TableProducts(props) {
         }
     },[props.ProductToUnselect]);
   
-    let limitindex= 5 //limite de elementos a mostrar por pagina
     return (
         <table className="w-full text-sm text-left text-gray-500">
             <thead className="text-sm text-gray-700 uppercase bg-gray-50">
@@ -73,7 +79,9 @@ export default function TableProducts(props) {
             </thead>
             <tbody>                {/*Se muestran los elementos de la tabla */}
                 {elements.map(({name,code,price_unit, quantity_stock},index) =>{
-                    if(index < limitindex){
+                  
+                    index++;
+                    if(index >= paginator.LimitDown && index <= paginator.LimitUp ){
                         return(
                             <tr className="bg-white border-b" key={index} >
 

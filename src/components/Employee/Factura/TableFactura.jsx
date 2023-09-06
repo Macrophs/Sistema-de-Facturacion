@@ -4,25 +4,9 @@
  * @params props 
  */
 
-export default function TableFactura({}) {
+export default function TableFactura({Factura}) {
 
-    const elements = [
-        {
-            label: "Appel MacBook Pro 17",
-            quantity: 1,
-            price_unit: 2999,
-        },
-        {
-            label: "Microsoft Surface Pro",
-            quantity: 1,
-            price_unit: 2999,
-        },
-        {
-            label: "Apple Watch",
-            quantity: 1,
-            price_unit: 2999,
-        },
-    ]
+    const elements = Factura.products;
 
     // Calcular precio +  iva
     let final_price = 0;
@@ -49,9 +33,9 @@ export default function TableFactura({}) {
 
                     <tbody className="mt-11">
 
-                    {elements.map(({label,quantity,price_unit}) => ( 
-                        <tr key={label} className="border-b border-marianBlue">
-                            <td className="pt-10">{label}</td>
+                    {elements.map(({name,quantity,price_unit},index) => ( 
+                        <tr key={index} className="border-b border-marianBlue">
+                            <td className="pt-10">{name}</td>
                             <td className="pt-10">$ {price_unit}</td>
                             <td className="pt-10">{quantity}</td>
                             <td className="pt-10">$ {price_unit * quantity}</td>

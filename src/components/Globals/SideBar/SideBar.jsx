@@ -47,7 +47,9 @@ export default function SideBar({ links }) {
             ))}
           </ul>
           <section className="absolute bottom-48 w-11/12 m-auto flex justify-center items-center">
-            <LinkButton url={"/"} label={"Salir"} icon={"icono-salir.svg"} />
+            <LinkButton url={"/"} label={"Salir"} icon={"icono-salir.svg"} onClick={()=>{
+              localStorage.removeItem("ActiveUser")
+            }} />
           </section>
         </section>
       </aside>

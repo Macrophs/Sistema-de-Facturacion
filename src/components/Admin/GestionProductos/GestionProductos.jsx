@@ -8,6 +8,7 @@ import Modal from "@/components/Modal/Modal";
 import EditProducto from "./EditProducto";
 import WarningModal from "@/components/Modal/WarningModal";
 import StandarButton from "@/components/Buttons/StandarButton";
+import { obtainProductsHelper } from "@/Helpers/ObtainDataHelper";
 
 /**
  * Este es un componente que engloba toda la estructura de la interfaz gestion de productos
@@ -17,24 +18,39 @@ export default function GestionProductos() {
   const [showModal, setShowModal] = useState(false);
   const [componentVisible, setComponentVisible] = useState("/");
 
+  const [product, setProducts] = useState();
+
+  function addproduct() {
+    setProducts(!product)
+  }
+
+  const [paginatorController, setPaginatorController] = useState({ LimitUp: 1, LimitDown: 5 });
+
+  function ObtainChangeTable(changes) {
+    setPaginatorController(changes);
+  }
+
   let componentModal = [""];
 
-  let componentSelect = componentVisible.split("/");
+  // Usamos destructuring para extraer los valores de componentSelect
+  let [action, productCode, productName] = componentVisible.split("/");
 
   // Se asigna la vista a la modal, dependiendo de la opción seleccionada
-  if (componentSelect[0] === "Add") componentModal = <NewProducto />;
-  else if (componentSelect[0] === "Edit")
-    componentModal = <EditProducto id={componentSelect[1]} />;
-  else if (componentSelect[0] === "Delete")
+  if (action === "Add") {
+    componentModal = <NewProducto onClose={() => setShowModal(false)} newProduct={addproduct} />;
+  } else if (action === "Edit") {
+    componentModal = <EditProducto id={productCode} onClose={() => setShowModal(false)}  NewProduct={addproduct} />;
+  } else if (action === "Delete") {
     componentModal = (
       <WarningModal
-        id={componentSelect[1]}
+        id={productCode} // Aquí pasamos el código del producto como ID
         entity={"Producto"}
-        identifier={"#2020"}
-        name={"Chocolate"}
-        onClose={()=> setShowModal(false)}
+        identifier={productCode} // Aquí pasamos el código del producto como identificador
+        name={productName} // Aquí pasamos el nombre del producto
+        onClose={() => setShowModal(false)}
       />
     );
+  }
 
   return (
     <section className="flex items-center justify-center  lg:mt-0 ">
@@ -49,13 +65,13 @@ export default function GestionProductos() {
           <StandarButton
             url={"#"}
             label={"Registrar Producto"}
-            onClick={() => {setShowModal(true); setComponentVisible("Add/")}}
+            onClick={() => { setShowModal(true); setComponentVisible("Add/") }}
           />
         </div>
 
-        <TableProducts setShowModal={setShowModal} setComponentVisible={setComponentVisible}/>
+        <TableProducts setShowModal={setShowModal} setComponentVisible={setComponentVisible} newProduct={product} PaginatorController={paginatorController} />
 
-        <Pagination />
+        <Pagination newData={product} obtainData={obtainProductsHelper} ChangeTable={ObtainChangeTable} />
       </section>
       <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
         {componentModal}
