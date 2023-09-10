@@ -15,7 +15,7 @@ export default function NewProducto({onClose , newProduct}) {
       name: "",
       price_unit: "",
       quantity_stock: "",
-      code:  Math.max(...obtainFacturasHelper().map(object => object.code))+ 1,
+      code:  Math.max(...obtainFacturasHelper().map(object => object.code)),
 
   });
   const [errors, setErrors] = useState({}); //useState para mostrar errores al ingresar campos

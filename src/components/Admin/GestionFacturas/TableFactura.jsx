@@ -70,7 +70,7 @@ export default function TableFactura({setShowModal, setComponentVisible, Paginat
           if(index >= paginator.LimitDown && index <= paginator.LimitUp )
           {
               return(
-                <tr key={code} className="bg-white border-b  hover:bg-gray-50 ">
+                <tr key={index} className="bg-white border-b  hover:bg-gray-50 ">
                   <td className="px-6 py-4">{code}</td>
                   <td className="px-6 py-4">{date}</td>
                   <td className="px-6 py-4">

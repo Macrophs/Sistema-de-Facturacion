@@ -67,7 +67,7 @@ export default function EditProducto({id,NewProduct,onClose}) {
         <>
           <section className="w-full overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
             <h4 className="text-blue text-2xl text-center font-bold">
-              Registro de Nuevo Producto
+              Editar los Datos de un Producto
             </h4>
 
             <form action="/admin/gestion_productos">
@@ -102,7 +102,7 @@ export default function EditProducto({id,NewProduct,onClose}) {
         return (
             <>
              
-                <h4 className="text-marianBlue text-2xl text-center font-bold">Se Agrego correctamente el Producto:</h4>
+                <h4 className="text-marianBlue text-2xl text-center font-bold">Se Editó correctamente el Producto:</h4>
                 <section className="flex justify-center items-center  flex-col mt-5 text-xl">
 
                     <section className="p-2">

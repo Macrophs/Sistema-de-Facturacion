@@ -34,7 +34,8 @@ export default function TableProducts(props) {
     {
         //se obtiene el estado del check
         const isChecked = document.getElementById("checkbox"+id).checked;
-        
+        console.log(id);
+        console.log(elements[id]);
         // el producto acaba de ser seleccionado
         if(isChecked)
             props.ProductsChange(elements[id]); //*Se envian el producto a agregar al componente de tabla buy
@@ -79,9 +80,8 @@ export default function TableProducts(props) {
             </thead>
             <tbody>                {/*Se muestran los elementos de la tabla */}
                 {elements.map(({name,code,price_unit, quantity_stock},index) =>{
-                  
-                    index++;
-                    if(index >= paginator.LimitDown && index <= paginator.LimitUp ){
+                    let indexPage = index+1;
+                    if(indexPage >= paginator.LimitDown && indexPage <= paginator.LimitUp ){
                         return(
                             <tr className="bg-white border-b" key={index} >
 
