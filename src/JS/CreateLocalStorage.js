@@ -73,25 +73,25 @@ export default function CreateLocalStorage()
         const products =  [
             {
                 name: "Chocolate",
-                code:"#12345",
+                code:12345,
                 price_unit: 10,
                 quantity_stock:100,
             },
             {
                 name: "Chupeta",
-                code:"#12346",
+                code:12346,
                 price_unit: 15,
                 quantity_stock:100,
             },
             {
                 name: "Chaos",
-                code:"#12347",
+                code:12347,
                 price_unit: 2,
                 quantity_stock:100,
             },
             {
                 name: "Chess Tris",
-                code:"#12346",
+                code:12346,
                 price_unit: 30,
                 quantity_stock:50,
             },

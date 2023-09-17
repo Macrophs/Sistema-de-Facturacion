@@ -52,7 +52,7 @@ export default function TableProducts({ setComponentVisible, setShowModal, newPr
           index++;
           if (index >= paginator.LimitDown && index <= paginator.LimitUp) { //Mostrar solos los registros que se encuentran en el rango segun la pagina actual
             return (
-              <tr key={code} className="bg-white border-b  hover:bg-gray-50 ">
+              <tr key={index} className="bg-white border-b  hover:bg-gray-50 ">
                 <td className="px-6 py-4">{code}</td>
 
                 <td
