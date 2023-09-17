@@ -35,14 +35,10 @@ export default function NewClient({onClose, NewClient ,Cedula}) {
         }));
       };
       
-
-   
-
-  
     //se encarga de validar que la información del formulario no tenga ningun error, para poder enviarla a la bd
     const ValidateData =() =>
     {
-        const validationErrors = validateForm(formData,"client");
+        const validationErrors = validateForm(formData,"client"); //Se llama a la función que valida los posibles errores en los input
         if (Object.keys(validationErrors).length === 0) {
             setFinish(NewItemDBHelper(formData,"client")); //se envia a la bd
             NewClient();  //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente

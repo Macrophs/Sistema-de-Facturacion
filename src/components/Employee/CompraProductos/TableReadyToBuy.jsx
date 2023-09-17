@@ -26,6 +26,7 @@ export default function TableReadyToBuy(props) {
 
     },[props.Products]);
     
+    //Useeffect que cuando se actualiza la lista de productos a comprar, actualiza el props que almacena los productos finales de compra
     useEffect(() => {
         props.FinishProducts(productos);
     }, [productos]);
@@ -64,15 +65,12 @@ export default function TableReadyToBuy(props) {
 
     //aumentar la cantidad a comprar de un producto
     const IncrementQuantity = (id) =>{
-        if(productos[id].quantity_stock > productos[id].quantity) //comprobacion de que no se supere la cantidad en stock
-        {
-            const newElements = [...productos];
-            newElements[id].quantity += 1;
-            setProductos(newElements);
+        if(productos[id].quantity >= productos[id].quantity_stock) //comprobacion de que no se supere la cantidad en stock
+            return null
 
-        }
-        
-       
+        const newElements = [...productos];
+        newElements[id].quantity += 1;
+        setProductos(newElements); 
     };
     
     //Disminuir la cantidad a comprar de un producto
@@ -96,6 +94,7 @@ export default function TableReadyToBuy(props) {
     //Elimina un producto de la tabla y desmarca el checkbox del TableProduct
     const RemoveProduct = (id) =>{
         const newProduct = [...productos];
+        console.log(newProduct[id]);
         props.DeleteSelectProduct(newProduct[id]); //Se envia el producto a desmarcar en TableProduct
         newProduct.splice(id,1);
         setProductos(newProduct);

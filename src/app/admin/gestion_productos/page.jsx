@@ -5,7 +5,7 @@ import PageMarker from "@/components/PageMarker/PageMarker";
 export default function GestionProductosPage() {
   return (
     <Layout rol={2}>
-        <PageMarker icon={"employee.svg"} marker={"Gestión de Empleados"}/>
+        <PageMarker icon={"facturacion_option.svg"} marker={"Gestión de Productos"}/>
         <GestionProductos />
     </Layout>
   )

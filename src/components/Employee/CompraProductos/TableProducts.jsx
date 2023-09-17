@@ -34,8 +34,6 @@ export default function TableProducts(props) {
     {
         //se obtiene el estado del check
         const isChecked = document.getElementById("checkbox"+id).checked;
-        console.log(id);
-        console.log(elements[id]);
         // el producto acaba de ser seleccionado
         if(isChecked)
             props.ProductsChange(elements[id]); //*Se envian el producto a agregar al componente de tabla buy

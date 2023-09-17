@@ -3,7 +3,7 @@
  */
 
 import NewItemDBHelper from "@/Helpers/NewItemDBHelper";
-import { obtainFacturasHelper } from "@/Helpers/ObtainDataHelper";
+import { obtainProductsHelper } from "@/Helpers/ObtainDataHelper";
 import { validateForm } from "@/JS/ValidateInput";
 import StandarButton from "@/components/Buttons/StandarButton";
 import Input from "@/components/Tables/Input";
@@ -15,7 +15,7 @@ export default function NewProducto({onClose , newProduct}) {
       name: "",
       price_unit: "",
       quantity_stock: "",
-      code:  Math.max(...obtainFacturasHelper().map(object => object.code)),
+      code:  Math.max(...obtainProductsHelper().map(object => object.code)) + 1,
 
   });
   const [errors, setErrors] = useState({}); //useState para mostrar errores al ingresar campos
