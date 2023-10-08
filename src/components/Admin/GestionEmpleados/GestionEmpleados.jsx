@@ -49,7 +49,8 @@ export default function GestionEmpleados() {
     componentModal = (
       <WarningModal
         id={cedula}
-        entity={"Empleado"}
+        entity={"employee"}
+        entityName={"Empleado"}
         identifier={cedula}
         name={fullName}
         onClose={() => setShowModal(false)}

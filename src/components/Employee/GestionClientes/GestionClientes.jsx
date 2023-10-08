@@ -11,7 +11,8 @@ import WarningModal from "@/components/Modal/WarningModal";
 import StandarButton from "@/components/Buttons/StandarButton";
 import TableClient from "./TableClient";
 import { useSearchParams } from 'next/navigation'
-import { obtainClientHelper } from "@/Helpers/ObtainDataHelper";
+
+
 
 /**
  * Este es un componente relacionado a la gestion de clientes
@@ -57,7 +58,8 @@ export default function GestionClientes() {
     componentModal = (
       <WarningModal
         id={ceduladelete}
-        entity={"Cliente"}
+        entity={"client"}
+        entityName={"Cliente"}
         identifier={ceduladelete}
         name={fullName}
         onClose={() => setShowModal(false)}
@@ -87,7 +89,7 @@ export default function GestionClientes() {
 
         <TableClient setShowModal={setShowModal} setComponentVisible={setComponentVisible} NewClient={client} PaginatorController={paginatorController} />
 
-        <Pagination newData={client} obtainData={obtainClientHelper} ChangeTable={ObtainChangeTable} />
+        <Pagination newData={client} obtainData={"client"} ChangeTable={ObtainChangeTable} />
       </section>
       <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
         {componentModal}

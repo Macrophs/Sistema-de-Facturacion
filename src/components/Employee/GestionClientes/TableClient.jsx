@@ -2,6 +2,7 @@
 
 import { obtainClientHelper } from "@/Helpers/ObtainDataHelper";
 import StandarButton from "@/components/Buttons/StandarButton";
+import { Connect } from "@/services/Connect";
 import { useEffect, useState } from "react";
 
 /**
@@ -10,19 +11,19 @@ import { useEffect, useState } from "react";
 
 export default function TableClient({ setComponentVisible, setShowModal, NewClient, PaginatorController }) {
 
-  const [clients, setClients] = useState([
-    {
-      name: "",
-      lastname: "",
-      cedula: "",
-    }
-  ]); //se encarga de almacenar los datos de los clientes a mostrar
+  const [clients, setClients] = useState([{}]); //se encarga de almacenar los datos de los clientes a mostrar
+  useEffect(()=>{
+      (async ()=>{
+          setClients(await Connect("client","GET"));
+      })();
+  },[NewClient]);
 
+  /* Legacy 
   //useEffect para obtener los clientes, se actualiza cada vez que se agregue un nuevo cliente mediante [NewClient]
   useEffect(() => {
     setClients(obtainClientHelper);
   }, [NewClient]);
-
+  */
 
   const [paginator, setPaginator] = useState({ LimitUp: 1, LimitDown: 5 });
 
@@ -46,7 +47,7 @@ export default function TableClient({ setComponentVisible, setShowModal, NewClie
         </tr>
       </thead>
       <tbody>
-        {clients.map(({ name, lastname, cedula }, index) => {
+        {clients.map(({id_client, name, lastname, cedula }, index) => {
           index++;
           if (index >= paginator.LimitDown && index <= paginator.LimitUp) { //Mostrar solos los registros que se encuentran en el rango segun la pagina actual
             return (
@@ -67,11 +68,11 @@ export default function TableClient({ setComponentVisible, setShowModal, NewClie
                     url={"#"}
                     label={"Editar"}
                     className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "}
-                    id={index}
+                    id={id_client}
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowModal(true);
-                      setComponentVisible(`Edit/${cedula}`);
+                      setComponentVisible(`Edit/${id_client}`);
                     }}
                   />
 
@@ -85,7 +86,7 @@ export default function TableClient({ setComponentVisible, setShowModal, NewClie
                     className={"bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500"}
                     onClick={() => {
                       setShowModal(true);
-                      setComponentVisible(`Delete/${cedula}/${name}`);
+                      setComponentVisible(`Delete/${id_client}/${name}`);
                     }}
                   />
 

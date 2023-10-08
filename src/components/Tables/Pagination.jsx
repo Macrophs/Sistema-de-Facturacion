@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { Result } from "postcss";
+import { Connect } from "@/services/Connect";
 import { useEffect, useState } from "react";
 /**
  * Este es un componente para reutilizar el paginador en las diferentes tablas
@@ -26,17 +25,25 @@ export default function Pagination({newData, obtainData, ChangeTable}) {
   }, [controlPaginator]);
 
   useEffect(() => {
-    const Results = obtainData().length;
-    const NumPerPage = 5;
-    const Pages = Math.ceil(Results / NumPerPage);
+   
+    (async ()=>{
 
-    let Paginator = [];
+      let Results = 0;
 
-    for (let i = 1; i <= Pages; i++) {
-      Paginator.push(i);
-    }
-    setPaginator(Paginator);
-    setResult(Results);
+      const res = await Connect(obtainData,"GET");
+      if (res) Results = res.length; 
+
+      const NumPerPage = 5;
+      const Pages = Math.ceil(Results / NumPerPage);
+
+      let Paginator = [];
+
+      for (let i = 1; i <= Pages; i++) {
+        Paginator.push(i);
+      }
+      setPaginator(Paginator);
+      setResult(Results);
+    })();
   }, [newData]);
 
   return (

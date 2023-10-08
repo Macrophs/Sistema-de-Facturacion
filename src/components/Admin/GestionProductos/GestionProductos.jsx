@@ -44,7 +44,8 @@ export default function GestionProductos() {
     componentModal = (
       <WarningModal
         id={productCode} // Aquí pasamos el código del producto como ID
-        entity={"Producto"}
+        entity={"product"}
+        entityName={"Producto"}
         identifier={productCode} // Aquí pasamos el código del producto como identificador
         name={productName} // Aquí pasamos el nombre del producto
         onClose={() => setShowModal(false)}

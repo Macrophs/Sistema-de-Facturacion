@@ -32,7 +32,8 @@ export default function GestionFacturas() {
     componentModal = (
       <WarningModal
         id={codigo}
-        entity={"Facturación"}
+        entity={"invoice"}
+        entityName={"Facturación"}
         identifier={codigo}
         name={""}
         onClose={() => setShowModal(false)}

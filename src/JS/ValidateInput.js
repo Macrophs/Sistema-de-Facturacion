@@ -1,10 +1,12 @@
 
     //archivo que contendrá las funciones con las que se puede verificar los input
 
+import { Connect } from "@/services/Connect";
+
 
       //almacena los errores al escribir información en los input
-      export const validateForm = (data,type) => {
-
+      export  const validateForm = async (data,type) => {
+        
           const errors = {};
 
           //validaciones input name
@@ -16,6 +18,10 @@
           //Validaciones para Empleados y Clientes
           if(type === "employee" || type === "client")
           {
+              let id = 0;
+              if(type === "client" && data.id_client) id = data.id_client ;
+              else if(data.id_user ) id = data.id_user;
+              
               //validaciones input lastname
               if (data.lastname.length === 0) 
                   errors.lastname = 'El apellido es requerido';
@@ -33,13 +39,14 @@
                   errors.phone = 'El número de teléfono es requerido';
               else if (!isValidPhoneNumber(data.phone)) 
                   errors.phone = 'El número de teléfono no es válido';
-          
-
+        
               //validaciones input cedula
               if (data.cedula.length === 0) 
                   errors.cedula = 'La cédula es requerida';
               else if (!isValidCedula(data.cedula)) 
                   errors.cedula = 'La cédula no es válida';
+              else if(await isNotRepeatCedula(data.cedula,id,type))
+                  errors.cedula = 'La cédula ya se encuentra en el sistema';
           }
           //Validaciones para Productos
           else if(type === "product")
@@ -78,6 +85,18 @@
         return cedulaPattern.test(cedula);
       };
 
+      const isNotRepeatCedula  = async (cedula,id,type) =>{
+        const table = `${type}?conditions= and cedula = '${cedula}' and ${type = "client" ? "id_client" : "id_user"} != '${id}' `; //consulta con los condicionales agregados
+        
+        const res = await Connect(table,"GET" );
+       
+        if (res) return true
+
+        return false;
+
+       
+    
+      }
       
 
     

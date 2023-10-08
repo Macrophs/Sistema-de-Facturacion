@@ -1,13 +1,19 @@
+import { Connect } from "@/services/Connect";
+
 /**
  * Este es un componente para Eliminar Clientes del sistema
  * @param id se refiere al id de la entidad a eliminar seleccionada
  * @param entity es el texto que aparecera en el mensaje de warning dependiendo a la entidad a eliminar
  * @param identifier se refiere al codigo o cedula dependiendo si es producto o usuario o empleado a eliminar
  */
-export default function WarningModal({ id, entity, identifier, name, onClose }) {
+export default function WarningModal({ id, entity,entityName, identifier, name, onClose }) {
     const currentEntitys = "";
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
+
+        await Connect(entity,"DELETE",{id:id}).then(onClose());
+
+
         let currentEntitys;
         if (entity === "Producto") {
             currentEntitys = JSON.parse(localStorage.getItem("products"))
@@ -62,7 +68,7 @@ export default function WarningModal({ id, entity, identifier, name, onClose }) 
     return (
         <>
             <section className="flex items-center justify-center flex-col text-center">
-                <h1 className=" text-2xl pt-4">¿Está Seguro que desea <span className=" text-red-500 font-bold">ELIMINAR</span> al {entity}:</h1>
+                <h1 className=" text-2xl pt-4">¿Está Seguro que desea <span className=" text-red-500 font-bold">ELIMINAR</span> al {entityName}:</h1>
                 <h1 className=" text-2xl pt-4 font-bold">{`${identifier} ${name}`} </h1>
                 <h1 className=" text-2xl pt-4"> del Sistema?</h1>
             </section>

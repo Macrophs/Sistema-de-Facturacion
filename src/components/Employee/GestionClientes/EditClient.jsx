@@ -1,14 +1,15 @@
 "use client"
-import EditItemDBHelper from "@/Helpers/EditItemDBHelper";
-import { obtainClientHelper } from "@/Helpers/ObtainDataHelper";
 import { validateForm } from "@/JS/ValidateInput";
+
+import StandarButton from "@/components/Buttons/StandarButton";
+import Input from "@/components/Tables/Input";
+import { Connect } from "@/services/Connect";
+import { useEffect, useState } from "react";
+
 /**
  * Este es un componente para Editar Clientes del sistema
  */
 
-import StandarButton from "@/components/Buttons/StandarButton";
-import Input from "@/components/Tables/Input";
-import { useEffect, useState } from "react";
 
 export default function EditClient({id,NewClient,onClose}) {
 
@@ -19,19 +20,16 @@ export default function EditClient({id,NewClient,onClose}) {
         email: "",
         cedula: "",
         phone: "",
-
+        id : id,
     });
 
-    const [index, setIndex] = useState();
-
+  
+        
     useEffect(() => {
-        const clients = obtainClientHelper();
-        const indexClient = clients.findIndex((objeto) => objeto.cedula === id);
-        if (indexClient !== -1) {
-            setIndex(indexClient);
-            const client = clients[indexClient];
-            setformData(client)
-        } 
+        (async ()=>{
+            const condition = "conditions= and id_client ="+id;
+            setformData((await Connect("client?"+condition,"GET"))[0])
+        })();
     }, [id]);
 
     const [errors, setErrors] = useState({}); //useState para mostrar errores al ingresar campos
@@ -49,11 +47,11 @@ export default function EditClient({id,NewClient,onClose}) {
       };
 
     //se encarga de validar que la información del formulario no tenga ningun error, para poder enviarla a la bd
-    const ValidateData =() =>
+    const ValidateData = async() =>
     {
-        const validationErrors = validateForm(formData,"client"); //Se llama a la función que valida los posibles errores en los input
+        const validationErrors =  await validateForm(formData,"client"); //Se llama a la función que valida los posibles errores en los input
         if (Object.keys(validationErrors).length === 0) {
-            setFinish(EditItemDBHelper(formData,"client",index)); //se envia a la bd
+            setFinish( await Connect("client","PUT",formData)); //se envia a la bd
             NewClient();  //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente
           }
         setErrors(validationErrors); //se actualizan los errores

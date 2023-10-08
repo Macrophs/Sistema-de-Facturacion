@@ -3,6 +3,8 @@ import NewItemDBHelper from "@/Helpers/NewItemDBHelper";
 import { validateForm} from "@/JS/ValidateInput"; //funciones para validar input
 import StandarButton from "@/components/Buttons/StandarButton";
 import Input from "@/components/Tables/Input";
+import { Connect } from "@/services/Connect";
+import { VerifyNotActiveNewUser } from "@/services/VerifyNotActiveNewUser";
 import { useState } from "react";
 
 /**
@@ -36,12 +38,22 @@ export default function NewClient({onClose, NewClient ,Cedula}) {
       };
       
     //se encarga de validar que la información del formulario no tenga ningun error, para poder enviarla a la bd
-    const ValidateData =() =>
+    const ValidateData = async () =>
     {
-        const validationErrors = validateForm(formData,"client"); //Se llama a la función que valida los posibles errores en los input
+        const validationErrors = await validateForm(formData,"client"); //Se llama a la función que valida los posibles errores en los input
         if (Object.keys(validationErrors).length === 0) {
-            setFinish(NewItemDBHelper(formData,"client")); //se envia a la bd
+            const res = await VerifyNotActiveNewUser("client",formData); //se comprueba si la cedula pertenecia a un usuario inactivo
+            if(res != false)
+            {
+                formData.id_client = res.id_client;
+                setFinish( await Connect("client","PUT",formData)); //se envia a la bd
+            }
+            else 
+                setFinish( await Connect("client","POST",formData)); //se envia a la bd
+               
+    
             NewClient();  //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente
+           
           }
         setErrors(validationErrors); //se actualizan los errores
     }
