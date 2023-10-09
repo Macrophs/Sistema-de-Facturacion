@@ -1,5 +1,6 @@
 "use client";
 import { verificationLoginHelper } from "@/Helpers/VerificacionLoginHelper";
+import { Login } from "@/services/Login";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -10,16 +11,17 @@ import { useState } from "react";
 export default function FormHome() {
   const [username, setUsername] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin =  async (e) =>  {
     e.preventDefault();
-    const role = verificationLoginHelper(username);
-
-    if (role === "admin") {
+    const res = await Login(username);
+    const rol_name = res.rol_name;
+  
+    if (rol_name === "admin") {
       window.location.href = "/admin";
-      localStorage.setItem("ActiveUser",JSON.stringify({username,role}));
-    } else if (role === "employee") {
+      localStorage.setItem("ActiveUser",JSON.stringify(res));
+    } else if (rol_name === "employee") {
       window.location.href = "/employee/cedula_cliente";
-      localStorage.setItem("ActiveUser",JSON.stringify({username,role}));
+      localStorage.setItem("ActiveUser",JSON.stringify(res));
     } else {
       alert("Usuario no encontrado");
     }

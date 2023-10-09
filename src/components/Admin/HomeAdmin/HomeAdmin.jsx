@@ -39,7 +39,7 @@ export default function HomeAdmin() {
   
   useEffect(() => {
     if(JSON.parse(localStorage.getItem("ActiveUser") !== null))
-      setUsername(JSON.parse(localStorage.getItem("ActiveUser")).username);
+      setUsername(JSON.parse(localStorage.getItem("ActiveUser")).name);
   }, []);
   
   return (
