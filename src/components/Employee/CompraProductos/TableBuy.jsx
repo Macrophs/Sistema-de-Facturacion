@@ -4,7 +4,6 @@ import TableProducts from "./TableProducts";
 import Pagination from "../../Tables/Pagination";
 import DataClient from "./DataClient";
 import { useEffect, useState } from "react";
-import { obtainProductsHelper } from "@/Helpers/ObtainDataHelper";
 /**
  * Este es un componente relacionado a la compra de productos, contendrá la tabla con los productos
  */
@@ -22,9 +21,9 @@ export default function TableBuy(props) {
         <DataClient Client={props.ClientData} />
         <Search label={"Buscar Productos"} />
 
-        <TableProducts ProductsChange={props.ProductsChange} DeleteProduct={props.DeleteProduct} ProductToUnselect={props.DeleteSelectProduct} PaginatorController={paginatorController}  />
+        <TableProducts ProductsChange={props.ProductsChange} DeleteProduct={props.DeleteProduct} ProductToUnselect={props.DeleteSelectProduct} ChangeDeleteSelectProduct={props.ChangeDeleteSelectProduct} PaginatorController={paginatorController}  />
 
-        <Pagination newData={null} obtainData={obtainProductsHelper} ChangeTable={ObtainChangeTable} />
+        <Pagination newData={null} obtainData={"product"} ChangeTable={ObtainChangeTable} />
       </section>
     </section>
   );

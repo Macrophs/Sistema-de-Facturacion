@@ -42,7 +42,7 @@ export default function NewClient({onClose, NewClient ,Cedula}) {
     {
         const validationErrors = await validateForm(formData,"client"); //Se llama a la función que valida los posibles errores en los input
         if (Object.keys(validationErrors).length === 0) {
-            const res = await VerifyNotActiveNewUser("client",formData); //se comprueba si la cedula pertenecia a un usuario inactivo
+            const res = await VerifyNotActiveNewUser("client/notActive",formData); //se comprueba si la cedula pertenecia a un usuario inactivo
             if(res != false)
             {
                 formData.id_client = res.id_client;

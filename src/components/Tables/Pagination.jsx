@@ -30,7 +30,9 @@ export default function Pagination({newData, obtainData, ChangeTable}) {
 
       let Results = 0;
 
+      
       const res = await Connect(obtainData,"GET");
+      console.log(res);
       if (res) Results = res.length; 
 
       const NumPerPage = 5;

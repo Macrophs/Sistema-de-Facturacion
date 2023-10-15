@@ -5,6 +5,7 @@ import TableFactura from "./TableFactura"
 import { useEffect, useState } from "react";
 import { obtainFacturasHelper } from "@/Helpers/ObtainDataHelper";
 import { useRouter } from "next/navigation";
+import { Connect } from "@/services/Connect";
 
 /**
  * Este es un componente de la pagina compra producto, que contendrá todo el contenido de la compra
@@ -22,29 +23,15 @@ export default function Factura() {
 
   const router = useRouter();
 
-  const [factura, setFactura] = useState( {
-    date: "",
-    code:undefined,
-    name: "",
-    lastname:"",
-    cedula:"",
-    email:"",
-    phone:"",
-    method:undefined,
-    products:[
-        {
-            name: "",
-            price_unit: undefined,
-            quantity:undefined,
-        },
-    ]
-});
+  const [factura, setFactura] = useState();
 
 
   useEffect(() => {
-      const totalFacturas = obtainFacturasHelper();
-      
-      const facturaData = totalFacturas.find((object) => object.code === parseInt(Code));
+    (async () => {
+      const facturaData = await Connect("invoice/"+Code,"GET");
+
+      console.log(facturaData)
+    
       //si el cliente no es encontrado en la bd, se le redirecciona a cedula cliente
       if(!facturaData)
       { 
@@ -53,7 +40,7 @@ export default function Factura() {
       else
         setFactura(facturaData);
       
-      
+    })();
   }, [Code]);
 
   return (

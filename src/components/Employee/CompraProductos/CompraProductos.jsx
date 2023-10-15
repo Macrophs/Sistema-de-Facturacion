@@ -9,6 +9,7 @@ import ModalProducts from "./ModalProducts"
 import { useSearchParams } from 'next/navigation'
 import { obtainClientHelper } from "@/Helpers/ObtainDataHelper"
 import { useRouter } from "next/navigation"
+import { Connect } from "@/services/Connect"
 /**
  * Este es un componente de la pagina compra producto, que contendrá todo el contenido de la compra
  */
@@ -39,17 +40,17 @@ export default function CompraProductos() {
   const [finishProducts, setFinishProducts] = useState(); //Quitar Checkbox de TableProduct al eliminar un producto en Tablebuy
 
   useEffect(() => {
-      const totalClient = obtainClientHelper();
-      const ClientData = totalClient.find((object) => object.cedula === cedula);
-      //si el cliente no es encontrado en la bd, se le redirecciona a cedula cliente
-      if(!ClientData)
-      { 
-          router.push("cedula_cliente"); 
-      }
-      else
-        setClient(ClientData);
-      
-      
+      (async ()=>{
+        const condition = `conditions= and cedula = '${cedula}'`;
+        const ClientData = await Connect("client?"+condition,"GET")
+        //si el cliente no es encontrado en la bd, se le redirecciona a cedula cliente
+        if(!ClientData)
+        { 
+            router.push("cedula_cliente"); 
+        }
+        else
+          setClient(ClientData[0]);
+      })();
   }, [cedula]);
 
   function obtainPrice(price)
@@ -80,10 +81,10 @@ export default function CompraProductos() {
   return (
     <>
       
-        <TableBuy ProductsChange={obtainProducts}  DeleteProduct={obtainDeleteProduct} DeleteSelectProduct={deleteSelectProduct} ClientData={client} />
+        <TableBuy ProductsChange={obtainProducts}  DeleteProduct={obtainDeleteProduct}  DeleteSelectProduct={deleteSelectProduct} ChangeDeleteSelectProduct={obtainDeleteSelectProduct} ClientData={client} />
    
    
-        <TableReadyToBuy PriceChange={obtainPrice} Products={products} DeleteProduct={deleteProduct} DeleteSelectProduct={obtainDeleteSelectProduct} FinishProducts={obtainFinishProducts} />
+        <TableReadyToBuy PriceChange={obtainPrice} Products={products} ProductsChange={obtainProducts} DeleteProduct={deleteProduct} ChangeDeleteProduct={obtainDeleteProduct} DeleteSelectProduct={obtainDeleteSelectProduct} FinishProducts={obtainFinishProducts} />
       
         <section className=" flex items-center justify-center mb-16 lg:mt-10" >
           <StandarButton url={"#"} label={"Continuar Compra"}  

@@ -1,5 +1,4 @@
-import { obtainProductsHelper } from "@/Helpers/ObtainDataHelper";
-import Image from "next/image"
+import { Connect } from "@/services/Connect";
 import { useEffect, useState } from "react";
 
 /**
@@ -20,27 +19,40 @@ export default function TableProducts(props) {
     const [elements, setElements] = useState([]);
 
     useEffect(() => {
-        const products = [...obtainProductsHelper()]; //se obtiene una copia de los productos almacenados en la bd
-
-        const newProducts = products.map((product) => { //se le añaden a todos los productos un nuevo campo Quantity para realizar la compra
-            return {...product, quantity:1};
-        }) 
-        setElements(newProducts);
-    },[props.ProductsChange]);
+     
+        (async () => {
+            const products = await Connect("product","GET"); //se obtienen los productos
+            const newProducts = products.map((product) => { //se le añaden a todos los productos un nuevo campo Quantity para realizar la compra
+                return {...product, quantity:1,  check:false};
+            }) 
+            setElements(newProducts);
+        })();
+       
+    },[]);
 
 
     //*Funcion para Manejar si se va a eliminar o agregar un producto
     function ProductsMannager(id)
     {
+      
         //se obtiene el estado del check
         const isChecked = document.getElementById("checkbox"+id).checked;
         // el producto acaba de ser seleccionado
+        const products = [... elements];
         if(isChecked)
+        {
+            products[id].check = true;
             props.ProductsChange(elements[id]); //*Se envian el producto a agregar al componente de tabla buy
+        }
 
         //el producto acaba de ser deseleccionado
         else 
+        {
+            products[id].check = false;
+            products[id].quantity = 1;
             props.DeleteProduct(elements[id]); //*Se envian el producto a eliminar al componente de tabla buy
+        }
+        setElements(products);
     }
 
     //useEfect que actualiza los checks al eliminar un producto desde tableBuy
@@ -48,11 +60,19 @@ export default function TableProducts(props) {
         if(props.ProductToUnselect)
         {
             //se busca el elemento a eliminar mediante el codigo
-            const productToUnselect = elements.findIndex(obj => obj.code === props.ProductToUnselect.code )
+            const productToUnselect = elements.findIndex(obj => obj.id_product === props.ProductToUnselect.id_product )
 
             //Se comprueba que lo haya encontrado para  deseleccionarlo
             if (productToUnselect !== -1) 
+            {
+                const products = [... elements];
+                products[productToUnselect].check = false;
+                products[productToUnselect].quantity = 1;
+                setElements(products);
                 document.getElementById("checkbox"+productToUnselect).checked = false;
+                
+                props.ChangeDeleteSelectProduct(undefined); //una vez deseleccionado, se elimina de la var
+            }
             
         }
     },[props.ProductToUnselect]);
@@ -77,7 +97,7 @@ export default function TableProducts(props) {
                 </tr>
             </thead>
             <tbody>                {/*Se muestran los elementos de la tabla */}
-                {elements.map(({name,code,price_unit, quantity_stock},index) =>{
+                {elements.map(({name,id_product,price, quantity_stock,check},index) =>{
                     let indexPage = index+1;
                     if(indexPage >= paginator.LimitDown && indexPage <= paginator.LimitUp ){
                         return(
@@ -85,7 +105,7 @@ export default function TableProducts(props) {
 
                                 <td className="w-4 p-4">
                                     <section className="flex items-center">
-                                        <input id={"checkbox"+index}  onChange={()=> ProductsMannager(index) }
+                                        <input id={"checkbox"+index}  onChange={()=> ProductsMannager(index)} checked={check}
                                         type="checkbox"
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "/>
                                             <label  className="sr-only">checkbox</label>
@@ -96,13 +116,13 @@ export default function TableProducts(props) {
                                 {name}
                                 </th>
                                 <td className="px-6 py-4">
-                                    {code}
+                                    {id_product}
                                 </td>
                                 <td className="px-6 py-4">
                                     {quantity_stock}
                                 </td>
                                 <td className="px-6 py-4">
-                                    ${price_unit}
+                                    ${price}
                                 </td>
 
                             </tr>

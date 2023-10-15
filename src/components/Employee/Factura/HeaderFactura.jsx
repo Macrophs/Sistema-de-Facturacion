@@ -4,6 +4,11 @@
  */
 
 export default function HeaderFactura({Factura}) {
+  if(!Factura)
+      return "";
+  const date = new Date(Factura[0].date);
+  const newDate = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
+  console.log(Factura[0])
   return (
     <>
        <section className="flex flex-col flex-wrap justify-center sm:justify-normal sm:items-start items-center sm:flex-row text-xl   w-full">
@@ -22,10 +27,10 @@ export default function HeaderFactura({Factura}) {
                   <p> FACTURAR A</p>
                 </section> 
                 <section className=" font-medium">
-                    <p>{Factura.name} {Factura.lastname}</p>  
-                    <p>{Factura.cedula}</p>  
-                    <p>{Factura.email}</p>  
-                    <p>{Factura.phone}</p>  
+                    <p>{Factura[0].client_name} {Factura.client_lastname}</p>  
+                    <p>{Factura[0].cedula}</p>  
+                    <p>{Factura[0].email}</p>  
+                    <p>{Factura[0].phone}</p>  
                 </section>
             </section>
             <section className=" p-5 m-5 pl-0 w-full sm:w-[45%]">
@@ -35,8 +40,8 @@ export default function HeaderFactura({Factura}) {
                   <p> FECHA</p>
               </section>
               <section className=" flex items-center flex-wrap justify-center text-black font-medium">
-                  <p className="w-1/2"> #{Factura.code}</p>
-                  <p> {Factura.date}</p>
+                  <p className="w-1/2"> #{Factura[0].id_invoice}</p>
+                  <p> {newDate}</p>
               </section>
             </section>
                     

@@ -40,7 +40,6 @@ export default function FormHome() {
               className="rounded-full"
               width={240}
               height={240}
-              wid
               src="/images/home/user-icon.png"
               alt="image description"
             />

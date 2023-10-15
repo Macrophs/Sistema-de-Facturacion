@@ -12,12 +12,7 @@ export async function GET(request){
     const {query} = url;
     let {conditions} = query; //obtener posibles variables de la url
 
-    conditions = conditions ? conditions : ""; //si no es undefined = conditions
-    
-    if(conditions.split("-")[0] === "NotActive") conditions = "where active = false and cedula = '"+conditions.split("-")[1]+"'";
-    else conditions ="where active = true "+conditions;
-
-    const data = await client.query(`SELECT id_client ,cedula , name, lastname,email,phone FROM "Client" ${conditions ? conditions : "" } ORDER BY id_client ;`)
+    const data = await client.query(`SELECT id_client ,cedula , name, lastname,email,phone FROM "Client" where active = true ${conditions ? conditions : "" } ORDER BY id_client ;`)
     const {rows, rowCount} = data;
   
     if(rowCount === 0)
