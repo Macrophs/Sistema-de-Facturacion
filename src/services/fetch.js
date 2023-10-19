@@ -9,7 +9,8 @@ export async function fetch({method='GET', url, body=null}){
     
     if(response.ok)
     {
-        
+        if(response.status == "204") return null; //respuesta sin contenido
+
         const resBody = await response.json()
         return resBody;
     }

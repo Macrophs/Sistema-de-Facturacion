@@ -12,11 +12,14 @@ export async function GET(request){
     const {query} = url;
     let {conditions} = query; //obtener posibles variables de la url
 
-    const data = await client.query(`SELECT id_client ,cedula , name, lastname,email,phone FROM "Client" where active = true ${conditions ? conditions : "" } ORDER BY id_client ;`)
+    //Query Postgresql
+    const data = await client.query(`SELECT id_client ,cedula , name, lastname,email,phone FROM "Client" 
+    where active = true ${conditions ? conditions : "" } ORDER BY id_client ;`)
     const {rows, rowCount} = data;
   
+    //devolver respuesta
     if(rowCount === 0)
-        return new Response("",{status:404});
+        return new Response(null,{status:204});
 
     return Response.json({results: rows});
 }

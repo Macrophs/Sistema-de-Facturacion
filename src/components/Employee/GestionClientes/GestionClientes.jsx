@@ -32,10 +32,17 @@ export default function GestionClientes() {
 
   const [paginatorController, setPaginatorController] = useState({ LimitUp: 1, LimitDown: 5 });
 
+  const [search, setSearch] = useState();
+
   function addClient() {
     setClient(!client)
   }
 
+  function changeSearch(search) {
+    let filter = "";
+    if(search) filter = `conditions= and name ILIKE '%${search}%' or lastname ILIKE '%${search}%' or  cedula ILIKE '%${search}%' `
+    setSearch(filter)
+  }
   function ObtainChangeTable(changes) {
     setPaginatorController(changes);
   }
@@ -69,7 +76,7 @@ export default function GestionClientes() {
     
     
   }
-  console.log(componentSelect)
+  
   if (cedula !== null && componentSelect[0] == "") {
     componentModal = <NewClient onClose={() => setShowModal(false)} NewClient={addClient} Cedula={cedula} />
   }
@@ -78,19 +85,19 @@ export default function GestionClientes() {
     <section className="flex items-center justify-center  lg:mt-0 ">
       <section className="w-full lg:w-3/4 overflow-x-auto shadow-md sm:rounded-lg p-6 bg-white">
         <h4 className="text-marianBlue text-2xl text-center font-bold">
-          Gestión de Clientes
+          Gestión de Clientes 
         </h4>
 
         <div className="flex items-center flex-col md:flex-row justify-between py-4 bg-white">
-          <Search label={"Buscar Cliente"} />
+          <Search label={"Buscar Cliente"} setSearch={changeSearch} />
 
           <StandarButton url={"#"} label={"Registrar Cliente"} onClick={() => { setShowModal(true); setComponentVisible("Add/") }} />
 
         </div>
 
-        <TableClient setShowModal={setShowModal} setComponentVisible={setComponentVisible} NewClient={client} PaginatorController={paginatorController} />
+        <TableClient setShowModal={setShowModal} setComponentVisible={setComponentVisible} NewClient={client} Search={search} PaginatorController={paginatorController} />
 
-        <Pagination newData={client} obtainData={"client"} ChangeTable={ObtainChangeTable} />
+        <Pagination newData={client} Search={search} obtainData={"client"} ChangeTable={ObtainChangeTable} />
       </section>
       <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
         {componentModal}

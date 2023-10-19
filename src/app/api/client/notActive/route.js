@@ -17,7 +17,7 @@ export async function GET(request){
     const {rows, rowCount} = data;
   
     if(rowCount === 0)
-        return new Response("",{status:404});
+        return new Response(null,{status:204});
 
     return Response.json({results: rows});
 }

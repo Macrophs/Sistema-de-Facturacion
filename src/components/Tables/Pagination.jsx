@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
  * @params
  */
 
-export default function Pagination({newData, obtainData, ChangeTable}) {
+export default function Pagination({newData, obtainData, ChangeTable, Search}) {
 
   let LimitDown = 1;   //Limite inicial inferior de los registros a mostrar
   let LimitUp = 5;    //Limite inicial superior de los registros a mostrar
@@ -29,10 +29,8 @@ export default function Pagination({newData, obtainData, ChangeTable}) {
     (async ()=>{
 
       let Results = 0;
+      const res = await Connect(obtainData+"?"+Search,"GET");
 
-      
-      const res = await Connect(obtainData,"GET");
-      console.log(res);
       if (res) Results = res.length; 
 
       const NumPerPage = 5;
@@ -45,8 +43,10 @@ export default function Pagination({newData, obtainData, ChangeTable}) {
       }
       setPaginator(Paginator);
       setResult(Results);
+      setActualPage(1);
+      setControlPaginator({LimitDown:1, LimitUp:5});
     })();
-  }, [newData]);
+  }, [newData,Search]);
 
   return (
     <nav

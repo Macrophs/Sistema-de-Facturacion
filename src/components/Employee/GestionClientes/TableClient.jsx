@@ -9,14 +9,15 @@ import { useEffect, useState } from "react";
  * Este es un componente para utilizar la tabla que muestra la gestion de clientes
  */
 
-export default function TableClient({ setComponentVisible, setShowModal, NewClient, PaginatorController }) {
+export default function TableClient({ setComponentVisible, setShowModal, NewClient, Search, PaginatorController }) {
 
   const [clients, setClients] = useState([{}]); //se encarga de almacenar los datos de los clientes a mostrar
+  
   useEffect(()=>{
       (async ()=>{
-          setClients(await Connect("client","GET"));
+          setClients(await Connect("client?"+Search,"GET"));
       })();
-  },[NewClient]);
+  },[NewClient,Search]);
 
   /* Legacy 
   //useEffect para obtener los clientes, se actualiza cada vez que se agregue un nuevo cliente mediante [NewClient]
@@ -31,12 +32,19 @@ export default function TableClient({ setComponentVisible, setShowModal, NewClie
     setPaginator(PaginatorController);
   }, [PaginatorController]);
 
+  if(clients === false)
+  {
+    return (
+        <h1>Sin Resultados</h1>
+      );
+  } 
+  
   return (
     <table className="w-full  text-sm text-left text-gray-500 ">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
         <tr>
           <th scope="col" className="px-6 py-3">
-            Cédula
+            Cédula 
           </th>
           <th scope="col" className="px-10 py-3">
             Nombre
