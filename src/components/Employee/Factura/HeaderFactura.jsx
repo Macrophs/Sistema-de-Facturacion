@@ -6,9 +6,9 @@
 export default function HeaderFactura({Factura}) {
   if(!Factura)
       return "";
+    
   const date = new Date(Factura[0].date);
   const newDate = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
-  console.log(Factura[0])
   return (
     <>
        <section className="flex flex-col flex-wrap justify-center sm:justify-normal sm:items-start items-center sm:flex-row text-xl   w-full">
@@ -27,7 +27,7 @@ export default function HeaderFactura({Factura}) {
                   <p> FACTURAR A</p>
                 </section> 
                 <section className=" font-medium">
-                    <p>{Factura[0].client_name} {Factura.client_lastname}</p>  
+                    <p>{Factura[0].client_name} {Factura[0].client_lastname}</p>  
                     <p>{Factura[0].cedula}</p>  
                     <p>{Factura[0].email}</p>  
                     <p>{Factura[0].phone}</p>  

@@ -13,7 +13,6 @@ import TableClient from "./TableClient";
 import { useSearchParams } from 'next/navigation'
 
 
-
 /**
  * Este es un componente relacionado a la gestion de clientes
  */
@@ -40,8 +39,9 @@ export default function GestionClientes() {
 
   function changeSearch(search) {
     let filter = "";
-    if(search) filter = `conditions= and name ILIKE '%${search}%' or lastname ILIKE '%${search}%' or  cedula ILIKE '%${search}%' `
-    setSearch(filter)
+    if(search) filter = `and name ILIKE '%${search}%' or lastname ILIKE '%${search}%' or  cedula ILIKE '%${search}%' `;
+    filter = encodeURIComponent(filter);
+    setSearch("conditions= "+filter);
   }
   function ObtainChangeTable(changes) {
     setPaginatorController(changes);
@@ -96,8 +96,9 @@ export default function GestionClientes() {
         </div>
 
         <TableClient setShowModal={setShowModal} setComponentVisible={setComponentVisible} NewClient={client} Search={search} PaginatorController={paginatorController} />
+        <Pagination newData={client} Search={search} obtainData={"client"} ChangeTable={ObtainChangeTable} /> 
 
-        <Pagination newData={client} Search={search} obtainData={"client"} ChangeTable={ObtainChangeTable} />
+        
       </section>
       <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
         {componentModal}

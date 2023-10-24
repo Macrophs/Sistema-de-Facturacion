@@ -12,11 +12,11 @@ export async function GET(request){
     const {query} = url;
     let {conditions} = query; //obtener posibles variables de la url
 
-    const data = await client.query(`SELECT id_product , name, price, quantity as quantity_stock FROM "Product" where active = true ${conditions ? conditions : "" } ORDER BY name ;`)
+    const data = await client.query(`SELECT id_product , name, price, quantity as quantity_stock FROM "Product" where active = true and quantity > 0 ${conditions ? conditions : "" } ORDER BY name ;`)
     const {rows, rowCount} = data;
   
     if(rowCount === 0)
-        return new Response("",{status:404});
+        return new Response(null,{status:204});
 
     return Response.json({results: rows});
 }

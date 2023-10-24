@@ -61,7 +61,11 @@ export default function TableReadyToBuy(props) {
         });
     }
 
-    props.PriceChange(final_price); //se envia el precio a pagar al componente padre
+
+
+    useEffect(() => {
+        props.PriceChange(final_price);
+    }, [final_price]);
 
     //aumentar la cantidad a comprar de un producto
     const IncrementQuantity = (id) =>{

@@ -14,6 +14,13 @@ export default function ModalProducts({onClose, Price_Buy, ClientData, ProductsD
     const [method, setMethod] = useState(null); // almacena el método de pago a usar
     const [checked, setChecked] = useState(false); // almacena si se confirmó el pago de la compra
 
+    const method_payment = [
+      "Punto de Venta",
+      "Efectivo",
+      "Pago Móvil",
+    ];
+
+    
 
     const CreateFactura = async () =>
     {
@@ -96,7 +103,7 @@ export default function ModalProducts({onClose, Price_Buy, ClientData, ProductsD
 
                     <section className="p-2">
                         <p><span className="text-marianBlue font-bold">Cliente: </span>{ClientData.name} {ClientData.lastname} </p>
-                        <p className="pt-2"><span className="text-marianBlue font-bold">Método de Pago: </span> Pago Móvil</p>
+                        <p className="pt-2"><span className="text-marianBlue font-bold">Método de Pago: </span> {method_payment[method-1]}</p>
                         <p className="pt-2"><span className="text-marianBlue font-bold">Total a Pagar: </span> <span className="text-green-500"> {(Price_Buy + Math.round(parseFloat([(16 * Price_Buy ) / 100]) * 100) / 100).toFixed(2)}$ </span></p>
 
                         <input checked={checked} onChange={()=> setChecked(!checked)} id="check" type="checkbox" className="mt-5 w-4 h-4 bg-marianBlue border-marianBlue rounded focus:ring-marianBlue "/>

@@ -2,6 +2,7 @@
 
 import { obtainClientHelper } from "@/Helpers/ObtainDataHelper";
 import StandarButton from "@/components/Buttons/StandarButton";
+import Loader from "@/components/Tables/Loader";
 import { Connect } from "@/services/Connect";
 import { useEffect, useState } from "react";
 
@@ -12,25 +13,26 @@ import { useEffect, useState } from "react";
 export default function TableClient({ setComponentVisible, setShowModal, NewClient, Search, PaginatorController }) {
 
   const [clients, setClients] = useState([{}]); //se encarga de almacenar los datos de los clientes a mostrar
-  
+  const [loading, setLoading] = useState(true); //se encarga de manejar el cargado de los datos
   useEffect(()=>{
       (async ()=>{
+          setLoading(true);
           setClients(await Connect("client?"+Search,"GET"));
+          setLoading(false);
       })();
   },[NewClient,Search]);
 
-  /* Legacy 
-  //useEffect para obtener los clientes, se actualiza cada vez que se agregue un nuevo cliente mediante [NewClient]
-  useEffect(() => {
-    setClients(obtainClientHelper);
-  }, [NewClient]);
-  */
+
 
   const [paginator, setPaginator] = useState({ LimitUp: 1, LimitDown: 5 });
 
   useEffect(() => {
     setPaginator(PaginatorController);
   }, [PaginatorController]);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   if(clients === false)
   {
@@ -55,7 +57,7 @@ export default function TableClient({ setComponentVisible, setShowModal, NewClie
         </tr>
       </thead>
       <tbody>
-        {clients.map(({id_client, name, lastname, cedula }, index) => {
+        {clients && clients.map(({id_client, name, lastname, cedula }, index) => {
           index++;
           if (index >= paginator.LimitDown && index <= paginator.LimitUp) { //Mostrar solos los registros que se encuentran en el rango segun la pagina actual
             return (

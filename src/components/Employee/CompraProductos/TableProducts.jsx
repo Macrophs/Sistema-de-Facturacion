@@ -1,4 +1,5 @@
 import { Connect } from "@/services/Connect";
+import Loader from "@/components/Tables/Loader";
 import { useEffect, useState } from "react";
 
 /**
@@ -14,21 +15,33 @@ export default function TableProducts(props) {
       setPaginator(props.PaginatorController);
     }, [props.PaginatorController]);
   
-
     
-    const [elements, setElements] = useState([]);
+    
+    const [elements, setElements] = useState([]); //guardará los productos
+    const [loading, setLoading] = useState(true); //se encarga de manejar el cargado de los datos
 
     useEffect(() => {
      
         (async () => {
-            const products = await Connect("product","GET"); //se obtienen los productos
+            setLoading(true);
+
+            const products = await Connect("product?"+props.Search,"GET"); //se obtienen los productos
+            setLoading(false);
+            if(products === false) {
+                setElements(products);
+                
+                return null;
+            }
+
             const newProducts = products.map((product) => { //se le añaden a todos los productos un nuevo campo Quantity para realizar la compra
                 return {...product, quantity:1,  check:false};
             }) 
+           
             setElements(newProducts);
+            
         })();
        
-    },[]);
+    },[props.Search]);
 
 
     //*Funcion para Manejar si se va a eliminar o agregar un producto
@@ -77,6 +90,12 @@ export default function TableProducts(props) {
         }
     },[props.ProductToUnselect]);
   
+    if (loading) return <Loader />;
+      
+    
+
+    if(elements === false) return (<h1>Sin Resultados</h1>);
+
     return (
         <table className="w-full text-sm text-left text-gray-500">
             <thead className="text-sm text-gray-700 uppercase bg-gray-50">
@@ -105,7 +124,7 @@ export default function TableProducts(props) {
 
                                 <td className="w-4 p-4">
                                     <section className="flex items-center">
-                                        <input id={"checkbox"+index}  onChange={()=> ProductsMannager(index)} checked={check}
+                                        <input id={"checkbox"+index}  onChange={()=> ProductsMannager(index)} checked={props.BuyProducts.some(product => product.id_product === id_product)}
                                         type="checkbox"
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "/>
                                             <label  className="sr-only">checkbox</label>

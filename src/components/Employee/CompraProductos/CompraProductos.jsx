@@ -53,38 +53,14 @@ export default function CompraProductos() {
       })();
   }, [cedula]);
 
-  function obtainPrice(price)
-  {
-    setPrice(price);
-  }
-
-  function obtainProducts(products)
-  {
-    setProducts(products);
-  }
-
-  function obtainDeleteProduct(product)
-  {
-    setdeleteProduct(product);
-  }
-
-  function obtainDeleteSelectProduct(product)
-  {
-    setdeleteSelectProduct(product);
-  }
-
-  function obtainFinishProducts(products)
-  {
-    setFinishProducts(products);
-  }
 
   return (
     <>
-      
-        <TableBuy ProductsChange={obtainProducts}  DeleteProduct={obtainDeleteProduct}  DeleteSelectProduct={deleteSelectProduct} ChangeDeleteSelectProduct={obtainDeleteSelectProduct} ClientData={client} />
+        
+        <TableBuy ProductsChange={setProducts}  DeleteProduct={setdeleteProduct}  DeleteSelectProduct={deleteSelectProduct} ChangeDeleteSelectProduct={setdeleteSelectProduct} ClientData={client} BuyProducts={finishProducts} />
    
    
-        <TableReadyToBuy PriceChange={obtainPrice} Products={products} ProductsChange={obtainProducts} DeleteProduct={deleteProduct} ChangeDeleteProduct={obtainDeleteProduct} DeleteSelectProduct={obtainDeleteSelectProduct} FinishProducts={obtainFinishProducts} />
+        <TableReadyToBuy PriceChange={setPrice} Products={products} ProductsChange={setProducts} DeleteProduct={deleteProduct} ChangeDeleteProduct={setdeleteProduct} DeleteSelectProduct={setdeleteSelectProduct} FinishProducts={setFinishProducts} />
       
         <section className=" flex items-center justify-center mb-16 lg:mt-10" >
           <StandarButton url={"#"} label={"Continuar Compra"}  

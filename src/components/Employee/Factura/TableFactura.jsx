@@ -4,21 +4,15 @@
  * @params props 
  */
 
+import { CalculatePriceIva } from "@/services/CalculatePriceIva";
+
 export default function TableFactura({Factura}) {
 
     if(!Factura)
         return "";
-    const elements = Factura;
-    console.log(elements);
 
-    // Calcular precio +  iva
-    let final_price = 0;
-    elements.map(({product_quantity, product_price}) =>{
-        final_price = final_price + (product_quantity * product_price);
-    });
-    const iva = 16;
-    let price_iva = (iva * final_price ) / 100 ;
-
+    //Obtener Precio y IVA de la compra
+    const {final_price, price_iva} = CalculatePriceIva(Factura);
 
     return (
         <>
@@ -36,7 +30,7 @@ export default function TableFactura({Factura}) {
 
                     <tbody className="mt-11">
 
-                    {elements.map(({product_name,product_quantity,product_price},index) => ( 
+                    {Factura.map(({product_name,product_quantity,product_price},index) => ( 
                         <tr key={index} className="border-b border-marianBlue">
                             <td className="pt-10">{product_name}</td>
                             <td className="pt-10">$ {product_price}</td>
@@ -61,7 +55,7 @@ export default function TableFactura({Factura}) {
                             <td className="text-marianBlue font-bold">$ {final_price}</td>
                         </tr>
                         <tr>
-                            <td>$ {(price_iva).toFixed(2)}</td>
+                            <td>$ {price_iva}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -69,7 +63,7 @@ export default function TableFactura({Factura}) {
                 <section className="flex justify-end w-full">
                     <section className="flex justify-around items-center bg-marianBlue w-48 h-10 text-white font-bold">
                         <p>Total:</p>
-                        <p>$ {(final_price + price_iva).toFixed(2)}</p>
+                        <p>$ {(Number(final_price) + Number(price_iva)).toFixed(2)}</p>
                     </section>
                 </section>
 
