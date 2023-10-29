@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { client } from "@/lib/pg";
 import {parse} from 'url';
+
 /**
  * 
  * @param {NextRequest} request 
@@ -36,7 +37,7 @@ export async function POST(request)
 
     const insert = await client.query(`INSERT INTO "Client" (name,lastname,cedula,email,phone) 
     VALUES('${name}', '${lastname}', '${cedula}' , '${email}', '${phone}') 
-    RETURNING *;`);
+    RETURNING *;`); 
 
     if(insert.rowCount) return Response.json({results:true});
 

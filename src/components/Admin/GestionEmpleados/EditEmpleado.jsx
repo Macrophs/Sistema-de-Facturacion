@@ -9,6 +9,7 @@ import { isValidCedula, isValidEmail, isValidPhoneNumber, validateForm } from "@
 
 import StandarButton from "@/components/Buttons/StandarButton";
 import Input from "@/components/Tables/Input";
+import { Connect } from "@/services/Connect";
 import { useEffect, useState } from "react";
 
 export default function EditEmpleado({id,NewEmployee,onClose}) {
@@ -20,19 +21,17 @@ export default function EditEmpleado({id,NewEmployee,onClose}) {
         email: "",
         cedula: "",
         phone: "",
+        id: id
 
     });
 
     const [index, setIndex] = useState();
 
     useEffect(() => {
-        const employees = obtainEmployeesHelper();
-        const indexEmployee = employees.findIndex((objeto) => objeto.cedula === id);
-        if (indexEmployee !== -1) {
-            setIndex(indexEmployee);
-            const Employeet = employees[indexEmployee];
-            setformData(Employeet)
-        } 
+        (async ()=>{
+            const condition = "conditions= and id_user ="+id;
+            setformData((await Connect("employee?"+condition,"GET"))[0])
+        })();
     }, [id]);
 
     const [errors, setErrors] = useState({}); //useState para mostrar errores al ingresar campos
@@ -53,11 +52,11 @@ export default function EditEmpleado({id,NewEmployee,onClose}) {
     
   
     //se encarga de validar que la información del formulario no tenga ningun error, para poder enviarla a la bd
-    const ValidateData =() =>
+    const ValidateData =async () =>
     {
         const validationErrors = validateForm(formData,"employee"); //Se llama a la función que valida los posibles errores en los input
         if (Object.keys(validationErrors).length === 0) {
-            setFinish(EditItemDBHelper(formData,"employee",index)); //se envia a la bd
+            setFinish( await Connect("employee","PUT",formData)); //se envia a la bd
             NewEmployee();  //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente
           }
         setErrors(validationErrors); //se actualizan los errores
