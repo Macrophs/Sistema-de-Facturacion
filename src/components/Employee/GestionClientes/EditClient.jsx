@@ -23,8 +23,6 @@ export default function EditClient({id,NewClient,onClose}) {
         id : id,
     });
 
-  
-        
     useEffect(() => {
         (async ()=>{
             const condition = "conditions= and id_client ="+id;

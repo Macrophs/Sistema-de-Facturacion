@@ -49,19 +49,42 @@ export async function POST(request) {
 }
 
 /**
- * 
- * @param {NextRequest} request 
+ *
+ * @param {NextRequest} request
  */
-export async function PUT(request)
-{
-    const body = await request.json();
-    const {name, lastname, email,cedula, phone, id_user} = body;
+export async function PUT(request) {
+  const body = await request.json();
+  const { name, lastname, email, cedula, phone, id_user } = body;
 
-    const insert = await client.query(`UPDATE "User" SET name = '${name}', lastname = '${lastname}', email = '${email}' , cedula = '${cedula}', 
+  const insert =
+    await client.query(`UPDATE "User" SET name = '${name}', lastname = '${lastname}', email = '${email}' , cedula = '${cedula}', 
     phone = '${phone}', active = true WHERE id_user = ${id_user} 
     RETURNING *;`);
 
-    if(insert.rowCount) return Response.json({results:true});
+  if (insert.rowCount) return Response.json({ results: true });
 
-    return new Response('Algo salió mal en el servidor',{status:501});
+  return new Response("Algo salió mal en el servidor", { status: 501 });
+}
+
+/**
+ *
+ * @param {NextRequest} request
+ */
+export async function DELETE(request) {
+  const body = await request.json();
+  const { id } = body;
+
+  const insert =
+    await client.query(`UPDATE "User" SET active = false WHERE id_user = ${id} 
+    RETURNING *;`);
+
+  if (insert.rowCount)
+    return (
+      Response.json({ results: true }),
+      () => {
+        window.location.href = window.location.href;
+      }
+    );
+
+  return new Response("Algo salió mal en el servidor", { status: 501 });
 }

@@ -58,7 +58,7 @@ export default function TableEmployee({
           </tr>
         </thead>
         <tbody>
-          {employees.map(({ name, lastname, email, cedula }, index) => {
+          {employees.map(({id_user, name, lastname, email, cedula }, index) => {
             index++;
             if (index >= paginator.LimitDown && index <= paginator.LimitUp) {
               //Mostrar solos los registros que se encuentran en el rango segun la pagina actual
@@ -90,7 +90,7 @@ export default function TableEmployee({
                       id={1}
                       onClick={() => {
                         setShowModal(true);
-                        setComponentVisible(`Edit/${cedula}`);
+                        setComponentVisible(`Edit/${id_user}`);
                       }}
                     />
                   </td>
@@ -105,7 +105,7 @@ export default function TableEmployee({
                       onClick={() => {
                         setShowModal(true);
                         setComponentVisible(
-                          `Delete/${cedula}/${name} ${lastname}`
+                          `Delete/${id_user}/${name} ${lastname}`
                         );
                       }}
                     />

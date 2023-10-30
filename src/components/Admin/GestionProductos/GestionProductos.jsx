@@ -18,13 +18,17 @@ export default function GestionProductos() {
   const [showModal, setShowModal] = useState(false);
   const [componentVisible, setComponentVisible] = useState("/");
 
-  const [product, setProducts] = useState();
+  const [product, setProducts] = useState(false);
+  const [search, setSearch] = useState();
 
   function addproduct() {
-    setProducts(!product)
+    setProducts(!product);
   }
 
-  const [paginatorController, setPaginatorController] = useState({ LimitUp: 1, LimitDown: 5 });
+  const [paginatorController, setPaginatorController] = useState({
+    LimitUp: 1,
+    LimitDown: 5,
+  });
 
   function ObtainChangeTable(changes) {
     setPaginatorController(changes);
@@ -33,21 +37,44 @@ export default function GestionProductos() {
   let componentModal = [""];
 
   // Usamos destructuring para extraer los valores de componentSelect
-  let [action, productCode, productName] = componentVisible.split("/");
+  let componentSelect = componentVisible.split("/");
+
+  function changeSearch(search) {
+    let filter = "";
+    if (search)
+      filter = `and name ILIKE '%${search}%' or price ILIKE '%${search}%' or quantity ILIKE '%${search}%' `;
+    filter = encodeURIComponent(filter);
+    setSearch("conditions= " + filter);
+  }
+
+  function ObtainChangeTable(changes) {
+    setPaginatorController(changes);
+  }
 
   // Se asigna la vista a la modal, dependiendo de la opción seleccionada
-  if (action === "Add") {
-    componentModal = <NewProducto onClose={() => setShowModal(false)} newProduct={addproduct} />;
-  } else if (action === "Edit") {
-    componentModal = <EditProducto id={productCode} onClose={() => setShowModal(false)}  NewProduct={addproduct} />;
-  } else if (action === "Delete") {
+  if (componentSelect[0] === "Add") {
+    componentModal = (
+      <NewProducto
+        onClose={() => setShowModal(false)}
+        newProduct={addproduct}
+      />
+    );
+  } else if (componentSelect[0] === "Edit") {
+    componentModal = (
+      <EditProducto
+        id={componentSelect[1]}
+        onClose={() => setShowModal(false)}
+        NewProduct={addproduct}
+      />
+    );
+  } else if (componentSelect[0] === "Delete") {
     componentModal = (
       <WarningModal
-        id={productCode} // Aquí pasamos el código del producto como ID
+        id={componentSelect[1]} // Aquí pasamos el código del producto como ID
         entity={"product"}
         entityName={"Producto"}
-        identifier={productCode} // Aquí pasamos el código del producto como identificador
-        name={productName} // Aquí pasamos el nombre del producto
+        identifier={componentSelect[1]} // Aquí pasamos el código del producto como identificador
+        name={componentSelect[2]} // Aquí pasamos el nombre del producto
         onClose={() => setShowModal(false)}
       />
     );
@@ -61,18 +88,31 @@ export default function GestionProductos() {
         </h4>
 
         <div class="flex items-center justify-between flex-col md:flex-row py-4 bg-white">
-          <Search label={"Buscar Producto"} />
+          <Search label={"Buscar Producto"} setSearch={changeSearch} />
 
           <StandarButton
             url={"#"}
             label={"Registrar Producto"}
-            onClick={() => { setShowModal(true); setComponentVisible("Add/") }}
+            onClick={() => {
+              setShowModal(true);
+              setComponentVisible("Add/");
+            }}
           />
         </div>
 
-        <TableProducts setShowModal={setShowModal} setComponentVisible={setComponentVisible} newProduct={product} PaginatorController={paginatorController} />
+        <TableProducts
+          setShowModal={setShowModal}
+          setComponentVisible={setComponentVisible}
+          newProduct={product}
+          PaginatorController={paginatorController}
+        />
 
-        <Pagination newData={product} obtainData={obtainProductsHelper} ChangeTable={ObtainChangeTable} />
+        <Pagination
+          newData={product}
+          Search={search}
+          obtainData={"products"}
+          ChangeTable={ObtainChangeTable}
+        />
       </section>
       <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
         {componentModal}

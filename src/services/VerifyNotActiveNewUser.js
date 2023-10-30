@@ -16,3 +16,12 @@ export  async function VerifyNotActiveNewUser(table,data){
     return false
 }
 
+export  async function VerifyNotActiveProduct(table,data){
+
+    table = table+"?conditions= and id_product = '"+data.id_product+"'";
+    const res = await fetch({url: 'http://localhost:3000/api/'+table, method:"GET", body:null});
+    
+    if(res) return res.results[0];
+    
+    return false
+}
