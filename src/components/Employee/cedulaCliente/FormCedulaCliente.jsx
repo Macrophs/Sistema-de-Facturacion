@@ -1,7 +1,7 @@
 "use client"
-import { VerificationCedula } from "@/Helpers/VerificationCedulaHelper"
 import { isValidCedula } from "@/JS/ValidateInput"
 import StandarButton from "@/components/Buttons/StandarButton"
+import { Connect } from "@/services/Connect"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -36,13 +36,14 @@ export default function FormCedulaCliente() {
 
   
     //se encarga de validar que la información del formulario no tenga ningun error, para poder enviarla a la bd
-    const ValidateData =(e) =>
+    const ValidateData = async (e) =>
     {
         e.preventDefault();
         const validationErrors = validateForm(cedula);
         if (Object.keys(validationErrors).length === 0) {
             //redireccionamiento
-            if(VerificationCedula(cedula))
+            const condition = `conditions= and cedula = '${cedula}'`;
+            if(await Connect("client?"+condition,"GET"))
             {
                 //redireccionamiento compra de producto
                 router.push(`compra_productos?Cedula=${cedula}`);

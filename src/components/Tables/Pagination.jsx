@@ -1,12 +1,11 @@
-import Image from "next/image";
-import { Result } from "postcss";
+import { Connect } from "@/services/Connect";
 import { useEffect, useState } from "react";
 /**
  * Este es un componente para reutilizar el paginador en las diferentes tablas
  * @params
  */
 
-export default function Pagination({newData, obtainData, ChangeTable}) {
+export default function Pagination({newData, obtainData, ChangeTable, Search}) {
 
   let LimitDown = 1;   //Limite inicial inferior de los registros a mostrar
   let LimitUp = 5;    //Limite inicial superior de los registros a mostrar
@@ -26,18 +25,28 @@ export default function Pagination({newData, obtainData, ChangeTable}) {
   }, [controlPaginator]);
 
   useEffect(() => {
-    const Results = obtainData().length;
-    const NumPerPage = 5;
-    const Pages = Math.ceil(Results / NumPerPage);
+   
+    (async ()=>{
 
-    let Paginator = [];
+      let Results = 0;
+      const res = await Connect(obtainData+"?"+Search,"GET");
 
-    for (let i = 1; i <= Pages; i++) {
-      Paginator.push(i);
-    }
-    setPaginator(Paginator);
-    setResult(Results);
-  }, [newData]);
+      if (res) Results = res.length; 
+
+      const NumPerPage = 5;
+      const Pages = Math.ceil(Results / NumPerPage);
+
+      let Paginator = [];
+
+      for (let i = 1; i <= Pages; i++) {
+        Paginator.push(i);
+      }
+      setPaginator(Paginator);
+      setResult(Results);
+      setActualPage(1);
+      setControlPaginator({LimitDown:1, LimitUp:5});
+    })();
+  }, [newData,Search]);
 
   return (
     <nav

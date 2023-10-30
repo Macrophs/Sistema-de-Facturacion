@@ -1,27 +1,26 @@
 "use client"
 
-import { obtainClientHelper } from "@/Helpers/ObtainDataHelper";
 import StandarButton from "@/components/Buttons/StandarButton";
+import Loader from "@/components/Tables/Loader";
+import { Connect } from "@/services/Connect";
 import { useEffect, useState } from "react";
 
 /**
  * Este es un componente para utilizar la tabla que muestra la gestion de clientes
  */
 
-export default function TableClient({ setComponentVisible, setShowModal, NewClient, PaginatorController }) {
+export default function TableClient({ setComponentVisible, setShowModal, NewClient, Search, PaginatorController }) {
 
-  const [clients, setClients] = useState([
-    {
-      name: "",
-      lastname: "",
-      cedula: "",
-    }
-  ]); //se encarga de almacenar los datos de los clientes a mostrar
+  const [clients, setClients] = useState([{}]); //se encarga de almacenar los datos de los clientes a mostrar
+  const [loading, setLoading] = useState(true); //se encarga de manejar el cargado de los datos
+  useEffect(()=>{
+      (async ()=>{
+          setLoading(true);
+          setClients(await Connect("client?"+Search,"GET"));
+          setLoading(false);
+      })();
+  },[NewClient,Search]);
 
-  //useEffect para obtener los clientes, se actualiza cada vez que se agregue un nuevo cliente mediante [NewClient]
-  useEffect(() => {
-    setClients(obtainClientHelper);
-  }, [NewClient]);
 
 
   const [paginator, setPaginator] = useState({ LimitUp: 1, LimitDown: 5 });
@@ -30,12 +29,23 @@ export default function TableClient({ setComponentVisible, setShowModal, NewClie
     setPaginator(PaginatorController);
   }, [PaginatorController]);
 
+  if (loading) {
+    return <Loader />;
+  }
+
+  if(clients === false)
+  {
+    return (
+        <h1>Sin Resultados</h1>
+      );
+  } 
+  
   return (
     <table className="w-full  text-sm text-left text-gray-500 ">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
         <tr>
           <th scope="col" className="px-6 py-3">
-            Cédula
+            Cédula 
           </th>
           <th scope="col" className="px-10 py-3">
             Nombre
@@ -46,7 +56,7 @@ export default function TableClient({ setComponentVisible, setShowModal, NewClie
         </tr>
       </thead>
       <tbody>
-        {clients.map(({ name, lastname, cedula }, index) => {
+        {clients && clients.map(({id_client, name, lastname, cedula }, index) => {
           index++;
           if (index >= paginator.LimitDown && index <= paginator.LimitUp) { //Mostrar solos los registros que se encuentran en el rango segun la pagina actual
             return (
@@ -67,11 +77,11 @@ export default function TableClient({ setComponentVisible, setShowModal, NewClie
                     url={"#"}
                     label={"Editar"}
                     className={"  bg-transparent hover:bg-transparent focus:ring-transparent !text-marianBlue  "}
-                    id={index}
+                    id={id_client}
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowModal(true);
-                      setComponentVisible(`Edit/${cedula}`);
+                      setComponentVisible(`Edit/${id_client}`);
                     }}
                   />
 
@@ -85,7 +95,7 @@ export default function TableClient({ setComponentVisible, setShowModal, NewClie
                     className={"bg-transparent hover:bg-transparent focus:ring-transparent !text-red-500"}
                     onClick={() => {
                       setShowModal(true);
-                      setComponentVisible(`Delete/${cedula}/${name}`);
+                      setComponentVisible(`Delete/${id_client}/${name}`);
                     }}
                   />
 

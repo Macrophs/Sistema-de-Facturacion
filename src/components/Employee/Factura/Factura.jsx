@@ -3,8 +3,12 @@ import { useSearchParams } from "next/navigation";
 import HeaderFactura from "./HeaderFactura"
 import TableFactura from "./TableFactura"
 import { useEffect, useState } from "react";
-import { obtainFacturasHelper } from "@/Helpers/ObtainDataHelper";
 import { useRouter } from "next/navigation";
+import { Connect } from "@/services/Connect";
+import { GeneratePDF } from "@/services/GeneratePDF";
+import StandarButton from "@/components/Buttons/StandarButton";
+import Loader from "@/components/Tables/Loader";
+
 
 /**
  * Este es un componente de la pagina compra producto, que contendrá todo el contenido de la compra
@@ -22,39 +26,34 @@ export default function Factura() {
 
   const router = useRouter();
 
-  const [factura, setFactura] = useState( {
-    date: "",
-    code:undefined,
-    name: "",
-    lastname:"",
-    cedula:"",
-    email:"",
-    phone:"",
-    method:undefined,
-    products:[
-        {
-            name: "",
-            price_unit: undefined,
-            quantity:undefined,
-        },
-    ]
-});
+  const [factura, setFactura] = useState();
+  const [loading, setLoading] = useState(true); //se encarga de manejar el cargado de los datos
 
 
   useEffect(() => {
-      const totalFacturas = obtainFacturasHelper();
-      
-      const facturaData = totalFacturas.find((object) => object.code === parseInt(Code));
+    (async () => {
+      setLoading(true);
+      const facturaData = await Connect("invoice/"+Code,"GET");
+
+    
       //si el cliente no es encontrado en la bd, se le redirecciona a cedula cliente
       if(!facturaData)
       { 
           router.push("cedula_cliente");
       }
       else
+      {
         setFactura(facturaData);
-      
-      
+        setLoading(false);
+      }
+        
+    })();
   }, [Code]);
+
+  if (loading) {
+    return <Loader />;
+  }
+
 
   return (
     <>
@@ -64,8 +63,11 @@ export default function Factura() {
               <h1 className="text-marianBlue font-bold mt-2 text-4xl  mb-4 text-center">Factura de Compra</h1>    
               <HeaderFactura Factura={factura} />    
               <TableFactura Factura={factura}/>
+              <StandarButton href={"#"} label={"Generar PDF"} onClick={()=>GeneratePDF(Code)} />
           </section>
+
         </section>
+        
     </>
   )
 }

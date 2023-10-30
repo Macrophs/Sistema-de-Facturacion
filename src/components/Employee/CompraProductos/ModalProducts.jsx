@@ -7,19 +7,26 @@ import Image from "next/image";
 import Link from "next/link";
 import ShowMethod from "./ShowMethod";
 import StandarButton from "@/components/Buttons/StandarButton";
-import { CreateFacturaHelper } from "@/Helpers/CreateFacturaHelper";
-import { useRouter } from "next/navigation";
+import { CreateInvoice } from "@/services/CreateInvoice";
 export default function ModalProducts({onClose, Price_Buy, ClientData, ProductsData}) {
 
     const [page, setPage] = useState(1); //almacena si se mostrará la vista de selección de método de pago o la de confirmación de compra
     const [method, setMethod] = useState(null); // almacena el método de pago a usar
     const [checked, setChecked] = useState(false); // almacena si se confirmó el pago de la compra
 
+    const method_payment = [
+      "Punto de Venta",
+      "Efectivo",
+      "Pago Móvil",
+    ];
 
-    const CreateFactura = () =>
+    
+
+    const CreateFactura = async () =>
     {
-        const code = CreateFacturaHelper(ClientData,method,ProductsData);
-        window.location.href = "factura?Code="+code;
+        const code = await CreateInvoice(ClientData,method,ProductsData);
+        if(code) 
+            window.location.href = "factura?Code="+code;
     }
 
     if(page === 1)
@@ -96,8 +103,8 @@ export default function ModalProducts({onClose, Price_Buy, ClientData, ProductsD
 
                     <section className="p-2">
                         <p><span className="text-marianBlue font-bold">Cliente: </span>{ClientData.name} {ClientData.lastname} </p>
-                        <p className="pt-2"><span className="text-marianBlue font-bold">Método de Pago: </span> Pago Móvil</p>
-                        <p className="pt-2"><span className="text-marianBlue font-bold">Total a Pagar: </span> <span className="text-green-500"> {Price_Buy + Math.round(parseFloat([(16 * Price_Buy ) / 100]) * 100) / 100}$ </span></p>
+                        <p className="pt-2"><span className="text-marianBlue font-bold">Método de Pago: </span> {method_payment[method-1]}</p>
+                        <p className="pt-2"><span className="text-marianBlue font-bold">Total a Pagar: </span> <span className="text-green-500"> {(Price_Buy + Math.round(parseFloat([(16 * Price_Buy ) / 100]) * 100) / 100).toFixed(2)}$ </span></p>
 
                         <input checked={checked} onChange={()=> setChecked(!checked)} id="check" type="checkbox" className="mt-5 w-4 h-4 bg-marianBlue border-marianBlue rounded focus:ring-marianBlue "/>
                         <label htmlFor="check" className="p-2 font-medium" >La compra ha sido Pagada</label>

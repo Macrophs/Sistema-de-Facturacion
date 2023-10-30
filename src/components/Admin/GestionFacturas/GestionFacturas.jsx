@@ -2,10 +2,9 @@
 import Search from "@/components/Tables/Search";
 import TableFactura from "./TableFactura";
 import Pagination from "@/components/Tables/Pagination";
-import Modal from "@/components/Modal/Modal";
+
 import { useState } from "react";
-import WarningModal from "@/components/Modal/WarningModal";
-import { obtainFacturasHelper } from "@/Helpers/ObtainDataHelper";
+
 
 /**
  * Este es un componente que engloba toda la estructura de la interfaz gestion de Facturas
@@ -17,28 +16,19 @@ export default function GestionFacturas() {
 
   const [paginatorController, setPaginatorController] = useState({ LimitUp: 1, LimitDown: 5 });
 
+  const [search, setSearch] = useState();
+
   function ObtainChangeTable(changes) {
     setPaginatorController(changes);
   }
 
-  let componentModal = [""];
-
-  let componentSelect = componentVisible.split("/");
-
-  // Se asigna la vista a la modal, dependiendo de la opción seleccionada
-  if (componentSelect[0] === "Delete") {
-
-    const codigo = componentSelect[1];
-    componentModal = (
-      <WarningModal
-        id={codigo}
-        entity={"Facturación"}
-        identifier={codigo}
-        name={""}
-        onClose={() => setShowModal(false)}
-      />
-    );
+  function changeSearch(search) {
+    let filter = "";
+    if(search) filter = `where client.name ILIKE '%${search}%' or client.lastname ILIKE '%${search}%' or  client.cedula ILIKE '%${search}%' `;
+    filter = encodeURIComponent(filter);
+    setSearch("conditions= "+filter);
   }
+
 
   return (
     <section className="flex items-center justify-center  lg:mt-0 ">
@@ -48,20 +38,19 @@ export default function GestionFacturas() {
         </h4>
 
         <div class="flex items-center justify-between py-4 bg-white">
-          <Search label={"Buscar Facturas"} />
+          <Search label={"Buscar Facturas"}  setSearch={changeSearch} />
         </div>
 
         <TableFactura
           setShowModal={setShowModal}
           setComponentVisible={setComponentVisible}
+          Search={search}
           PaginatorController={paginatorController}
         />
 
-        <Pagination newData={null} obtainData={obtainFacturasHelper} ChangeTable={ObtainChangeTable} />
+        <Pagination newData={null} obtainData={"invoice"} Search={search} ChangeTable={ObtainChangeTable} />
       </section>
-      <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
-        {componentModal}
-      </Modal>
+     
     </section>
   );
 }

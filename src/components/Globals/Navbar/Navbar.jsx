@@ -19,11 +19,11 @@ export default function Navbar() {
     const ActiveUser = JSON.parse(localStorage.getItem("ActiveUser"));
     if(ActiveUser !== null)
     {
-        if(ActiveUser.role !== path )
+        if(ActiveUser.rol_name !== path )
         {
-          if(ActiveUser.role === "employee")
+          if(ActiveUser.rol_name === "employee")
             router.push("/employee/cedula_cliente");
-          else if(ActiveUser.role=== "admin")
+          else if(ActiveUser.rol_name=== "admin")
             router.push("/admin");
         }
     }
@@ -39,7 +39,7 @@ export default function Navbar() {
   useEffect(() => {
     if(JSON.parse(localStorage.getItem("ActiveUser") !== null))
     {
-      setUsername(JSON.parse(localStorage.getItem("ActiveUser")).username);
+      setUsername(JSON.parse(localStorage.getItem("ActiveUser")).name);
   
     }
   }, []);

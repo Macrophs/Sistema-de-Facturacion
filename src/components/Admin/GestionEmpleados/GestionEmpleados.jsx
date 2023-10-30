@@ -8,7 +8,6 @@ import NewEmpleado from "./NewEmpleado";
 import EditEmpleado from "./EditEmpleado";
 import WarningModal from "@/components/Modal/WarningModal";
 import StandarButton from "@/components/Buttons/StandarButton";
-import { obtainEmployeesHelper } from "@/Helpers/ObtainDataHelper";
 
 /**
  * Este es un componente que engloba toda la estructura de la interfaz gestion de empleados
@@ -19,6 +18,7 @@ export default function GestionEmpleados() {
   const [componentVisible, setComponentVisible] = useState("/");
 
   const [employee, setEmployee] = useState();
+  const [search, setSearch] = useState();
 
   function addEmployee() {
     setEmployee(!employee)
@@ -30,6 +30,12 @@ export default function GestionEmpleados() {
     setPaginatorController(changes);
   }
 
+  function changeSearch(search) {
+    let filter = "";
+    if(search) filter = `and (Users.name ILIKE '%${search}%' or Users.lastname ILIKE '%${search}%' or  Users.cedula ILIKE '%${search}%' ) `;
+    filter = encodeURIComponent(filter);
+    setSearch("conditions= "+filter);
+  }
 
   let componentModal = [""];
 
@@ -49,10 +55,12 @@ export default function GestionEmpleados() {
     componentModal = (
       <WarningModal
         id={cedula}
-        entity={"Empleado"}
+        entity={"employee"}
+        entityName={"Empleado"}
         identifier={cedula}
         name={fullName}
         onClose={() => setShowModal(false)}
+        update={addEmployee}
       />
     );
   }
@@ -65,7 +73,7 @@ export default function GestionEmpleados() {
         </h4>
 
         <div class="flex items-center justify-between flex-col md:flex-row py-4 bg-white">
-          <Search label={"Buscar Empleado"} />
+          <Search label={"Buscar Empleado"} setSearch={changeSearch}/>
 
           <StandarButton
             url={"#"}
@@ -74,9 +82,9 @@ export default function GestionEmpleados() {
           />
         </div>
 
-        <TableEmployee setShowModal={setShowModal} setComponentVisible={setComponentVisible} newEmployee={employee} PaginatorController={paginatorController} />
+        <TableEmployee setShowModal={setShowModal} setComponentVisible={setComponentVisible} newEmployee={employee} Search={search} PaginatorController={paginatorController} />
 
-        <Pagination newData={employee} obtainData={obtainEmployeesHelper} ChangeTable={ObtainChangeTable} />
+        <Pagination newData={employee} obtainData={"employee"} Search={search} ChangeTable={ObtainChangeTable} />
       </section>
       <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
         {componentModal}

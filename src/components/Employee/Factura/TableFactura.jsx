@@ -4,18 +4,15 @@
  * @params props 
  */
 
+import { CalculatePriceIva } from "@/services/CalculatePriceIva";
+
 export default function TableFactura({Factura}) {
 
-    const elements = Factura.products;
+    if(!Factura)
+        return "";
 
-    // Calcular precio +  iva
-    let final_price = 0;
-    elements.map(({quantity, price_unit}) =>{
-        final_price = final_price + (quantity * price_unit);
-    });
-    const iva = 16;
-    let price_iva = (iva * final_price ) / 100 ;
-
+    //Obtener Precio y IVA de la compra
+    const {final_price, price_iva} = CalculatePriceIva(Factura);
 
     return (
         <>
@@ -33,12 +30,12 @@ export default function TableFactura({Factura}) {
 
                     <tbody className="mt-11">
 
-                    {elements.map(({name,quantity,price_unit},index) => ( 
+                    {Factura.map(({product_name,product_quantity,product_price},index) => ( 
                         <tr key={index} className="border-b border-marianBlue">
-                            <td className="pt-10">{name}</td>
-                            <td className="pt-10">$ {price_unit}</td>
-                            <td className="pt-10">{quantity}</td>
-                            <td className="pt-10">$ {price_unit * quantity}</td>
+                            <td className="pt-10">{product_name}</td>
+                            <td className="pt-10">$ {product_price}</td>
+                            <td className="pt-10">{product_quantity}</td>
+                            <td className="pt-10">$ {product_price * product_quantity}</td>
                         </tr>
                      ))}
                     </tbody>
@@ -66,7 +63,7 @@ export default function TableFactura({Factura}) {
                 <section className="flex justify-end w-full">
                     <section className="flex justify-around items-center bg-marianBlue w-48 h-10 text-white font-bold">
                         <p>Total:</p>
-                        <p>$ {final_price + price_iva}</p>
+                        <p>$ {(Number(final_price) + Number(price_iva)).toFixed(2)}</p>
                     </section>
                 </section>
 

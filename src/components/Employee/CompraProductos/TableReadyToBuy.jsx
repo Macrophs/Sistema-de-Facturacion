@@ -21,8 +21,8 @@ export default function TableReadyToBuy(props) {
             newProduct.push(props.Products);
             newProduct.filter(Boolean);
             setProductos(newProduct);
+            props.ProductsChange(null); //una vez agregado, se elimina el producto
         }
-        
 
     },[props.Products]);
     
@@ -35,17 +35,17 @@ export default function TableReadyToBuy(props) {
     useEffect(()=>{
 
         const newProduct = [...productos];
-        
-        //se busca el elemento a eliminar mediante el codigo
-        const productToDelete = newProduct.findIndex(obj => obj.code === props.DeleteProduct.code )
-
-        //Se comprueba que lo haya encontrado para eliminarlo
-        if (productToDelete !== -1) {
-            newProduct.splice(productToDelete,1);
-            setProductos(newProduct);
-            
+        if(props.DeleteProduct)
+        {
+            //se busca el elemento a eliminar mediante el codigo
+            const productToDelete = newProduct.findIndex(obj => obj.id_product === props.DeleteProduct.id_product )
+            //Se comprueba que lo haya encontrado para eliminarlo
+            if (productToDelete !== -1) {
+                newProduct.splice(productToDelete,1);
+                setProductos(newProduct);
+                props.ChangeDeleteProduct(undefined); 
+            }
         }
-
     },[props.DeleteProduct]);
     
     
@@ -55,13 +55,17 @@ export default function TableReadyToBuy(props) {
 
     if(productos != null)
     {
-        productos.map(({quantity, price_unit}) =>{
+        productos.map(({quantity, price}) =>{
             final_quantity = final_quantity + quantity;
-            final_price = final_price + (quantity * price_unit); //precio total a pagar
+            final_price = final_price + (quantity * price); //precio total a pagar
         });
     }
 
-    props.PriceChange(final_price); //se envia el precio a pagar al componente padre
+
+
+    useEffect(() => {
+        props.PriceChange(final_price);
+    }, [final_price]);
 
     //aumentar la cantidad a comprar de un producto
     const IncrementQuantity = (id) =>{
@@ -94,7 +98,6 @@ export default function TableReadyToBuy(props) {
     //Elimina un producto de la tabla y desmarca el checkbox del TableProduct
     const RemoveProduct = (id) =>{
         const newProduct = [...productos];
-        console.log(newProduct[id]);
         props.DeleteSelectProduct(newProduct[id]); //Se envia el producto a desmarcar en TableProduct
         newProduct.splice(id,1);
         setProductos(newProduct);
@@ -126,7 +129,7 @@ export default function TableReadyToBuy(props) {
                     </thead>
                     <tbody>
                         {/*Se muestran todos los productos a comprar*/}
-                        { productos.map(({name,quantity,price_unit},index) =>(
+                        { productos.map(({id_product,name,quantity,price},index) =>(
                             <tr className="bg-white " key={index}>
                            
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
@@ -147,10 +150,10 @@ export default function TableReadyToBuy(props) {
                                         </button>
                                 </td>
                                 <td className="px-6 py-4">
-                                    {price_unit}
+                                    ${price}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {quantity * price_unit}
+                                    ${quantity * price}
                                 </td>
                                 <td className="px-6 py-4">
                                     <button className="text-red-500 font-bold"
