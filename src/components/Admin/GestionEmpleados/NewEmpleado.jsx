@@ -2,15 +2,13 @@
  * Este es un componente para agregar nuevos empleados al sistema
  */
 
-import NewItemDBHelper from "@/Helpers/NewItemDBHelper";
 import {
-  isValidCedula,
-  isValidEmail,
-  isValidPhoneNumber,
+
   validateForm,
 } from "@/JS/ValidateInput";
 import StandarButton from "@/components/Buttons/StandarButton";
 import Input from "@/components/Tables/Input";
+import { Connect } from "@/services/Connect";
 import { VerifyNotActiveNewUser } from "@/services/VerifyNotActiveNewUser";
 import { useEffect, useState } from "react";
 
@@ -39,13 +37,18 @@ export default function NewEmpleado({ onClose, newEmployee }) {
 
   //se encarga de validar que la información del formulario no tenga ningun error, para poder enviarla a la bd
   const ValidateData = async () => {
-    const validationErrors = validateForm(formData, "employee"); //Se llama a la función que valida los posibles errores en los input
+    const validationErrors = await validateForm(formData, "employee"); //Se llama a la función que valida los posibles errores en los input
     if (Object.keys(validationErrors).length === 0) {
-      const res = await VerifyNotActiveNewUser("employee", formData); //se comprueba si la cedula pertenecia a un usuario inactivo
-
-      if (res === false) {
-        setFinish(await NewItemDBHelper(formData, "POST")); //se envia a la bd
+      const res = await VerifyNotActiveNewUser("employee/notActive", formData); //se comprueba si la cedula pertenecia a un usuario inactivo
+      
+      if(res != false)
+      { 
+        formData.id_user = res.id_user;
+        setFinish( await Connect("employee","PUT",formData)); //se envia a la bd
       }
+      else 
+        setFinish( await Connect("employee","POST",formData)); //se envia a la bd
+               
       newEmployee(); //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente
     }
     setErrors(validationErrors); //se actualizan los errores

@@ -3,12 +3,8 @@
  */
 
 "use client";
-import EditItemDBHelper from "@/Helpers/EditItemDBHelper";
-import { obtainEmployeesHelper } from "@/Helpers/ObtainDataHelper";
 import {
-  isValidCedula,
-  isValidEmail,
-  isValidPhoneNumber,
+
   validateForm,
 } from "@/JS/ValidateInput";
 
@@ -53,7 +49,7 @@ export default function EditEmpleado({ id, NewEmployee, onClose }) {
 
   //se encarga de validar que la información del formulario no tenga ningun error, para poder enviarla a la bd
   const ValidateData = async () => {
-    const validationErrors = validateForm(formData, "employee"); //Se llama a la función que valida los posibles errores en los input
+    const validationErrors = await validateForm(formData, "employee"); //Se llama a la función que valida los posibles errores en los input
     if (Object.keys(validationErrors).length === 0) {
       setFinish(await Connect("employee", "PUT", formData)); //se envia a la bd
       NewEmployee(); //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente

@@ -1,5 +1,4 @@
 "use client"
-import { VerificationCedula } from "@/Helpers/VerificationCedulaHelper"
 import { isValidCedula } from "@/JS/ValidateInput"
 import StandarButton from "@/components/Buttons/StandarButton"
 import { Connect } from "@/services/Connect"

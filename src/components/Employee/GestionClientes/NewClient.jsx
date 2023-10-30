@@ -1,5 +1,4 @@
 "use client"
-import NewItemDBHelper from "@/Helpers/NewItemDBHelper";
 import { validateForm} from "@/JS/ValidateInput"; //funciones para validar input
 import StandarButton from "@/components/Buttons/StandarButton";
 import Input from "@/components/Tables/Input";

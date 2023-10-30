@@ -2,7 +2,7 @@
  * Este es un componente para utilizar la tabla que muestra la gestion de empleados
  */
 
-import { obtainEmployeesHelper } from "@/Helpers/ObtainDataHelper";
+
 import StandarButton from "@/components/Buttons/StandarButton";
 import Loader from "@/components/Tables/Loader";
 import { Connect } from "@/services/Connect";
@@ -22,7 +22,7 @@ export default function TableEmployee({
   useEffect(() => {
     (async () => {
       setLoading(true);
-      setEmployees(await Connect("employee", "GET"));
+      setEmployees(await Connect("employee?"+Search, "GET"));
       setLoading(false);
     })();
   }, [newEmployee, Search]);

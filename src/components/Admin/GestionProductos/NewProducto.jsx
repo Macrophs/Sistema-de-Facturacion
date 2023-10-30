@@ -2,22 +2,21 @@
  * Este es un componente para agregar nuevos productos al sistema
  */
 
-import NewItemDBHelper from "@/Helpers/NewItemDBHelper";
-import { obtainProductsHelper } from "@/Helpers/ObtainDataHelper";
 import { validateForm } from "@/JS/ValidateInput";
 import StandarButton from "@/components/Buttons/StandarButton";
 import Input from "@/components/Tables/Input";
 import { Connect } from "@/services/Connect";
-import { VerifyNotActiveProduct } from "@/services/VerifyNotActiveNewUser";
 import { useEffect, useState } from "react";
 
 export default function NewProducto({ onClose, newProduct }) {
   //useState que contendrá toda la informacion de los input del formulario
   const [formData, setformData] = useState({
     name: "",
-    price: 0,
-    quantity: 0,
+    price: "",
+    quantity: "",
+    id_user: JSON.parse(localStorage.getItem("ActiveUser")).id_user,
   });
+ 
   const [errors, setErrors] = useState({}); //useState para mostrar errores al ingresar campos
 
   const [finish, setFinish] = useState(false); //useState para finalizar el registro y mostrar otra interfaz

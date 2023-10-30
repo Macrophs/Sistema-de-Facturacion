@@ -7,7 +7,6 @@ import { useEffect, useState } from "react"
 import Modal from "@/components/Modal/Modal"
 import ModalProducts from "./ModalProducts"
 import { useSearchParams } from 'next/navigation'
-import { obtainClientHelper } from "@/Helpers/ObtainDataHelper"
 import { useRouter } from "next/navigation"
 import { Connect } from "@/services/Connect"
 /**

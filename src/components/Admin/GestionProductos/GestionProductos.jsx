@@ -8,7 +8,7 @@ import Modal from "@/components/Modal/Modal";
 import EditProducto from "./EditProducto";
 import WarningModal from "@/components/Modal/WarningModal";
 import StandarButton from "@/components/Buttons/StandarButton";
-import { obtainProductsHelper } from "@/Helpers/ObtainDataHelper";
+
 
 /**
  * Este es un componente que engloba toda la estructura de la interfaz gestion de productos
@@ -42,7 +42,7 @@ export default function GestionProductos() {
   function changeSearch(search) {
     let filter = "";
     if (search)
-      filter = `and name ILIKE '%${search}%' or price ILIKE '%${search}%' or quantity ILIKE '%${search}%' `;
+      filter = `and name ILIKE '%${search}%'`;
     filter = encodeURIComponent(filter);
     setSearch("conditions= " + filter);
   }
@@ -73,9 +73,10 @@ export default function GestionProductos() {
         id={componentSelect[1]} // Aquí pasamos el código del producto como ID
         entity={"product"}
         entityName={"Producto"}
-        identifier={componentSelect[1]} // Aquí pasamos el código del producto como identificador
+        identifier={"#"+componentSelect[1]} // Aquí pasamos el código del producto como identificador
         name={componentSelect[2]} // Aquí pasamos el nombre del producto
         onClose={() => setShowModal(false)}
+        update={addproduct}
       />
     );
   }
@@ -104,13 +105,14 @@ export default function GestionProductos() {
           setShowModal={setShowModal}
           setComponentVisible={setComponentVisible}
           newProduct={product}
+          Search={search}
           PaginatorController={paginatorController}
         />
 
         <Pagination
           newData={product}
           Search={search}
-          obtainData={"products"}
+          obtainData={"product"}
           ChangeTable={ObtainChangeTable}
         />
       </section>

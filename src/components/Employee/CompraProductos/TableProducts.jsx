@@ -25,7 +25,7 @@ export default function TableProducts(props) {
         (async () => {
             setLoading(true);
 
-            const products = await Connect("product?"+props.Search,"GET"); //se obtienen los productos
+            const products = await Connect("product/buy?"+props.Search,"GET"); //se obtienen los productos
             setLoading(false);
             if(products === false) {
                 setElements(products);

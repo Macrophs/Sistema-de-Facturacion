@@ -14,66 +14,14 @@ export default function WarningModal({
   identifier,
   name,
   onClose,
+  update,
 }) {
-  const currentEntitys = "";
+
 
   const handleDelete = async () => {
     await Connect(entity, "DELETE", { id: id }).then(onClose());
-
-    let currentEntitys;
-    if (entity === "Producto") {
-      currentEntitys = JSON.parse(localStorage.getItem("products"));
-      if (!currentEntitys) return;
-
-      const productIndex = currentEntitys.findIndex(
-        (product) => product.name === name
-      );
-      if (productIndex === -1) return;
-
-      currentEntitys.splice(productIndex, 1);
-
-      localStorage.setItem("products", JSON.stringify(currentEntitys));
-      window.location.href = "/admin/gestion_productos";
-    } else if (entity === "Empleado") {
-      currentEntitys = JSON.parse(localStorage.getItem("employee"));
-      if (!currentEntitys) return;
-
-      const employeeIndex = currentEntitys.findIndex(
-        (employee) => employee.cedula === identifier
-      );
-      if (employeeIndex === -1) return;
-
-      currentEntitys.splice(employeeIndex, 1);
-
-      localStorage.setItem("employee", JSON.stringify(currentEntitys));
-      window.location.href = "/admin/gestion_empleados";
-    } else if (entity === "Facturación") {
-      currentEntitys = JSON.parse(localStorage.getItem("facturas"));
-      if (!currentEntitys) return;
-
-      const facturaIndex = currentEntitys.findIndex(
-        (factura) => factura.code.toString() === identifier
-      );
-      if (facturaIndex === -1) return;
-
-      currentEntitys.splice(facturaIndex, 1);
-
-      localStorage.setItem("facturas", JSON.stringify(currentEntitys));
-      window.location.href = "/admin/gestion_facturas";
-    } else if (entity === "Cliente") {
-      currentEntitys = JSON.parse(localStorage.getItem("client"));
-      if (!currentEntitys) return;
-
-      const clientIndex = currentEntitys.findIndex(
-        (client) => client.cedula === identifier
-      );
-      if (clientIndex === -1) return;
-
-      currentEntitys.splice(clientIndex, 1);
-
-      localStorage.setItem("client", JSON.stringify(currentEntitys));
-      window.location.href = "/employee/gestion_clientes";
-    }
+    alert("Se ha eliminado correctamente al "+entityName+" "+name)
+    update(); // se indica que se modifico la tabla para que se recargue
   };
   return (
     <>
@@ -83,7 +31,7 @@ export default function WarningModal({
           <span className=" text-red-500 font-bold">ELIMINAR</span> al{" "}
           {entityName}:
         </h1>
-        <h1 className=" text-2xl pt-4 font-bold">{`${identifier} ${name}`} </h1>
+        <h1 className=" text-2xl pt-4 font-bold">{` ${name}`} </h1>
         <h1 className=" text-2xl pt-4"> del Sistema?</h1>
       </section>
 

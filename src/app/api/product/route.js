@@ -12,7 +12,7 @@ export async function GET(request) {
   let { conditions } = query; //obtener posibles variables de la url
 
   const data = await client.query(
-    `SELECT id_product , name, price, quantity as quantity_stock FROM "Product" where active = true and quantity > 0 ${
+    `SELECT id_product , name, price, quantity FROM "Product" where active = true ${
       conditions ? conditions : ""
     } ORDER BY name ;`
   );
@@ -27,13 +27,14 @@ export async function GET(request) {
  *
  * @param {NextRequest} request
  */
+
 export async function POST(request) {
   const body = await request.json();
-  const { name, price, quantity } = body;
+  const { name, price, quantity ,id_user } = body;
 
   const insert =
     await client.query(`INSERT INTO "Product" (name,price,quantity,active,id_user) 
-    VALUES('${name}', ${price}, ${quantity} , ${true}, ${1}) 
+    VALUES('${name}', ${price}, ${quantity} , ${true}, ${id_user}) 
     RETURNING *;`);
 
   if (insert.rowCount) return Response.json({ results: true });
@@ -45,12 +46,13 @@ export async function POST(request) {
  *
  * @param {NextRequest} request
  */
+
 export async function PUT(request) {
   const body = await request.json();
-  const { name, price, quantity_stock, id_product } = body;
+  const { name, price, quantity, id_product } = body;
 
   const insert =
-    await client.query(`UPDATE "Product" SET name = '${name}', price = ${price}, quantity = ${quantity_stock}, active = true, id_user = ${1} WHERE id_product = ${id_product} 
+    await client.query(`UPDATE "Product" SET name = '${name}', price = ${price}, quantity = ${quantity}, active = true, id_user = ${1} WHERE id_product = ${id_product} 
     RETURNING *;`);
 
   if (insert.rowCount) return Response.json({ results: true });

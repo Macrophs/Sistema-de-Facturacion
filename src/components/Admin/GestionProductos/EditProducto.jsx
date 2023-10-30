@@ -3,8 +3,6 @@
  */
 
 "use client";
-import EditItemDBHelper from "@/Helpers/EditItemDBHelper";
-import { obtainProductsHelper } from "@/Helpers/ObtainDataHelper";
 import { validateForm } from "@/JS/ValidateInput";
 import StandarButton from "@/components/Buttons/StandarButton";
 import Input from "@/components/Tables/Input";
@@ -15,8 +13,8 @@ export default function EditProducto({ id, NewProduct, onClose }) {
   //useState que contendrá toda la informacion de los input del formulario
   const [formData, setformData] = useState({
     name: "",
-    price: 0,
-    quantity_stock: 0,
+    price: "",
+    quantity: "",
     id,
   });
 
@@ -26,7 +24,6 @@ export default function EditProducto({ id, NewProduct, onClose }) {
     (async () => {
       const condition = "conditions= and id_product =" + id;
       setformData((await Connect("product?" + condition, "GET"))[0]);
-      console.log(formData, "FORM DTA")
     })();
   }, [id]);
 
@@ -46,7 +43,7 @@ export default function EditProducto({ id, NewProduct, onClose }) {
 
   //se encarga de validar que la información del formulario no tenga ningun error, para poder enviarla a la bd
   const ValidateData = async () => {
-    const validationErrors = validateForm(formData, "product"); //Se llama a la función que valida los posibles errores en los input
+    const validationErrors = await validateForm(formData, "product"); //Se llama a la función que valida los posibles errores en los input
     if (Object.keys(validationErrors).length === 0) {
       setFinish(await Connect("product", "PUT", formData)); //se envia a la bd
       NewProduct(); //se indica que se agrego un nuevo campo, para que se actualice la tabla dinamicamente
@@ -91,13 +88,13 @@ export default function EditProducto({ id, NewProduct, onClose }) {
               <div className="relative z-0 w-full mb-8 group">
                 <Input
                   label={"Cantidad en Stock"}
-                  name={"quantity_stock"}
+                  name={"quantity"}
                   type={"number"}
-                  value={formData.quantity_stock}
+                  value={formData.quantity}
                   InputChange={InputChange}
                 />
-                {errors.quantity_stock && (
-                  <p className="text-red-500">{errors.quantity_stock}</p>
+                {errors.quantity && (
+                  <p className="text-red-500">{errors.quantity}</p>
                 )}
               </div>
             </div>
@@ -132,7 +129,7 @@ export default function EditProducto({ id, NewProduct, onClose }) {
               <span className="text-marianBlue font-bold">
                 Cantidad en Stock:{" "}
               </span>{" "}
-              {formData.quantity_stock}
+              {formData.quantity}
             </p>
           </section>
           <StandarButton

@@ -4,6 +4,7 @@
  */
 export function CalculatePriceIva(elements)
 {
+   
      // Calcular precio +  iva
      let final_price = 0;
      elements.map(({product_quantity, product_price}) =>{

@@ -1,4 +1,3 @@
-import { obtainProductsHelper } from "@/Helpers/ObtainDataHelper";
 import StandarButton from "@/components/Buttons/StandarButton";
 import Loader from "@/components/Tables/Loader";
 import { Connect } from "@/services/Connect";
@@ -11,6 +10,7 @@ export default function TableProducts({
   PaginatorController,
   Search,
 }) {
+
   const [products, setProducts] = useState([{}]); //se encarga de almacenar los datos de los Productos a mostrar
   const [loading, setLoading] = useState([{}]);
   useEffect(() => {
@@ -20,11 +20,6 @@ export default function TableProducts({
       setLoading(false);
     })();
   }, [newProduct, Search]);
-
-  //useEffect para obtener los Productos
-  useEffect(() => {
-    setProducts(Connect("product", "GET"));
-  }, [newProduct]);
 
   const [paginator, setPaginator] = useState({ LimitUp: 1, LimitDown: 5 });
 
@@ -62,7 +57,7 @@ export default function TableProducts({
         </tr>
       </thead>
       <tbody>
-        {products.map(({ id_product, name, price, quantity_stock }, index) => {
+        {products.map(({ id_product, name, price, quantity }, index) => {
           index++;
           if (index >= paginator.LimitDown && index <= paginator.LimitUp) {
             //Mostrar solos los registros que se encuentran en el rango segun la pagina actual
@@ -81,7 +76,7 @@ export default function TableProducts({
 
                 <td className="px-6 py-4 text-center">{price}$</td>
 
-                <td className="px-6 py-4 text-center">{quantity_stock}</td>
+                <td className="px-6 py-4 text-center">{quantity}</td>
 
                 <td className="px-6 py-4">
                   <StandarButton

@@ -1,5 +1,58 @@
 import { NextRequest } from "next/server";
 import { client } from "@/lib/pg";
+import {parse} from 'url';
+import { CalculatePriceIva } from "@/services/CalculatePriceIva";
+
+
+/**
+ * 
+ * @param {NextRequest} request 
+ */
+
+export async function GET(request, ){
+    
+    const url = parse(request.url, true); // Analizar la URL 
+    const {query} = url;
+    let {conditions} = query; //obtener posibles variables de la url
+
+
+    const data = await client.query(`SELECT client.name as Client_Name, client.lastname as Client_lastname, client.cedula as Client_cedula, client.email, client.phone, 
+    invoice.id_invoice, invoice.date as Invoice_date  FROM "Invoice" as invoice 
+    INNER JOIN "Client" as client on invoice.id_client = client.id_client ${conditions ? conditions : "" } ORDER BY id_invoice DESC`)
+    const {rows, rowCount} = data;
+  
+    if(rowCount === 0)
+        return new Response(null,{status:204});
+
+    //se recorren todos los resultados
+    for (let i = 0; i< rows.length;i++)
+    {
+        //obtener productos de los resultados
+        const url = "http://localhost:3000/api/invoice/"+rows[i].id_invoice;
+        const res = await fetch(url, {method: "GET",});
+      
+        if (res.status !== 200) {
+            throw new Error("Error obtiendo datos");   
+        } 
+
+        const invoice = await res.json();
+        const resultados = invoice.results;
+   
+        
+        if(invoice)
+        {
+            //se guarda el total a pagar de cada factura de los resultados
+            const {final_price, price_iva} = CalculatePriceIva(resultados);
+            rows[i].products = (Number(final_price) + Number(price_iva)).toFixed(2);
+        }
+        else
+            return new Response(null,{status:204});
+    }
+
+    return Response.json({results: rows});
+}
+
+
 
 /**
  * 

@@ -14,6 +14,7 @@ export default function TableBuy(props) {
   function changeSearch(search) {
     let filter = "";
     if(search) filter = `conditions= and name ILIKE '%${search}%' `
+    filter = encodeURIComponent(filter);
     setSearch(filter)
   }
   function ObtainChangeTable(changes)

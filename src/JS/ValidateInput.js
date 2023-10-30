@@ -48,15 +48,15 @@ export const validateForm = async (data, type) => {
   //Validaciones para Productos
   else if (type === "product") {
     //validaciones Precio de los productos
-    if (data.price_unit <= 0) errors.price_unit = "El Precio es requerido";
-    else if (data.price_unit >= 10000)
-      errors.price_unit = "El Precio no puede ser mayor a 10000";
+    if (data.price <= 0) errors.price = "El Precio es requerido";
+    else if (data.price >= 10000)
+      errors.price = "El Precio no puede ser mayor a 10000";
 
     //validaciones stock de los productos
-    if (data.quantity_stock <= 0)
-      errors.quantity_stock = "El Stock es requerido";
-    else if (data.quantity_stock >= 1000)
-      errors.quantity_stock = "El Stock no puede ser mayor a 1000";
+    if (data.quantity <= 0)
+      errors.quantity = "El Stock es requerido";
+    else if (data.quantity >= 1000)
+      errors.quantity = "El Stock no puede ser mayor a 1000";
   }
 
   return errors;
@@ -81,12 +81,13 @@ export const isValidCedula = (cedula) => {
 };
 
 const isNotRepeatCedula = async (cedula, id, type) => {
+  
   const table = `${type}?conditions= and cedula = '${cedula}' and ${
     type === "client" ? "id_client" : "id_user"
-  } != '${id}' `; //consulta con los condicionales agregados
-
+  } != ${id} `; //consulta con los condicionales agregados
+  
   const res = await Connect(table, "GET");
-
+  
   if (res) return true;
 
   return false;

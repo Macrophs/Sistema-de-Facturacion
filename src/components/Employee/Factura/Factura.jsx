@@ -3,7 +3,6 @@ import { useSearchParams } from "next/navigation";
 import HeaderFactura from "./HeaderFactura"
 import TableFactura from "./TableFactura"
 import { useEffect, useState } from "react";
-import { obtainFacturasHelper } from "@/Helpers/ObtainDataHelper";
 import { useRouter } from "next/navigation";
 import { Connect } from "@/services/Connect";
 import { GeneratePDF } from "@/services/GeneratePDF";

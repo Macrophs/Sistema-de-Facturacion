@@ -1,6 +1,5 @@
 "use client"
 
-import { obtainClientHelper } from "@/Helpers/ObtainDataHelper";
 import StandarButton from "@/components/Buttons/StandarButton";
 import Loader from "@/components/Tables/Loader";
 import { Connect } from "@/services/Connect";
